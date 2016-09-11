@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "SeedReports", "SeedReports.rptproj", "{B4ADB6AF-3C7C-4F63-B21D-B419EDDE4A96}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4ADB6AF-3C7C-4F63-B21D-B419EDDE4A96}.Debug|Default.ActiveCfg = Debug
+		{B4ADB6AF-3C7C-4F63-B21D-B419EDDE4A96}.Debug|Default.Build.0 = Debug
+		{B4ADB6AF-3C7C-4F63-B21D-B419EDDE4A96}.Debug|Default.Deploy.0 = Debug
+		{B4ADB6AF-3C7C-4F63-B21D-B419EDDE4A96}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{B4ADB6AF-3C7C-4F63-B21D-B419EDDE4A96}.DebugLocal|Default.Build.0 = DebugLocal
+		{B4ADB6AF-3C7C-4F63-B21D-B419EDDE4A96}.DebugLocal|Default.Deploy.0 = DebugLocal
+		{B4ADB6AF-3C7C-4F63-B21D-B419EDDE4A96}.Release|Default.ActiveCfg = Release
+		{B4ADB6AF-3C7C-4F63-B21D-B419EDDE4A96}.Release|Default.Build.0 = Release
+		{B4ADB6AF-3C7C-4F63-B21D-B419EDDE4A96}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
