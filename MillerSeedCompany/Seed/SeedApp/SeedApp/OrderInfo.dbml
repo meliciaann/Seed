@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Seed" Class="OrderItemsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=Seed;Integrated Security=True" SettingsObjectName="SeedApp.My.MySettings" SettingsPropertyName="SeedConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.OrderItems" Member="OrderItems">
+    <Type Name="OrderItem">
+      <Column Name="OrderItemID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ItemID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OrderID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PricePerAcre" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="TotalPrice" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Association Name="OrderItem_OrderItemDetail" Member="OrderItemDetails" ThisKey="ItemID" OtherKey="ItemID" Type="OrderItemDetail" />
+      <Association Name="Order_OrderItem" Member="Order" ThisKey="OrderID" OtherKey="OrderID" Type="Order" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Items" Member="OrderItemDetails">
+    <Type Name="OrderItemDetail">
+      <Column Name="Item" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Lot" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[PLS%]" Member="PLS_" Type="System.Decimal" DbType="Decimal(20,10)" CanBeNull="true" />
+      <Column Name="variety" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Purity" Type="System.Decimal" DbType="Decimal(20,10)" CanBeNull="true" />
+      <Column Name="Crop" Type="System.Decimal" DbType="Decimal(20,10)" CanBeNull="true" />
+      <Column Name="Weeds" Type="System.Decimal" DbType="Decimal(20,10)" CanBeNull="true" />
+      <Column Name="Germ" Type="System.Decimal" DbType="Decimal(20,10)" CanBeNull="true" />
+      <Column Name="Dormant" Type="System.Decimal" DbType="Decimal(20,10)" CanBeNull="true" />
+      <Column Name="Total" Type="System.Decimal" DbType="Decimal(20,10)" CanBeNull="true" />
+      <Column Name="[Test Date]" Member="Test_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Orgin" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Distributor" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="Wholesale" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="Retail" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="Item1" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Item2" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ReorderQTY" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="Reorder" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Discontinued" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ScientificName" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ItemID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="OrderItem_OrderItemDetail" Member="OrderItem" ThisKey="ItemID" OtherKey="ItemID" Type="OrderItem" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customers" Member="OrderCustomerDetails">
+    <Type Name="OrderCustomerDetail">
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CustomerAddressLine1" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CustomerAddressLine2" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CustomerCity" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CustomerState" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="CustomerZip" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Association Name="Order_OrderCustomerDetail" Member="Order" ThisKey="CustomerId" OtherKey="CustomerID" Type="Order" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Orders" Member="Orders">
+    <Type Name="Order">
+      <Column Name="OrderID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="InvoiceID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CustomerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Project" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Acres" Type="System.Decimal" DbType="Decimal(12,2)" CanBeNull="true" />
+      <Column Name="OrderTotal" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="OrderDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Order_OrderCustomerDetail" Member="OrderCustomerDetails" ThisKey="CustomerID" OtherKey="CustomerId" Type="OrderCustomerDetail" />
+      <Association Name="Order_OrderItem" Member="OrderItems" ThisKey="OrderID" OtherKey="OrderID" Type="OrderItem" />
+    </Type>
+  </Table>
+</Database>
