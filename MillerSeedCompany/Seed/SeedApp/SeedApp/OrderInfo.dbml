@@ -1,16 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Seed" Class="OrderItemsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=Seed;Integrated Security=True" SettingsObjectName="SeedApp.My.MySettings" SettingsPropertyName="SeedConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.OrderItems" Member="OrderItems">
-    <Type Name="OrderItem">
-      <Column Name="OrderItemID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ItemID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="OrderID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PricePerAcre" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
-      <Column Name="TotalPrice" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
-      <Association Name="OrderItem_OrderItemDetail" Member="OrderItemDetails" ThisKey="ItemID" OtherKey="ItemID" Type="OrderItemDetail" />
-      <Association Name="Order_OrderItem" Member="Order" ThisKey="OrderID" OtherKey="OrderID" Type="Order" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Items" Member="OrderItemDetails">
     <Type Name="OrderItemDetail">
       <Column Name="Item" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
@@ -50,6 +39,26 @@
       <Association Name="Order_OrderCustomerDetail" Member="Order" ThisKey="CustomerId" OtherKey="CustomerID" Type="Order" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.OrderItems" Member="OrderItems">
+    <Type Name="OrderItem">
+      <Column Name="OrderItemID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ItemID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OrderID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PricePerAcre" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="TotalPrice" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="PLS_LBS_PerAcre" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="PricePerPLSLB" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Association Name="OrderItem_OrderItemDetail" Member="OrderItemDetails" ThisKey="ItemID" OtherKey="ItemID" Type="OrderItemDetail" />
+      <Association Name="Order_OrderItem" Member="Order" ThisKey="OrderID" OtherKey="OrderID" Type="Order" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderStatus" Member="OrderStatusDetails">
+    <Type Name="OrderStatusDetail">
+      <Column Name="OrderStatusID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="OrderStatusName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Order_OrderStatus" Member="Order" ThisKey="OrderStatusID" OtherKey="OrderStatusId" Type="Order" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Orders" Member="Orders">
     <Type Name="Order">
       <Column Name="OrderID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -59,6 +68,10 @@
       <Column Name="Acres" Type="System.Decimal" DbType="Decimal(12,2)" CanBeNull="true" />
       <Column Name="OrderTotal" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
       <Column Name="OrderDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SubmittedBy" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TotalPricePerAcre" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="OrderStatusId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="Order_OrderStatus" Member="OrderStatusDetails" ThisKey="OrderStatusId" OtherKey="OrderStatusID" Type="OrderStatusDetail" />
       <Association Name="Order_OrderCustomerDetail" Member="OrderCustomerDetails" ThisKey="CustomerID" OtherKey="CustomerId" Type="OrderCustomerDetail" />
       <Association Name="Order_OrderItem" Member="OrderItems" ThisKey="OrderID" OtherKey="OrderID" Type="OrderItem" />
     </Type>

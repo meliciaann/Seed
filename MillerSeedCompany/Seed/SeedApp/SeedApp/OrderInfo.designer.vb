@@ -31,12 +31,6 @@ Partial Public Class OrderItemsDataContext
   #Region "Extensibility Method Definitions"
   Partial Private Sub OnCreated()
   End Sub
-  Partial Private Sub InsertOrderItem(instance As OrderItem)
-    End Sub
-  Partial Private Sub UpdateOrderItem(instance As OrderItem)
-    End Sub
-  Partial Private Sub DeleteOrderItem(instance As OrderItem)
-    End Sub
   Partial Private Sub InsertOrderItemDetail(instance As OrderItemDetail)
     End Sub
   Partial Private Sub UpdateOrderItemDetail(instance As OrderItemDetail)
@@ -48,6 +42,12 @@ Partial Public Class OrderItemsDataContext
   Partial Private Sub UpdateOrderCustomerDetail(instance As OrderCustomerDetail)
     End Sub
   Partial Private Sub DeleteOrderCustomerDetail(instance As OrderCustomerDetail)
+    End Sub
+  Partial Private Sub InsertOrderItem(instance As OrderItem)
+    End Sub
+  Partial Private Sub UpdateOrderItem(instance As OrderItem)
+    End Sub
+  Partial Private Sub DeleteOrderItem(instance As OrderItem)
     End Sub
   Partial Private Sub InsertOrder(instance As [Order])
     End Sub
@@ -82,12 +82,6 @@ Partial Public Class OrderItemsDataContext
 		OnCreated
 	End Sub
 	
-	Public ReadOnly Property OrderItems() As System.Data.Linq.Table(Of OrderItem)
-		Get
-			Return Me.GetTable(Of OrderItem)
-		End Get
-	End Property
-	
 	Public ReadOnly Property OrderItemDetails() As System.Data.Linq.Table(Of OrderItemDetail)
 		Get
 			Return Me.GetTable(Of OrderItemDetail)
@@ -100,220 +94,23 @@ Partial Public Class OrderItemsDataContext
 		End Get
 	End Property
 	
+	Public ReadOnly Property OrderItems() As System.Data.Linq.Table(Of OrderItem)
+		Get
+			Return Me.GetTable(Of OrderItem)
+		End Get
+	End Property
+	
+	Public ReadOnly Property OrderStatusDetails() As System.Data.Linq.Table(Of OrderStatusDetail)
+		Get
+			Return Me.GetTable(Of OrderStatusDetail)
+		End Get
+	End Property
+	
 	Public ReadOnly Property Orders() As System.Data.Linq.Table(Of [Order])
 		Get
 			Return Me.GetTable(Of [Order])
 		End Get
 	End Property
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.OrderItems")>  _
-Partial Public Class OrderItem
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _OrderItemID As Integer
-	
-	Private _ItemID As Integer
-	
-	Private _OrderID As Integer
-	
-	Private _PricePerAcre As System.Nullable(Of Decimal)
-	
-	Private _TotalPrice As System.Nullable(Of Decimal)
-	
-	Private _OrderItemDetails As EntitySet(Of OrderItemDetail)
-	
-	Private _Order As EntityRef(Of [Order])
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnOrderItemIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnOrderItemIDChanged()
-    End Sub
-    Partial Private Sub OnItemIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnItemIDChanged()
-    End Sub
-    Partial Private Sub OnOrderIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnOrderIDChanged()
-    End Sub
-    Partial Private Sub OnPricePerAcreChanging(value As System.Nullable(Of Decimal))
-    End Sub
-    Partial Private Sub OnPricePerAcreChanged()
-    End Sub
-    Partial Private Sub OnTotalPriceChanging(value As System.Nullable(Of Decimal))
-    End Sub
-    Partial Private Sub OnTotalPriceChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		Me._OrderItemDetails = New EntitySet(Of OrderItemDetail)(AddressOf Me.attach_OrderItemDetails, AddressOf Me.detach_OrderItemDetails)
-		Me._Order = CType(Nothing, EntityRef(Of [Order]))
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OrderItemID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
-	Public Property OrderItemID() As Integer
-		Get
-			Return Me._OrderItemID
-		End Get
-		Set
-			If ((Me._OrderItemID = value)  _
-						= false) Then
-				Me.OnOrderItemIDChanging(value)
-				Me.SendPropertyChanging
-				Me._OrderItemID = value
-				Me.SendPropertyChanged("OrderItemID")
-				Me.OnOrderItemIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ItemID", DbType:="Int NOT NULL")>  _
-	Public Property ItemID() As Integer
-		Get
-			Return Me._ItemID
-		End Get
-		Set
-			If ((Me._ItemID = value)  _
-						= false) Then
-				Me.OnItemIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ItemID = value
-				Me.SendPropertyChanged("ItemID")
-				Me.OnItemIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OrderID", DbType:="Int NOT NULL")>  _
-	Public Property OrderID() As Integer
-		Get
-			Return Me._OrderID
-		End Get
-		Set
-			If ((Me._OrderID = value)  _
-						= false) Then
-				If Me._Order.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
-				Me.OnOrderIDChanging(value)
-				Me.SendPropertyChanging
-				Me._OrderID = value
-				Me.SendPropertyChanged("OrderID")
-				Me.OnOrderIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PricePerAcre", DbType:="Decimal(12,4)")>  _
-	Public Property PricePerAcre() As System.Nullable(Of Decimal)
-		Get
-			Return Me._PricePerAcre
-		End Get
-		Set
-			If (Me._PricePerAcre.Equals(value) = false) Then
-				Me.OnPricePerAcreChanging(value)
-				Me.SendPropertyChanging
-				Me._PricePerAcre = value
-				Me.SendPropertyChanged("PricePerAcre")
-				Me.OnPricePerAcreChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TotalPrice", DbType:="Decimal(12,4)")>  _
-	Public Property TotalPrice() As System.Nullable(Of Decimal)
-		Get
-			Return Me._TotalPrice
-		End Get
-		Set
-			If (Me._TotalPrice.Equals(value) = false) Then
-				Me.OnTotalPriceChanging(value)
-				Me.SendPropertyChanging
-				Me._TotalPrice = value
-				Me.SendPropertyChanged("TotalPrice")
-				Me.OnTotalPriceChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="OrderItem_OrderItemDetail", Storage:="_OrderItemDetails", ThisKey:="ItemID", OtherKey:="ItemID")>  _
-	Public Property OrderItemDetails() As EntitySet(Of OrderItemDetail)
-		Get
-			Return Me._OrderItemDetails
-		End Get
-		Set
-			Me._OrderItemDetails.Assign(value)
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Order_OrderItem", Storage:="_Order", ThisKey:="OrderID", OtherKey:="OrderID", IsForeignKey:=true)>  _
-	Public Property [Order]() As [Order]
-		Get
-			Return Me._Order.Entity
-		End Get
-		Set
-			Dim previousValue As [Order] = Me._Order.Entity
-			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._Order.HasLoadedOrAssignedValue = false)) Then
-				Me.SendPropertyChanging
-				If ((previousValue Is Nothing)  _
-							= false) Then
-					Me._Order.Entity = Nothing
-					previousValue.OrderItems.Remove(Me)
-				End If
-				Me._Order.Entity = value
-				If ((value Is Nothing)  _
-							= false) Then
-					value.OrderItems.Add(Me)
-					Me._OrderID = value.OrderID
-				Else
-					Me._OrderID = CType(Nothing, Integer)
-				End If
-				Me.SendPropertyChanged("[Order]")
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-	
-	Private Sub attach_OrderItemDetails(ByVal entity As OrderItemDetail)
-		Me.SendPropertyChanging
-		entity.OrderItem = Me
-	End Sub
-	
-	Private Sub detach_OrderItemDetails(ByVal entity As OrderItemDetail)
-		Me.SendPropertyChanging
-		entity.OrderItem = Nothing
-	End Sub
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Items")>  _
@@ -1102,6 +899,295 @@ Partial Public Class OrderCustomerDetail
 	End Sub
 End Class
 
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.OrderItems")>  _
+Partial Public Class OrderItem
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _OrderItemID As Integer
+	
+	Private _ItemID As Integer
+	
+	Private _OrderID As Integer
+	
+	Private _PricePerAcre As System.Nullable(Of Decimal)
+	
+	Private _TotalPrice As System.Nullable(Of Decimal)
+	
+	Private _PLS_LBS_PerAcre As System.Nullable(Of Decimal)
+	
+	Private _PricePerPLSLB As System.Nullable(Of Decimal)
+	
+	Private _OrderItemDetails As EntitySet(Of OrderItemDetail)
+	
+	Private _Order As EntityRef(Of [Order])
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnOrderItemIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnOrderItemIDChanged()
+    End Sub
+    Partial Private Sub OnItemIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnItemIDChanged()
+    End Sub
+    Partial Private Sub OnOrderIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnOrderIDChanged()
+    End Sub
+    Partial Private Sub OnPricePerAcreChanging(value As System.Nullable(Of Decimal))
+    End Sub
+    Partial Private Sub OnPricePerAcreChanged()
+    End Sub
+    Partial Private Sub OnTotalPriceChanging(value As System.Nullable(Of Decimal))
+    End Sub
+    Partial Private Sub OnTotalPriceChanged()
+    End Sub
+    Partial Private Sub OnPLS_LBS_PerAcreChanging(value As System.Nullable(Of Decimal))
+    End Sub
+    Partial Private Sub OnPLS_LBS_PerAcreChanged()
+    End Sub
+    Partial Private Sub OnPricePerPLSLBChanging(value As System.Nullable(Of Decimal))
+    End Sub
+    Partial Private Sub OnPricePerPLSLBChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._OrderItemDetails = New EntitySet(Of OrderItemDetail)(AddressOf Me.attach_OrderItemDetails, AddressOf Me.detach_OrderItemDetails)
+		Me._Order = CType(Nothing, EntityRef(Of [Order]))
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OrderItemID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property OrderItemID() As Integer
+		Get
+			Return Me._OrderItemID
+		End Get
+		Set
+			If ((Me._OrderItemID = value)  _
+						= false) Then
+				Me.OnOrderItemIDChanging(value)
+				Me.SendPropertyChanging
+				Me._OrderItemID = value
+				Me.SendPropertyChanged("OrderItemID")
+				Me.OnOrderItemIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ItemID", DbType:="Int NOT NULL")>  _
+	Public Property ItemID() As Integer
+		Get
+			Return Me._ItemID
+		End Get
+		Set
+			If ((Me._ItemID = value)  _
+						= false) Then
+				Me.OnItemIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ItemID = value
+				Me.SendPropertyChanged("ItemID")
+				Me.OnItemIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OrderID", DbType:="Int NOT NULL")>  _
+	Public Property OrderID() As Integer
+		Get
+			Return Me._OrderID
+		End Get
+		Set
+			If ((Me._OrderID = value)  _
+						= false) Then
+				If Me._Order.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnOrderIDChanging(value)
+				Me.SendPropertyChanging
+				Me._OrderID = value
+				Me.SendPropertyChanged("OrderID")
+				Me.OnOrderIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PricePerAcre", DbType:="Decimal(12,4)")>  _
+	Public Property PricePerAcre() As System.Nullable(Of Decimal)
+		Get
+			Return Me._PricePerAcre
+		End Get
+		Set
+			If (Me._PricePerAcre.Equals(value) = false) Then
+				Me.OnPricePerAcreChanging(value)
+				Me.SendPropertyChanging
+				Me._PricePerAcre = value
+				Me.SendPropertyChanged("PricePerAcre")
+				Me.OnPricePerAcreChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TotalPrice", DbType:="Decimal(12,4)")>  _
+	Public Property TotalPrice() As System.Nullable(Of Decimal)
+		Get
+			Return Me._TotalPrice
+		End Get
+		Set
+			If (Me._TotalPrice.Equals(value) = false) Then
+				Me.OnTotalPriceChanging(value)
+				Me.SendPropertyChanging
+				Me._TotalPrice = value
+				Me.SendPropertyChanged("TotalPrice")
+				Me.OnTotalPriceChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PLS_LBS_PerAcre", DbType:="Decimal(12,4)")>  _
+	Public Property PLS_LBS_PerAcre() As System.Nullable(Of Decimal)
+		Get
+			Return Me._PLS_LBS_PerAcre
+		End Get
+		Set
+			If (Me._PLS_LBS_PerAcre.Equals(value) = false) Then
+				Me.OnPLS_LBS_PerAcreChanging(value)
+				Me.SendPropertyChanging
+				Me._PLS_LBS_PerAcre = value
+				Me.SendPropertyChanged("PLS_LBS_PerAcre")
+				Me.OnPLS_LBS_PerAcreChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PricePerPLSLB", DbType:="Decimal(12,4)")>  _
+	Public Property PricePerPLSLB() As System.Nullable(Of Decimal)
+		Get
+			Return Me._PricePerPLSLB
+		End Get
+		Set
+			If (Me._PricePerPLSLB.Equals(value) = false) Then
+				Me.OnPricePerPLSLBChanging(value)
+				Me.SendPropertyChanging
+				Me._PricePerPLSLB = value
+				Me.SendPropertyChanged("PricePerPLSLB")
+				Me.OnPricePerPLSLBChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="OrderItem_OrderItemDetail", Storage:="_OrderItemDetails", ThisKey:="ItemID", OtherKey:="ItemID")>  _
+	Public Property OrderItemDetails() As EntitySet(Of OrderItemDetail)
+		Get
+			Return Me._OrderItemDetails
+		End Get
+		Set
+			Me._OrderItemDetails.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Order_OrderItem", Storage:="_Order", ThisKey:="OrderID", OtherKey:="OrderID", IsForeignKey:=true)>  _
+	Public Property [Order]() As [Order]
+		Get
+			Return Me._Order.Entity
+		End Get
+		Set
+			Dim previousValue As [Order] = Me._Order.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Order.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Order.Entity = Nothing
+					previousValue.OrderItems.Remove(Me)
+				End If
+				Me._Order.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.OrderItems.Add(Me)
+					Me._OrderID = value.OrderID
+				Else
+					Me._OrderID = CType(Nothing, Integer)
+				End If
+				Me.SendPropertyChanged("[Order]")
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+	
+	Private Sub attach_OrderItemDetails(ByVal entity As OrderItemDetail)
+		Me.SendPropertyChanging
+		entity.OrderItem = Me
+	End Sub
+	
+	Private Sub detach_OrderItemDetails(ByVal entity As OrderItemDetail)
+		Me.SendPropertyChanging
+		entity.OrderItem = Nothing
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.OrderStatus")>  _
+Partial Public Class OrderStatusDetail
+	
+	Private _OrderStatusID As System.Nullable(Of Long)
+	
+	Private _OrderStatusName As String
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OrderStatusID", DbType:="BigInt")>  _
+	Public Property OrderStatusID() As System.Nullable(Of Long)
+		Get
+			Return Me._OrderStatusID
+		End Get
+		Set
+			If (Me._OrderStatusID.Equals(value) = false) Then
+				Me._OrderStatusID = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OrderStatusName", DbType:="NVarChar(50)")>  _
+	Public Property OrderStatusName() As String
+		Get
+			Return Me._OrderStatusName
+		End Get
+		Set
+			If (String.Equals(Me._OrderStatusName, value) = false) Then
+				Me._OrderStatusName = value
+			End If
+		End Set
+	End Property
+End Class
+
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Orders")>  _
 Partial Public Class [Order]
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -1121,6 +1207,12 @@ Partial Public Class [Order]
 	Private _OrderTotal As System.Nullable(Of Decimal)
 	
 	Private _OrderDate As System.Nullable(Of Date)
+	
+	Private _SubmittedBy As String
+	
+	Private _TotalPricePerAcre As System.Nullable(Of Decimal)
+	
+	Private _OrderStatusId As System.Nullable(Of Long)
 	
 	Private _OrderCustomerDetails As EntitySet(Of OrderCustomerDetail)
 	
@@ -1160,6 +1252,18 @@ Partial Public Class [Order]
     Partial Private Sub OnOrderDateChanging(value As System.Nullable(Of Date))
     End Sub
     Partial Private Sub OnOrderDateChanged()
+    End Sub
+    Partial Private Sub OnSubmittedByChanging(value As String)
+    End Sub
+    Partial Private Sub OnSubmittedByChanged()
+    End Sub
+    Partial Private Sub OnTotalPricePerAcreChanging(value As System.Nullable(Of Decimal))
+    End Sub
+    Partial Private Sub OnTotalPricePerAcreChanged()
+    End Sub
+    Partial Private Sub OnOrderStatusIdChanging(value As System.Nullable(Of Long))
+    End Sub
+    Partial Private Sub OnOrderStatusIdChanged()
     End Sub
     #End Region
 	
@@ -1280,6 +1384,54 @@ Partial Public Class [Order]
 				Me._OrderDate = value
 				Me.SendPropertyChanged("OrderDate")
 				Me.OnOrderDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SubmittedBy", DbType:="NVarChar(100)")>  _
+	Public Property SubmittedBy() As String
+		Get
+			Return Me._SubmittedBy
+		End Get
+		Set
+			If (String.Equals(Me._SubmittedBy, value) = false) Then
+				Me.OnSubmittedByChanging(value)
+				Me.SendPropertyChanging
+				Me._SubmittedBy = value
+				Me.SendPropertyChanged("SubmittedBy")
+				Me.OnSubmittedByChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TotalPricePerAcre", DbType:="Decimal(12,4)")>  _
+	Public Property TotalPricePerAcre() As System.Nullable(Of Decimal)
+		Get
+			Return Me._TotalPricePerAcre
+		End Get
+		Set
+			If (Me._TotalPricePerAcre.Equals(value) = false) Then
+				Me.OnTotalPricePerAcreChanging(value)
+				Me.SendPropertyChanging
+				Me._TotalPricePerAcre = value
+				Me.SendPropertyChanged("TotalPricePerAcre")
+				Me.OnTotalPricePerAcreChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OrderStatusId", DbType:="BigInt")>  _
+	Public Property OrderStatusId() As System.Nullable(Of Long)
+		Get
+			Return Me._OrderStatusId
+		End Get
+		Set
+			If (Me._OrderStatusId.Equals(value) = false) Then
+				Me.OnOrderStatusIdChanging(value)
+				Me.SendPropertyChanging
+				Me._OrderStatusId = value
+				Me.SendPropertyChanged("OrderStatusId")
+				Me.OnOrderStatusIdChanged
 			End If
 		End Set
 	End Property

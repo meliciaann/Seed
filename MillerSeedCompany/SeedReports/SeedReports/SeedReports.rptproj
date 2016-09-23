@@ -5,8 +5,20 @@
   <DataSets />
   <Reports>
     <ProjectItem>
+      <Name>Bag.rdl</Name>
+      <FullPath>Bag.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
       <Name>Submittal.rdl</Name>
       <FullPath>Submittal.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Tags.rdl</Name>
+      <FullPath>Tags.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>USDeptAg.rdl</Name>
+      <FullPath>USDeptAg.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>
@@ -16,7 +28,7 @@
       <Options>
         <OutputPath>bin\Debug</OutputPath>
         <TargetServerVersion>SSRS2016</TargetServerVersion>
-        <TargetServerURL>http://localhost/reportserver</TargetServerURL>
+        <TargetServerURL>http://desktop-f7aj65k:8080/ReportServer_SQLEXPRESS</TargetServerURL>
         <TargetFolder>SeedReports</TargetFolder>
         <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
         <TargetDatasetFolder>Datasets</TargetDatasetFolder>

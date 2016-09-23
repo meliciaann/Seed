@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Seed" Class="SeedReportsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=Seed;Integrated Security=True" SettingsObjectName="SeedApp.My.MySettings" SettingsPropertyName="SeedConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Reports" Member="SeedReports">
+    <Type Name="SeedReport">
+      <Column Name="ReportFileName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="FriendlyName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ReportID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="HasSubReports" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

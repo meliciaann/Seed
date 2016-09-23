@@ -1,0 +1,13 @@
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\QBLib\bin\Debug\QBLib.dll
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\QBLib\bin\Debug\QBLib.pdb
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\QBLib\bin\Debug\QBLib.xml
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\QBLib\obj\Debug\QBLib.vbprojResolveAssemblyReference.cache
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\QBLib\obj\Debug\Interop.QBFC13Lib.dll
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\QBLib\obj\Debug\QBLib.vbproj.ResolveComReference.cache
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\QBLib\obj\Debug\QBLib.Resources.resources
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\QBLib\obj\Debug\QBLib.vbproj.GenerateResource.Cache
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\QBLib\obj\Debug\QBLib.dll
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\QBLib\obj\Debug\QBLib.xml
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\QBLib\obj\Debug\QBLib.pdb
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\QBLib\bin\Debug\QBLib.dll.config
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\QBLib\obj\Debug\QBLib.MultiCustomersForm.resources

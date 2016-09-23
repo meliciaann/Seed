@@ -13,6 +13,23 @@
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>E:\Dropbox\Miller Seed Company\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -45,6 +62,18 @@
   </PropertyGroup>
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>0879B0F9FB6FD7F548DAE1D1DAA25AEB223BF4E0</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>SeedApp_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ReportViewer.Common, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
@@ -84,11 +113,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Customers.dbml</DependentUpon>
     </Compile>
-    <Compile Include="DataSet2.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSet2.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Items.vb" />
     <Compile Include="ItemsEdit.designer.vb">
       <AutoGen>True</AutoGen>
@@ -125,23 +149,54 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OrderInfo.dbml</DependentUpon>
     </Compile>
+    <Compile Include="OrderInfo.vb">
+      <DependentUpon>OrderInfo.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="OrderStatus.designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrderStatus.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="SeedDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SeedDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SeedDataSet.vb">
+      <DependentUpon>SeedDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SeedReports.designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SeedReports.dbml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="OrderStatus.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>OrderStatus.designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SeedApp_TemporaryKey.pfx" />
+    <None Include="SeedReports.dbml.layout">
+      <DependentUpon>SeedReports.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="AllReports.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="OrderStatus.dbml.layout">
+      <DependentUpon>OrderStatus.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="Tags.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="USDeptAg.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="Customers.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Customers.designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
-    </None>
-    <None Include="DataSet2.xsc">
-      <DependentUpon>DataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="DataSet2.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSet2.Designer.vb</LastGenOutput>
-    </None>
-    <None Include="DataSet2.xss">
-      <DependentUpon>DataSet2.xsd</DependentUpon>
     </None>
     <None Include="OrderInfo.dbml.layout">
       <DependentUpon>OrderInfo.dbml</DependentUpon>
@@ -152,8 +207,14 @@
     <None Include="Customers.dbml.layout">
       <DependentUpon>Customers.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="Bag.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="ItemsForm.resx">
       <DependentUpon>ItemsForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MixWorksheet.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -167,6 +228,22 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="SeedDataSet.xsc">
+      <DependentUpon>SeedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SeedDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SeedDataSet2.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="SeedDataSet.xss">
+      <DependentUpon>SeedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SeedReports.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>SeedReports.designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="ItemsEdit.dbml">
@@ -187,6 +264,27 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QBLib\QBLib.vbproj">
+      <Project>{ec8b3dff-664c-4c07-800f-97ada618588e}</Project>
+      <Name>QBLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
