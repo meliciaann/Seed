@@ -5,9 +5,17 @@ Imports System.Windows.Forms
 
 
 Public Class MultiCustomersForm
-    Public qb As New QBLib.QBLibrary
-    Public Sub New(ByVal CustomerRetList As ICustomerRetList)
+    Public MyCustomerRet As ICustomerRet
+    Public Property MultiCustomerRet As ICustomerRet
+        Get
+            Return MyCustomerRet
+        End Get
+        Set(value As ICustomerRet)
 
+        End Set
+    End Property
+
+    Public Sub New(ByVal CustomerRetList As ICustomerRetList)
         ' This call is required by the designer.
         InitializeComponent()
         PopulateCustomerList(CustomerRetList)
@@ -82,8 +90,8 @@ Public Class MultiCustomersForm
     Private Sub DoubleClickItemGrid(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles CustomerListGV.CellMouseDoubleClick
         Dim selectedRow As DataGridViewRow = CustomerListGV.CurrentRow
         Dim selectedCust As QBCustomers = selectedRow.DataBoundItem
-
-        qb.QBCustomerUserSelection = selectedCust.mQBListID
+        Dim qb1 As New QBLib.QBLibrary
+        MyCustomerRet = qb1.DoCustomerQuery(selectedCust.mQBListID, "ListIDList")
         Me.Close()
 
     End Sub

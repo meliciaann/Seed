@@ -8,12 +8,16 @@ Imports System.ComponentModel
 Imports System.Data
 Imports System.IO
 Imports System.Windows.Forms
+Imports SeedGeneral
+
 
 
 Public Class QBLibrary
     Public CompanyFile As String = "Miller Seed Company"
     Public QBCustomers As Table(Of QBCustomers)
     Public QBCustomerUserSelection As String = Nothing
+    Public MyCustomerRet As ICustomerRet = Nothing
+
     Public Sub DoCompanyQuery()
         Dim sessionBegun As Boolean
         sessionBegun = False
@@ -113,14 +117,158 @@ Public Class QBLibrary
 
 
     End Sub
+
+    Public Function QBCreateInvoice(ByVal OD As OrderDetails(), ByVal OID As OrderItemDetails()) As String
+        Dim OrderDetail = OD.Single
+        Dim RefNumber As String = Nothing
+        MyCustomerRet = DoCustomerQuery(OrderDetail.CustomerName, "NameFilter")
+        If (MyCustomerRet Is Nothing) Then
+            Dim CreateCustomerResult As Integer = MessageBox.Show("Customer " + OrderDetail.CustomerName + " doesn't exist in QuickBooks, Create?", "Create Customer?", MessageBoxButtons.YesNo)
+            If CreateCustomerResult = DialogResult.Yes Then
+                MyCustomerRet = DoCustomerAdd(OD)
+            ElseIf CreateCustomerResult = DialogResult.No Then
+                Return Nothing
+                Exit Function
+            End If
+        End If
+        RefNumber = DoInvoiceAdd(MyCustomerRet, OID, OrderDetail)
+
+        Return RefNumber
+    End Function
+    Public Function DoPriceListQuery(ByVal QueryValue As String, ByVal QueryType As String) As String
+        Dim TempPriceList As String = Nothing
+        Dim _CustomerRet As ICustomerRet = DoCustomerQuery(QueryValue, "NameFilter")
+        If Not _CustomerRet Is Nothing AndAlso Not _CustomerRet.PriceLevelRef Is Nothing Then
+            TempPriceList = _CustomerRet.PriceLevelRef.FullName.GetValue()
+        End If
+
+        Return TempPriceList
+    End Function
     Public Function DoCustomerQuery(ByVal QueryValue As String, ByVal QueryType As String) As ICustomerRet
+        Dim tempCustomerRet As ICustomerRet = Nothing
+        If (tempCustomerRet Is Nothing) Then
+            Dim sessionBegun As Boolean
+            sessionBegun = False
+            Dim connectionOpen As Boolean
+            connectionOpen = False
+            Dim sessionManager As QBSessionManager
+            sessionManager = Nothing
+
+            Try
+                'Create the session Manager object
+                sessionManager = New QBSessionManager
+
+                'Create the message set request object to hold our request
+                Dim requestMsgSet As IMsgSetRequest
+                requestMsgSet = sessionManager.CreateMsgSetRequest("US", 13, 0)
+                requestMsgSet.Attributes.OnError = ENRqOnError.roeContinue
+
+                Dim CustomerQueryRq As ICustomerQuery
+                CustomerQueryRq = requestMsgSet.AppendCustomerQueryRq()
+
+                If (QueryType = "ListIDList") Then
+                    'Set field value for ListIDList
+                    'May create more than one of these if needed
+                    CustomerQueryRq.ORCustomerListQuery.ListIDList.Add(QueryValue)
+                End If
+
+                If (QueryType = "FullNameList") Then
+                    'Set field value for FullNameList
+                    'May create more than one of these if needed
+                    CustomerQueryRq.ORCustomerListQuery.FullNameList.Add(QueryValue)
+                    ' Set field value for MaxReturned
+                    CustomerQueryRq.ORCustomerListQuery.CustomerListFilter.MaxReturned.SetValue(6)
+                    'Set field value for ActiveStatus
+                    CustomerQueryRq.ORCustomerListQuery.CustomerListFilter.ActiveStatus.SetValue(ENActiveStatus.asActiveOnly)
+                End If
+
+
+
+
+                If (QueryType = "NameFilter") Then
+                    'Set field value for MatchCriterion
+                    CustomerQueryRq.ORCustomerListQuery.CustomerListFilter.ORNameFilter.NameFilter.MatchCriterion.SetValue(ENMatchCriterion.mcContains)
+                    'Set field value for Name
+                    CustomerQueryRq.ORCustomerListQuery.CustomerListFilter.ORNameFilter.NameFilter.Name.SetValue(QueryValue)
+                End If
+
+                'Connect to QuickBooks and begin a session
+                sessionManager.OpenConnection("", "Sample Code from OSR")
+                connectionOpen = True
+                sessionManager.BeginSession("", ENOpenMode.omDontCare)
+                sessionBegun = True
+
+                'Send the request and get the response from QuickBooks
+                Dim responseMsgSet As IMsgSetResponse
+                responseMsgSet = sessionManager.DoRequests(requestMsgSet)
+
+                'End the session and close the connection to QuickBooks
+                sessionManager.EndSession()
+                sessionBegun = False
+                sessionManager.CloseConnection()
+                connectionOpen = False
+
+                If (responseMsgSet Is Nothing) Then
+                    Return tempCustomerRet
+                    Exit Function
+                End If
+                Dim CustomerRetList As ICustomerRetList = Nothing
+                Dim responseList As IResponseList
+                responseList = responseMsgSet.ResponseList
+                If (responseList Is Nothing) Then
+                    Return tempCustomerRet
+                    Exit Function
+                End If
+
+                'if we sent only one request, there is only one response, we'll walk the list for this sample
+                For j = 0 To responseList.Count - 1
+                    Dim response As IResponse
+                    response = responseList.GetAt(j)
+                    'check the status code of the response, 0=ok, >0 is warning
+                    If (response.StatusCode >= 0) Then
+                        'the request-specific response Is in the details, make sure we have some
+                        If (Not response.Detail Is Nothing) Then
+                            'make sure the response Is the type we're expecting
+                            Dim responseType As ENResponseType
+                            responseType = CType(response.Type.GetValue(), ENResponseType)
+                            If (responseType = ENResponseType.rtCustomerQueryRs) Then
+                                '//upcast to more specific type here, this is safe because we checked with response.Type check above
+                                CustomerRetList = CType(response.Detail, ICustomerRetList)
+                                If (CustomerRetList.Count > 1) Then
+                                    Dim MultiCustForm As New MultiCustomersForm(CustomerRetList)
+
+                                    MultiCustForm.ShowDialog()
+                                    tempCustomerRet = MultiCustForm.MyCustomerRet
+                                Else
+                                    tempCustomerRet = CustomerRetList.GetAt(0)
+                                End If
+                            End If
+                        End If
+                    End If
+                Next j
+
+            Catch e As Exception
+
+                If (sessionBegun) Then
+                    sessionManager.EndSession()
+                End If
+                If (connectionOpen) Then
+                    sessionManager.CloseConnection()
+                End If
+                Return tempCustomerRet
+            End Try
+        End If
+        Return tempCustomerRet
+    End Function
+    Public Function DoCustomerAdd(ByVal OD As OrderDetails()) As ICustomerRet
         Dim sessionBegun As Boolean
         sessionBegun = False
         Dim connectionOpen As Boolean
         connectionOpen = False
         Dim sessionManager As QBSessionManager
         sessionManager = Nothing
-        Dim CustomerRet As ICustomerRet = Nothing
+        Dim OrderDetail = OD.Single
+        Dim TempCustomerRet As ICustomerRet = Nothing
         Try
             'Create the session Manager object
             sessionManager = New QBSessionManager
@@ -130,33 +278,14 @@ Public Class QBLibrary
             requestMsgSet = sessionManager.CreateMsgSetRequest("US", 13, 0)
             requestMsgSet.Attributes.OnError = ENRqOnError.roeContinue
 
-            Dim CustomerQueryRq As ICustomerQuery
-            CustomerQueryRq = requestMsgSet.AppendCustomerQueryRq()
-
-            If (QueryType = "ListIDList") Then
-                'Set field value for ListIDList
-                'May create more than one of these if needed
-                CustomerQueryRq.ORCustomerListQuery.ListIDList.Add(QueryValue)
-            End If
-
-            If (QueryType = "FullNameList") Then
-                'Set field value for FullNameList
-                'May create more than one of these if needed
-                CustomerQueryRq.ORCustomerListQuery.FullNameList.Add(QueryValue)
-            End If
-
-            'Set field value for MaxReturned
-            CustomerQueryRq.ORCustomerListQuery.CustomerListFilter.MaxReturned.SetValue(6)
-            'Set field value for ActiveStatus
-            CustomerQueryRq.ORCustomerListQuery.CustomerListFilter.ActiveStatus.SetValue(ENActiveStatus.asActiveOnly)
-
-
-            If (QueryType = "NameFilter") Then
-                'Set field value for MatchCriterion
-                CustomerQueryRq.ORCustomerListQuery.CustomerListFilter.ORNameFilter.NameFilter.MatchCriterion.SetValue(ENMatchCriterion.mcContains)
-                'Set field value for Name
-                CustomerQueryRq.ORCustomerListQuery.CustomerListFilter.ORNameFilter.NameFilter.Name.SetValue(QueryValue)
-            End If
+            Dim CustomerAddRq As ICustomerAdd
+            CustomerAddRq = requestMsgSet.AppendCustomerAddRq()
+            CustomerAddRq.Name.SetValue(OrderDetail.CustomerName)
+            CustomerAddRq.CompanyName.SetValue(OrderDetail.CustomerName)
+            CustomerAddRq.BillAddress.Addr1.SetValue(OrderDetail.CustomerAddressLine1)
+            CustomerAddRq.BillAddress.City.SetValue(OrderDetail.CustomerCity)
+            CustomerAddRq.BillAddress.State.SetValue(OrderDetail.CustomerState)
+            CustomerAddRq.BillAddress.PostalCode.SetValue(OrderDetail.CustomerZip)
 
             'Connect to QuickBooks and begin a session
             sessionManager.OpenConnection("", "Sample Code from OSR")
@@ -175,14 +304,13 @@ Public Class QBLibrary
             connectionOpen = False
 
             If (responseMsgSet Is Nothing) Then
-                Return Nothing
+
                 Exit Function
             End If
-            Dim CustomerRetList As ICustomerRetList = Nothing
+
             Dim responseList As IResponseList
             responseList = responseMsgSet.ResponseList
             If (responseList Is Nothing) Then
-                Return Nothing
                 Exit Function
             End If
 
@@ -197,30 +325,24 @@ Public Class QBLibrary
                         'make sure the response Is the type we're expecting
                         Dim responseType As ENResponseType
                         responseType = CType(response.Type.GetValue(), ENResponseType)
-                        If (responseType = ENResponseType.rtCustomerQueryRs) Then
+                        If (responseType = ENResponseType.rtCustomerAddRs) Then
                             '//upcast to more specific type here, this is safe because we checked with response.Type check above
-                            CustomerRetList = CType(response.Detail, ICustomerRetList)
-                            If (CustomerRetList.Count > 1) Then
-                                Dim MultiCustForm As New MultiCustomersForm(CustomerRetList)
-                                MultiCustForm.Show()
-                                CustomerRet = DoCustomerQuery(QBCustomerUserSelection, "ListIDList")
-                            Else
-                                CustomerRet = CustomerRetList.GetAt(0)
-                            End If
+                            TempCustomerRet = CType(response.Detail, ICustomerRet)
+
                         End If
                     End If
                 End If
             Next j
-            Return CustomerRet
+            Return TempCustomerRet
         Catch e As Exception
-
+            MessageBox.Show(e.Message, "Error")
             If (sessionBegun) Then
                 sessionManager.EndSession()
             End If
             If (connectionOpen) Then
                 sessionManager.CloseConnection()
             End If
-            Return Nothing
+            Return TempCustomerRet
         End Try
     End Function
     Public Function DoItemQuery(ByVal QueryValue As String, ByVal QueryType As String) As IORItemRet
@@ -240,32 +362,30 @@ Public Class QBLibrary
             requestMsgSet = sessionManager.CreateMsgSetRequest("US", 13, 0)
             requestMsgSet.Attributes.OnError = ENRqOnError.roeContinue
 
-            Dim ORItemQueryRq As IItemQuery
-            ORItemQueryRq = requestMsgSet.AppendORItemQueryRq()
+            Dim ItemQueryRq As IItemQuery
+            ItemQueryRq = requestMsgSet.AppendItemQueryRq()
 
             If (QueryType = "ListIDList") Then
                 'Set field value for ListIDList
                 'May create more than one of these if needed
-                ORItemQueryRq.ORORItemListQuery.ListIDList.Add(QueryValue)
+                ItemQueryRq.ORListQuery.ListIDList.Add(QueryValue)
             End If
 
             If (QueryType = "FullNameList") Then
                 'Set field value for FullNameList
                 'May create more than one of these if needed
-                ORItemQueryRq.ORORItemListQuery.FullNameList.Add(QueryValue)
+                ItemQueryRq.ORListQuery.FullNameList.Add(QueryValue)
             End If
 
             'Set field value for MaxReturned
-            ORItemQueryRq.ORORItemListQuery.ORItemListFilter.MaxReturned.SetValue(6)
-            'Set field value for ActiveStatus
-            ORItemQueryRq.ORORItemListQuery.ORItemListFilter.ActiveStatus.SetValue(ENActiveStatus.asActiveOnly)
+
 
 
             If (QueryType = "NameFilter") Then
                 'Set field value for MatchCriterion
-                ORItemQueryRq.ORORItemListQuery.ORItemListFilter.ORNameFilter.NameFilter.MatchCriterion.SetValue(ENMatchCriterion.mcContains)
+                ItemQueryRq.ORListQuery.ListFilter.ORNameFilter.NameFilter.MatchCriterion.SetValue(ENMatchCriterion.mcContains)
                 'Set field value for Name
-                ORItemQueryRq.ORORItemListQuery.ORItemListFilter.ORNameFilter.NameFilter.Name.SetValue(QueryValue)
+                ItemQueryRq.ORListQuery.ListFilter.ORNameFilter.NameFilter.Name.SetValue(QueryValue)
             End If
 
             'Connect to QuickBooks and begin a session
@@ -330,14 +450,14 @@ Public Class QBLibrary
 
     End Function
 
-    Public Sub DoInvoiceAdd(ByVal CustomerRet As ICustomerRet)
+    Public Function DoInvoiceAdd(ByVal CustomerRet As ICustomerRet, ByVal OID As OrderItemDetails(), ByVal OD As OrderDetails) As String
         Dim sessionBegun As Boolean
         sessionBegun = False
         Dim connectionOpen As Boolean
         connectionOpen = False
         Dim sessionManager As QBSessionManager
         sessionManager = Nothing
-
+        Dim RefNumber As String = Nothing
         Try
             'Create the session Manager object
             sessionManager = New QBSessionManager
@@ -350,17 +470,81 @@ Public Class QBLibrary
             Dim InvoiceAddRq As IInvoiceAdd
             InvoiceAddRq = requestMsgSet.AppendInvoiceAddRq()
             'Set field value for ListID
-            InvoiceAddRq.CustomerRef.ListID.SetValue(CustomerRet.ListID.GetValue)
-            InvoiceAddRq.CustomerRef.FullName.SetValue(CustomerRet.FullName.GetValue)
-            InvoiceAddRq.BillAddress.Addr1.SetValue(CustomerRet.BillAddress.Addr1.GetValue)
-            InvoiceAddRq.BillAddress.Addr2.SetValue(CustomerRet.BillAddress.Addr2.GetValue)
-            InvoiceAddRq.BillAddress.City.SetValue(CustomerRet.BillAddress.City.GetValue)
-            InvoiceAddRq.BillAddress.State.SetValue(CustomerRet.BillAddress.State.GetValue)
-            InvoiceAddRq.BillAddress.PostalCode.SetValue(CustomerRet.BillAddress.PostalCode.GetValue)
-
+            If Not (CustomerRet Is Nothing) Then
+                If Not (CustomerRet.ListID Is Nothing) Then
+                    InvoiceAddRq.CustomerRef.ListID.SetValue(CustomerRet.ListID.GetValue)
+                End If
+                If Not (CustomerRet.FullName Is Nothing) Then
+                    InvoiceAddRq.CustomerRef.FullName.SetValue(CustomerRet.FullName.GetValue)
+                End If
+                If Not (CustomerRet.BillAddress Is Nothing) Then
+                    If Not CustomerRet.BillAddress.Addr1 Is Nothing Then
+                        InvoiceAddRq.BillAddress.Addr1.SetValue(CustomerRet.BillAddress.Addr1.GetValue)
+                    End If
+                    If Not CustomerRet.BillAddress.Addr2 Is Nothing Then
+                        InvoiceAddRq.BillAddress.Addr2.SetValue(CustomerRet.BillAddress.Addr2.GetValue)
+                    End If
+                    If Not CustomerRet.BillAddress.City Is Nothing Then
+                        InvoiceAddRq.BillAddress.City.SetValue(CustomerRet.BillAddress.City.GetValue)
+                    End If
+                    If Not CustomerRet.BillAddress.State Is Nothing Then
+                        InvoiceAddRq.BillAddress.State.SetValue(CustomerRet.BillAddress.State.GetValue)
+                    End If
+                    If Not CustomerRet.BillAddress.PostalCode Is Nothing Then
+                        InvoiceAddRq.BillAddress.PostalCode.SetValue(CustomerRet.BillAddress.PostalCode.GetValue)
+                    End If
+                End If
+            End If
+                Dim Item As IORItemRet = Nothing
+            Dim desc As String
+            Dim OrderItem = OID.Take(1).FirstOrDefault
             'Adds Line Items
-            Dim ORInvoiceLineAdd As IORInvoiceLineAdd
-            ORInvoiceLineAdd = InvoiceAddRq.ORInvoiceLineAddList.Append()
+            If (OID.Count > 1) Then
+                Item = DoItemQuery("Seed Mix Per Worksheet", "NameFilter")
+                desc = "Seed Mix Per Worksheet"
+            Else
+                Item = DoItemQuery(OrderItem.Lot, "NameFilter")
+                desc = OrderItem.Item
+            End If
+
+            If Not (Item Is Nothing) Then
+                Dim InvoiceLineAdd As IInvoiceLineAdd = InvoiceAddRq.ORInvoiceLineAddList.Append.InvoiceLineAdd
+
+                Select Case Item.ortype
+                    Case ENORItemRet.orirItemInventoryAssemblyRet
+                        InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemInventoryAssemblyRet.ListID.GetValue)
+                        InvoiceLineAdd.Quantity.SetValue(OD.Acres)
+                        InvoiceLineAdd.Amount.SetValue(OD.PricePerAcre)
+                    Case ENORItemRet.orirItemNonInventoryRet
+                        InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemNonInventoryRet.ListID.GetValue)
+                        InvoiceLineAdd.Quantity.SetValue(OD.Acres)
+                        InvoiceLineAdd.Amount.SetValue((OD.PricePerAcre) * OD.Acres)
+                    Case ENORItemRet.orirItemServiceRet
+                        InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemServiceRet.ListID.GetValue)
+                        InvoiceLineAdd.Quantity.SetValue(OD.Acres)
+                        InvoiceLineAdd.Amount.SetValue(Decimal.Round(OD.PricePerAcre))
+                    Case ENORItemRet.orirItemDiscountRet
+                        InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemDiscountRet.ListID.GetValue)
+                        InvoiceLineAdd.Amount.SetValue(Decimal.Round(OD.PricePerAcre))
+                    Case ENORItemRet.orirItemInventoryRet
+                        InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemInventoryRet.ListID.GetValue)
+                        InvoiceLineAdd.Quantity.SetValue(OD.Acres)
+                        InvoiceLineAdd.Amount.SetValue(Decimal.Round(OD.PricePerAcre))
+                    Case ENORItemRet.orirItemOtherChargeRet
+                        InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemOtherChargeRet.ListID.GetValue)
+                        InvoiceLineAdd.Quantity.SetValue(OD.Acres)
+                        InvoiceLineAdd.Amount.SetValue(Decimal.Round(OD.PricePerAcre))
+                    Case ENORItemRet.orirItemSalesTaxRet
+                        InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemSalesTaxRet.ListID.GetValue)
+                        InvoiceLineAdd.Amount.SetValue(Decimal.Round(OD.PricePerAcre))
+                    Case ENORItemRet.orirItemSalesTaxGroupRet
+                        InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemSalesTaxGroupRet.ListID.GetValue)
+                        InvoiceLineAdd.Amount.SetValue(Decimal.Round(OD.PricePerAcre))
+                End Select
+                InvoiceLineAdd.Desc.SetValue(desc)
+            Else
+                MsgBox("Item: " + OrderItem.Lot + " doesn't exist. Please add to QuickBooks.  Invoice NOT Created")
+            End If
 
 
             'Connect to QuickBooks and begin a session
@@ -379,7 +563,39 @@ Public Class QBLibrary
             sessionManager.CloseConnection()
             connectionOpen = False
 
-            WalkInvoiceAddRs(responseMsgSet)
+            If (responseMsgSet Is Nothing) Then
+                Exit Function
+            End If
+
+            Dim responseList As IResponseList
+            responseList = responseMsgSet.ResponseList
+            If (responseList Is Nothing) Then
+                Exit Function
+            End If
+
+            'if we sent only one request, there is only one response, we'll walk the list for this sample
+            For j = 0 To responseList.Count - 1
+                Dim response As IResponse
+                response = responseList.GetAt(j)
+                'check the status code of the response, 0=ok, >0 is warning
+                If (response.StatusCode >= 0) Then
+                    'the request-specific response Is in the details, make sure we have some
+                    If (Not response.Detail Is Nothing) Then
+                        'make sure the response Is the type we're expecting
+                        Dim responseType As ENResponseType
+                        responseType = CType(response.Type.GetValue(), ENResponseType)
+                        If (responseType = ENResponseType.rtInvoiceAddRs) Then
+                            '//upcast to more specific type here, this is safe because we checked with response.Type check above
+                            Dim InvoiceRet As IInvoiceRet
+                            InvoiceRet = CType(response.Detail, IInvoiceRet)
+                            If (Not InvoiceRet.RefNumber Is Nothing) Then
+                                RefNumber = InvoiceRet.RefNumber.GetValue()
+                            End If
+                        End If
+                    End If
+                End If
+            Next j
+            Return RefNumber
         Catch e As Exception
             MessageBox.Show(e.Message, "Error")
             If (sessionBegun) Then
@@ -389,7 +605,8 @@ Public Class QBLibrary
                 sessionManager.CloseConnection()
             End If
         End Try
-    End Sub
+
+    End Function
     Public Sub BuildInvoiceAddRq(requestMsgSet As IMsgSetRequest)
 
 

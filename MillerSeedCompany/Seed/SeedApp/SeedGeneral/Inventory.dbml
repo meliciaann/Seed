@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Seed" Class="InventoryDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.Items" Member="InventoryItemDetails">
+    <Type Name="InventoryItemDetail">
+      <Column Name="Item" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Lot" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[PLS%]" Member="PLS_" Type="System.Decimal" DbType="Decimal(20,10)" CanBeNull="true" />
+      <Column Name="variety" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Purity" Type="System.Decimal" DbType="Decimal(20,10)" CanBeNull="true" />
+      <Column Name="Crop" Type="System.Decimal" DbType="Decimal(20,10)" CanBeNull="true" />
+      <Column Name="Weeds" Type="System.Decimal" DbType="Decimal(20,10)" CanBeNull="true" />
+      <Column Name="Germ" Type="System.Decimal" DbType="Decimal(20,10)" CanBeNull="true" />
+      <Column Name="Dormant" Type="System.Decimal" DbType="Decimal(20,10)" CanBeNull="true" />
+      <Column Name="Total" Type="System.Decimal" DbType="Decimal(20,10)" CanBeNull="true" />
+      <Column Name="[Test Date]" Member="Test_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Orgin" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Distributor" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="Wholesale" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="Retail" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="Item1" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Item2" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ReorderQTY" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="Reorder" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Discontinued" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ScientificName" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ItemID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Inventory_InventoryItemDetail" Member="Inventory" ThisKey="ItemID" OtherKey="ItemID" Type="Inventory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Orders" Member="InventoryOrderDetails">
+    <Type Name="InventoryOrderDetail">
+      <Column Name="OrderID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="InvoiceID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CustomerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Project" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Acres" Type="System.Decimal" DbType="Decimal(12,2)" CanBeNull="true" />
+      <Column Name="OrderTotal" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="OrderDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SubmittedBy" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TotalPricePerAcre" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="OrderStatusId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="Inventory_InventoryOrderDetail" Member="Inventory" ThisKey="InvoiceID" OtherKey="InvoiceID" Type="Inventory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Inventory" Member="Inventories">
+    <Type Name="Inventory">
+      <Column Name="InventoryID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ItemID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Memo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="InvoiceID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="InventoryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Inventory_InventoryItemDetail" Member="InventoryItemDetails" ThisKey="ItemID" OtherKey="ItemID" Type="InventoryItemDetail" />
+      <Association Name="Inventory_InventoryOrderDetail" Member="InventoryOrderDetails" ThisKey="InvoiceID" OtherKey="InvoiceID" Type="InventoryOrderDetail" />
+    </Type>
+  </Table>
+  <Function Name="dbo.InventoryHistoryByItem" Method="InventoryHistoryByItem">
+    <Parameter Name="ItemID" Parameter="itemID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="InventoryHistoryByItemResult1">
+      <Column Name="inventorydate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="Memo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Item" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Lot" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Project" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

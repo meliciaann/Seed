@@ -89,6 +89,8 @@ Partial Public Class Item
 	
 	Private _Crop As System.Nullable(Of Decimal)
 	
+	Private _Inert As System.Nullable(Of Decimal)
+	
 	Private _Weeds As System.Nullable(Of Decimal)
 	
 	Private _Germ As System.Nullable(Of Decimal)
@@ -121,6 +123,8 @@ Partial Public Class Item
 	
 	Private _ItemID As Integer
 	
+	Private _Type As String
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -151,6 +155,10 @@ Partial Public Class Item
     Partial Private Sub OnCropChanging(value As System.Nullable(Of Decimal))
     End Sub
     Partial Private Sub OnCropChanged()
+    End Sub
+    Partial Private Sub OnInertChanging(value As System.Nullable(Of Decimal))
+    End Sub
+    Partial Private Sub OnInertChanged()
     End Sub
     Partial Private Sub OnWeedsChanging(value As System.Nullable(Of Decimal))
     End Sub
@@ -215,6 +223,10 @@ Partial Public Class Item
     Partial Private Sub OnItemIDChanging(value As Integer)
     End Sub
     Partial Private Sub OnItemIDChanged()
+    End Sub
+    Partial Private Sub OnTypeChanging(value As String)
+    End Sub
+    Partial Private Sub OnTypeChanged()
     End Sub
     #End Region
 	
@@ -315,6 +327,22 @@ Partial Public Class Item
 				Me._Crop = value
 				Me.SendPropertyChanged("Crop")
 				Me.OnCropChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Inert", DbType:="Decimal(12,4)")>  _
+	Public Property Inert() As System.Nullable(Of Decimal)
+		Get
+			Return Me._Inert
+		End Get
+		Set
+			If (Me._Inert.Equals(value) = false) Then
+				Me.OnInertChanging(value)
+				Me.SendPropertyChanging
+				Me._Inert = value
+				Me.SendPropertyChanged("Inert")
+				Me.OnInertChanged
 			End If
 		End Set
 	End Property
@@ -572,6 +600,22 @@ Partial Public Class Item
 				Me._ItemID = value
 				Me.SendPropertyChanged("ItemID")
 				Me.OnItemIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Type", DbType:="NVarChar(50)")>  _
+	Public Property Type() As String
+		Get
+			Return Me._Type
+		End Get
+		Set
+			If (String.Equals(Me._Type, value) = false) Then
+				Me.OnTypeChanging(value)
+				Me.SendPropertyChanging
+				Me._Type = value
+				Me.SendPropertyChanged("Type")
+				Me.OnTypeChanged
 			End If
 		End Set
 	End Property

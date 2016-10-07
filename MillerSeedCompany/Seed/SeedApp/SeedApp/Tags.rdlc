@@ -55,7 +55,7 @@ Phone: 402-438-1232</Value>
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>0.66667in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1in</Width>
@@ -86,8 +86,7 @@ Phone: 402-438-1232</Value>
                       <rd:DefaultName>Textbox22</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -118,8 +117,7 @@ Phone: 402-438-1232</Value>
                       <rd:DefaultName>Textbox24</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -155,8 +153,7 @@ Phone: 402-438-1232</Value>
                       <rd:DefaultName>Textbox18</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -178,6 +175,7 @@ Phone: 402-438-1232</Value>
                               <Value>=Fields!orderdate.Value</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
+                                <Format>M/d/yyyy</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -187,8 +185,7 @@ Phone: 402-438-1232</Value>
                       <rd:DefaultName>Textbox25</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -222,7 +219,7 @@ Phone: 402-438-1232</Value>
         <DataSetName>SeedOrder</DataSetName>
         <Left>2.66667in</Left>
         <Height>0.5in</Height>
-        <Width>2in</Width>
+        <Width>1.66667in</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -237,7 +234,7 @@ Phone: 402-438-1232</Value>
               <Width>3.88542in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.27209in</Width>
+              <Width>0.13667in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -393,14 +390,15 @@ Phone: 402-438-1232</Value>
                                       <Paragraph>
                                         <TextRuns>
                                           <TextRun>
-                                            <Value />
+                                            <Value>ITEM</Value>
                                             <Style>
-                                              <TextDecoration>Underline</TextDecoration>
+                                              <FontFamily>Calibri</FontFamily>
+                                              <TextDecoration>None</TextDecoration>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
                                         <Style>
-                                          <TextAlign>Center</TextAlign>
+                                          <TextAlign>Left</TextAlign>
                                         </Style>
                                       </Paragraph>
                                     </Paragraphs>
@@ -426,6 +424,50 @@ Phone: 402-438-1232</Value>
                                       </LeftBorder>
                                       <RightBorder>
                                         <Color>Black</Color>
+                                        <Style>None</Style>
+                                        <Width>1pt</Width>
+                                      </RightBorder>
+                                      <PaddingLeft>2pt</PaddingLeft>
+                                      <PaddingRight>2pt</PaddingRight>
+                                      <PaddingTop>2pt</PaddingTop>
+                                      <PaddingBottom>2pt</PaddingBottom>
+                                    </Style>
+                                  </Textbox>
+                                </CellContents>
+                              </TablixCell>
+                              <TablixCell>
+                                <CellContents>
+                                  <Textbox Name="Item">
+                                    <CanGrow>true</CanGrow>
+                                    <KeepTogether>true</KeepTogether>
+                                    <Paragraphs>
+                                      <Paragraph>
+                                        <TextRuns>
+                                          <TextRun>
+                                            <Value>=Fields!Item.Value</Value>
+                                            <Style>
+                                              <FontFamily>Calibri</FontFamily>
+                                              <TextDecoration>None</TextDecoration>
+                                            </Style>
+                                          </TextRun>
+                                        </TextRuns>
+                                        <Style>
+                                          <TextAlign>Left</TextAlign>
+                                        </Style>
+                                      </Paragraph>
+                                    </Paragraphs>
+                                    <rd:DefaultName>Item</rd:DefaultName>
+                                    <Style>
+                                      <Border>
+                                        <Style>None</Style>
+                                      </Border>
+                                      <LeftBorder>
+                                        <Color>Black</Color>
+                                        <Style>None</Style>
+                                        <Width>1pt</Width>
+                                      </LeftBorder>
+                                      <RightBorder>
+                                        <Color>Black</Color>
                                         <Style>Solid</Style>
                                         <Width>1pt</Width>
                                       </RightBorder>
@@ -435,10 +477,8 @@ Phone: 402-438-1232</Value>
                                       <PaddingBottom>2pt</PaddingBottom>
                                     </Style>
                                   </Textbox>
-                                  <ColSpan>2</ColSpan>
                                 </CellContents>
                               </TablixCell>
-                              <TablixCell />
                               <TablixCell>
                                 <CellContents>
                                   <Textbox Name="Textbox21">
@@ -538,7 +578,7 @@ Phone: 402-438-1232</Value>
                                       </LeftBorder>
                                       <RightBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </RightBorder>
                                       <VerticalAlign>Bottom</VerticalAlign>
@@ -562,11 +602,13 @@ Phone: 402-438-1232</Value>
                                             <Value>=Fields!Purity.Value</Value>
                                             <Style>
                                               <FontFamily>Calibri</FontFamily>
-                                              <Format>0.000</Format>
+                                              <Format>0.00%</Format>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
-                                        <Style />
+                                        <Style>
+                                          <TextAlign>Left</TextAlign>
+                                        </Style>
                                       </Paragraph>
                                     </Paragraphs>
                                     <rd:DefaultName>Textbox36</rd:DefaultName>
@@ -586,7 +628,7 @@ Phone: 402-438-1232</Value>
                                       </BottomBorder>
                                       <LeftBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </LeftBorder>
                                       <RightBorder>
@@ -647,7 +689,7 @@ Phone: 402-438-1232</Value>
                                       </LeftBorder>
                                       <RightBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </RightBorder>
                                       <VerticalAlign>Bottom</VerticalAlign>
@@ -671,10 +713,13 @@ Phone: 402-438-1232</Value>
                                             <Value>=Fields!lot.Value</Value>
                                             <Style>
                                               <FontFamily>Calibri</FontFamily>
+                                              <Format>0.00%</Format>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
-                                        <Style />
+                                        <Style>
+                                          <TextAlign>Left</TextAlign>
+                                        </Style>
                                       </Paragraph>
                                     </Paragraphs>
                                     <rd:DefaultName>Textbox38</rd:DefaultName>
@@ -694,7 +739,7 @@ Phone: 402-438-1232</Value>
                                       </BottomBorder>
                                       <LeftBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </LeftBorder>
                                       <RightBorder>
@@ -759,7 +804,7 @@ Phone: 402-438-1232</Value>
                                       </LeftBorder>
                                       <RightBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </RightBorder>
                                       <VerticalAlign>Bottom</VerticalAlign>
@@ -783,11 +828,13 @@ Phone: 402-438-1232</Value>
                                             <Value>=Fields!Crop.Value</Value>
                                             <Style>
                                               <FontFamily>Calibri</FontFamily>
-                                              <Format>0.000</Format>
+                                              <Format>0.00%</Format>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
-                                        <Style />
+                                        <Style>
+                                          <TextAlign>Left</TextAlign>
+                                        </Style>
                                       </Paragraph>
                                     </Paragraphs>
                                     <rd:DefaultName>Textbox41</rd:DefaultName>
@@ -807,7 +854,7 @@ Phone: 402-438-1232</Value>
                                       </BottomBorder>
                                       <LeftBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </LeftBorder>
                                       <RightBorder>
@@ -868,7 +915,7 @@ Phone: 402-438-1232</Value>
                                       </LeftBorder>
                                       <RightBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </RightBorder>
                                       <VerticalAlign>Bottom</VerticalAlign>
@@ -892,11 +939,13 @@ Phone: 402-438-1232</Value>
                                             <Value>=Fields!Germ.Value</Value>
                                             <Style>
                                               <FontFamily>Calibri</FontFamily>
-                                              <Format>0.000</Format>
+                                              <Format>0.00%</Format>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
-                                        <Style />
+                                        <Style>
+                                          <TextAlign>Left</TextAlign>
+                                        </Style>
                                       </Paragraph>
                                     </Paragraphs>
                                     <rd:DefaultName>Textbox43</rd:DefaultName>
@@ -916,7 +965,7 @@ Phone: 402-438-1232</Value>
                                       </BottomBorder>
                                       <LeftBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </LeftBorder>
                                       <RightBorder>
@@ -981,7 +1030,7 @@ Phone: 402-438-1232</Value>
                                       </LeftBorder>
                                       <RightBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </RightBorder>
                                       <VerticalAlign>Bottom</VerticalAlign>
@@ -1002,13 +1051,16 @@ Phone: 402-438-1232</Value>
                                       <Paragraph>
                                         <TextRuns>
                                           <TextRun>
-                                            <Value />
+                                            <Value>=Fields!inert.Value</Value>
                                             <Style>
                                               <FontFamily>Calibri</FontFamily>
+                                              <Format>0.00%</Format>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
-                                        <Style />
+                                        <Style>
+                                          <TextAlign>Left</TextAlign>
+                                        </Style>
                                       </Paragraph>
                                     </Paragraphs>
                                     <rd:DefaultName>Textbox46</rd:DefaultName>
@@ -1028,7 +1080,7 @@ Phone: 402-438-1232</Value>
                                       </BottomBorder>
                                       <LeftBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </LeftBorder>
                                       <RightBorder>
@@ -1089,7 +1141,7 @@ Phone: 402-438-1232</Value>
                                       </LeftBorder>
                                       <RightBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </RightBorder>
                                       <VerticalAlign>Bottom</VerticalAlign>
@@ -1113,11 +1165,13 @@ Phone: 402-438-1232</Value>
                                             <Value>=Fields!Dormant.Value</Value>
                                             <Style>
                                               <FontFamily>Calibri</FontFamily>
-                                              <Format>0.000</Format>
+                                              <Format>0.00%</Format>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
-                                        <Style />
+                                        <Style>
+                                          <TextAlign>Left</TextAlign>
+                                        </Style>
                                       </Paragraph>
                                     </Paragraphs>
                                     <rd:DefaultName>Textbox48</rd:DefaultName>
@@ -1137,7 +1191,7 @@ Phone: 402-438-1232</Value>
                                       </BottomBorder>
                                       <LeftBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </LeftBorder>
                                       <RightBorder>
@@ -1202,7 +1256,7 @@ Phone: 402-438-1232</Value>
                                       </LeftBorder>
                                       <RightBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </RightBorder>
                                       <VerticalAlign>Bottom</VerticalAlign>
@@ -1226,11 +1280,13 @@ Phone: 402-438-1232</Value>
                                             <Value>=Fields!Weeds.Value</Value>
                                             <Style>
                                               <FontFamily>Calibri</FontFamily>
-                                              <Format>0.000</Format>
+                                              <Format>0.00%</Format>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
-                                        <Style />
+                                        <Style>
+                                          <TextAlign>Left</TextAlign>
+                                        </Style>
                                       </Paragraph>
                                     </Paragraphs>
                                     <rd:DefaultName>Textbox60</rd:DefaultName>
@@ -1250,7 +1306,7 @@ Phone: 402-438-1232</Value>
                                       </BottomBorder>
                                       <LeftBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </LeftBorder>
                                       <RightBorder>
@@ -1311,7 +1367,7 @@ Phone: 402-438-1232</Value>
                                       </LeftBorder>
                                       <RightBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </RightBorder>
                                       <VerticalAlign>Bottom</VerticalAlign>
@@ -1335,11 +1391,13 @@ Phone: 402-438-1232</Value>
                                             <Value>=Fields!Total.Value</Value>
                                             <Style>
                                               <FontFamily>Calibri</FontFamily>
-                                              <Format>0.000</Format>
+                                              <Format>0.00%</Format>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
-                                        <Style />
+                                        <Style>
+                                          <TextAlign>Left</TextAlign>
+                                        </Style>
                                       </Paragraph>
                                     </Paragraphs>
                                     <rd:DefaultName>Textbox62</rd:DefaultName>
@@ -1359,7 +1417,7 @@ Phone: 402-438-1232</Value>
                                       </BottomBorder>
                                       <LeftBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </LeftBorder>
                                       <RightBorder>
@@ -1424,7 +1482,7 @@ Phone: 402-438-1232</Value>
                                       </LeftBorder>
                                       <RightBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </RightBorder>
                                       <VerticalAlign>Bottom</VerticalAlign>
@@ -1445,13 +1503,16 @@ Phone: 402-438-1232</Value>
                                       <Paragraph>
                                         <TextRuns>
                                           <TextRun>
-                                            <Value />
+                                            <Value>=Fields!PLS_Percent.Value</Value>
                                             <Style>
                                               <FontFamily>Calibri</FontFamily>
+                                              <Format>0.00%</Format>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
-                                        <Style />
+                                        <Style>
+                                          <TextAlign>Left</TextAlign>
+                                        </Style>
                                       </Paragraph>
                                     </Paragraphs>
                                     <rd:DefaultName>Textbox51</rd:DefaultName>
@@ -1471,7 +1532,7 @@ Phone: 402-438-1232</Value>
                                       </BottomBorder>
                                       <LeftBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </LeftBorder>
                                       <RightBorder>
@@ -1532,7 +1593,7 @@ Phone: 402-438-1232</Value>
                                       </LeftBorder>
                                       <RightBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </RightBorder>
                                       <VerticalAlign>Bottom</VerticalAlign>
@@ -1560,7 +1621,9 @@ Phone: 402-438-1232</Value>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
-                                        <Style />
+                                        <Style>
+                                          <TextAlign>Left</TextAlign>
+                                        </Style>
                                       </Paragraph>
                                     </Paragraphs>
                                     <rd:DefaultName>Textbox53</rd:DefaultName>
@@ -1575,6 +1638,8 @@ Phone: 402-438-1232</Value>
                                         <Width>1pt</Width>
                                       </BottomBorder>
                                       <LeftBorder>
+                                        <Color>Black</Color>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </LeftBorder>
                                       <RightBorder>
@@ -1638,7 +1703,7 @@ Phone: 402-438-1232</Value>
                                       </LeftBorder>
                                       <RightBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </RightBorder>
                                       <VerticalAlign>Bottom</VerticalAlign>
@@ -1685,7 +1750,7 @@ Phone: 402-438-1232</Value>
                                       </BottomBorder>
                                       <LeftBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </LeftBorder>
                                       <RightBorder>
@@ -1746,7 +1811,7 @@ Phone: 402-438-1232</Value>
                                       </LeftBorder>
                                       <RightBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </RightBorder>
                                       <VerticalAlign>Bottom</VerticalAlign>
@@ -1773,7 +1838,9 @@ Phone: 402-438-1232</Value>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
-                                        <Style />
+                                        <Style>
+                                          <TextAlign>Left</TextAlign>
+                                        </Style>
                                       </Paragraph>
                                     </Paragraphs>
                                     <rd:DefaultName>Textbox58</rd:DefaultName>
@@ -1793,7 +1860,7 @@ Phone: 402-438-1232</Value>
                                       </BottomBorder>
                                       <LeftBorder>
                                         <Color>Black</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                         <Width>1pt</Width>
                                       </LeftBorder>
                                       <RightBorder>
@@ -1972,10 +2039,10 @@ Phone: 402-438-1232</Value>
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>SeedOrderDetail</DataSetName>
-        <Top>2.23833in</Top>
-        <Left>0.17583in</Left>
+        <Top>1.98833in</Top>
+        <Left>0.01958in</Left>
         <Height>2.75in</Height>
-        <Width>4.15751in</Width>
+        <Width>4.02209in</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -1984,10 +2051,10 @@ Phone: 402-438-1232</Value>
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>5.36333in</Height>
+    <Height>5.05083in</Height>
     <Style />
   </Body>
-  <Width>4.70834in</Width>
+  <Width>4.33334in</Width>
   <Page>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>
@@ -2196,6 +2263,10 @@ Phone: 402-438-1232</Value>
           <DataField>Crop</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="inert">
+          <DataField>inert</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="Weeds">
           <DataField>Weeds</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
@@ -2247,6 +2318,10 @@ Phone: 402-438-1232</Value>
         <Field Name="ItemID">
           <DataField>ItemID</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Type">
+          <DataField>Type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>

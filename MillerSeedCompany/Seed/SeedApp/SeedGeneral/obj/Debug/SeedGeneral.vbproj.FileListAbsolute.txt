@@ -1,0 +1,9 @@
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\obj\Debug\SeedGeneral.Resources.resources
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\obj\Debug\SeedGeneral.vbproj.GenerateResource.Cache
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\obj\Debug\SeedGeneral.xml
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\bin\Debug\SeedGeneral.dll.config
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\bin\Debug\SeedGeneral.dll
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\bin\Debug\SeedGeneral.pdb
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\bin\Debug\SeedGeneral.xml
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\obj\Debug\SeedGeneral.dll
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\obj\Debug\SeedGeneral.pdb
