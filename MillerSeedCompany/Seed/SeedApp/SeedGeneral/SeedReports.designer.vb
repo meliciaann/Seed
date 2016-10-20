@@ -31,126 +31,212 @@ Partial Public Class SeedReportsDataContext
   #Region "Extensibility Method Definitions"
   Partial Private Sub OnCreated()
   End Sub
+  Partial Private Sub InsertSeedReport(instance As SeedReport)
+    End Sub
+  Partial Private Sub UpdateSeedReport(instance As SeedReport)
+    End Sub
+  Partial Private Sub DeleteSeedReport(instance As SeedReport)
+    End Sub
 #End Region
     Public Sub New()
-        MyBase.New(My.MySettings.Default.SeedConnectionString, mappingSource)
+        MyBase.New(Global.SeedGeneral.My.MySettings.Default.SeedConnectionString, mappingSource)
         OnCreated()
     End Sub
     Public Sub New(ByVal connection As String)
-		MyBase.New(connection, mappingSource)
-		OnCreated
-	End Sub
-	
-	Public Sub New(ByVal connection As System.Data.IDbConnection)
-		MyBase.New(connection, mappingSource)
-		OnCreated
-	End Sub
-	
-	Public Sub New(ByVal connection As String, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
-		MyBase.New(connection, mappingSource)
-		OnCreated
-	End Sub
-	
-	Public Sub New(ByVal connection As System.Data.IDbConnection, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
-		MyBase.New(connection, mappingSource)
-		OnCreated
-	End Sub
-	
-	Public ReadOnly Property SeedReports() As System.Data.Linq.Table(Of SeedReport)
-		Get
-			Return Me.GetTable(Of SeedReport)
-		End Get
-	End Property
+        MyBase.New(connection, mappingSource)
+        OnCreated()
+    End Sub
+
+    Public Sub New(ByVal connection As System.Data.IDbConnection)
+        MyBase.New(connection, mappingSource)
+        OnCreated()
+    End Sub
+
+    Public Sub New(ByVal connection As String, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
+        MyBase.New(connection, mappingSource)
+        OnCreated()
+    End Sub
+
+    Public Sub New(ByVal connection As System.Data.IDbConnection, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
+        MyBase.New(connection, mappingSource)
+        OnCreated()
+    End Sub
+
+    Public ReadOnly Property SeedReports() As System.Data.Linq.Table(Of SeedReport)
+        Get
+            Return Me.GetTable(Of SeedReport)
+        End Get
+    End Property
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Reports")>  _
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.SeedReports")>
 Partial Public Class SeedReport
+    Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+
+    Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+
+    Private _ReportFileName As String
+
+    Private _FriendlyName As String
+
+    Private _ReportID As Long
+
+    Private _HasSubReports As System.Nullable(Of Boolean)
+
+    Private _IsVisible As System.Nullable(Of Boolean)
+
+    Private _SortOrder As System.Nullable(Of Integer)
+
+#Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnReportFileNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnReportFileNameChanged()
+    End Sub
+    Partial Private Sub OnFriendlyNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnFriendlyNameChanged()
+    End Sub
+    Partial Private Sub OnReportIDChanging(value As Long)
+    End Sub
+    Partial Private Sub OnReportIDChanged()
+    End Sub
+    Partial Private Sub OnHasSubReportsChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub OnHasSubReportsChanged()
+    End Sub
+    Partial Private Sub OnIsVisibleChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub OnIsVisibleChanged()
+    End Sub
+    Partial Private Sub OnSortOrderChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnSortOrderChanged()
+    End Sub
+#End Region
+
+    Public Sub New()
+        MyBase.New
+        OnCreated()
+    End Sub
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportFileName", DbType:="NVarChar(100)")>
+    Public Property ReportFileName() As String
+        Get
+            Return Me._ReportFileName
+        End Get
+        Set
+            If (String.Equals(Me._ReportFileName, Value) = False) Then
+                Me.OnReportFileNameChanging(Value)
+                Me.SendPropertyChanging()
+                Me._ReportFileName = Value
+                Me.SendPropertyChanged("ReportFileName")
+                Me.OnReportFileNameChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FriendlyName", DbType:="NVarChar(100)")>
+    Public Property FriendlyName() As String
+        Get
+            Return Me._FriendlyName
+        End Get
+        Set
+            If (String.Equals(Me._FriendlyName, Value) = False) Then
+                Me.OnFriendlyNameChanging(Value)
+                Me.SendPropertyChanging()
+                Me._FriendlyName = Value
+                Me.SendPropertyChanged("FriendlyName")
+                Me.OnFriendlyNameChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportID", DbType:="BigInt NOT NULL", IsPrimaryKey:=True)>
+    Public Property ReportID() As Long
+        Get
+            Return Me._ReportID
+        End Get
+        Set
+            If ((Me._ReportID = Value) _
+                        = False) Then
+                Me.OnReportIDChanging(Value)
+                Me.SendPropertyChanging()
+                Me._ReportID = Value
+                Me.SendPropertyChanged("ReportID")
+                Me.OnReportIDChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_HasSubReports", DbType:="Bit")>
+    Public Property HasSubReports() As System.Nullable(Of Boolean)
+        Get
+            Return Me._HasSubReports
+        End Get
+        Set
+            If (Me._HasSubReports.Equals(Value) = False) Then
+                Me.OnHasSubReportsChanging(Value)
+                Me.SendPropertyChanging()
+                Me._HasSubReports = Value
+                Me.SendPropertyChanged("HasSubReports")
+                Me.OnHasSubReportsChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsVisible", DbType:="Bit")>
+    Public Property IsVisible() As System.Nullable(Of Boolean)
+        Get
+            Return Me._IsVisible
+        End Get
+        Set
+            If (Me._IsVisible.Equals(Value) = False) Then
+                Me.OnIsVisibleChanging(Value)
+                Me.SendPropertyChanging()
+                Me._IsVisible = Value
+                Me.SendPropertyChanged("IsVisible")
+                Me.OnIsVisibleChanged()
+            End If
+        End Set
+    End Property
+
+    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SortOrder", DbType:="Int")>
+    Public Property SortOrder() As System.Nullable(Of Integer)
+        Get
+            Return Me._SortOrder
+        End Get
+        Set
+            If (Me._SortOrder.Equals(Value) = False) Then
+                Me.OnSortOrderChanging(Value)
+                Me.SendPropertyChanging()
+                Me._SortOrder = Value
+                Me.SendPropertyChanged("SortOrder")
+                Me.OnSortOrderChanged()
+            End If
+        End Set
+    End Property
+
+    Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+
+    Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
 	
-	Private _ReportFileName As String
-	
-	Private _FriendlyName As String
-	
-	Private _ReportID As System.Nullable(Of Long)
-	
-	Private _HasSubReports As System.Nullable(Of Boolean)
-	
-	Private _IsVisible As System.Nullable(Of Boolean)
-	
-	Private _SortOrder As System.Nullable(Of Integer)
-	
-	Public Sub New()
-		MyBase.New
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
 	End Sub
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportFileName", DbType:="NVarChar(100)")>  _
-	Public Property ReportFileName() As String
-		Get
-			Return Me._ReportFileName
-		End Get
-		Set
-			If (String.Equals(Me._ReportFileName, value) = false) Then
-				Me._ReportFileName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FriendlyName", DbType:="NVarChar(100)")>  _
-	Public Property FriendlyName() As String
-		Get
-			Return Me._FriendlyName
-		End Get
-		Set
-			If (String.Equals(Me._FriendlyName, value) = false) Then
-				Me._FriendlyName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportID", DbType:="BigInt")>  _
-	Public Property ReportID() As System.Nullable(Of Long)
-		Get
-			Return Me._ReportID
-		End Get
-		Set
-			If (Me._ReportID.Equals(value) = false) Then
-				Me._ReportID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_HasSubReports", DbType:="Bit")>  _
-	Public Property HasSubReports() As System.Nullable(Of Boolean)
-		Get
-			Return Me._HasSubReports
-		End Get
-		Set
-			If (Me._HasSubReports.Equals(value) = false) Then
-				Me._HasSubReports = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsVisible", DbType:="Bit")>  _
-	Public Property IsVisible() As System.Nullable(Of Boolean)
-		Get
-			Return Me._IsVisible
-		End Get
-		Set
-			If (Me._IsVisible.Equals(value) = false) Then
-				Me._IsVisible = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SortOrder", DbType:="Int")>  _
-	Public Property SortOrder() As System.Nullable(Of Integer)
-		Get
-			Return Me._SortOrder
-		End Get
-		Set
-			If (Me._SortOrder.Equals(value) = false) Then
-				Me._SortOrder = value
-			End If
-		End Set
-	End Property
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
 End Class

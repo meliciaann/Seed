@@ -23,17 +23,18 @@ Partial Class ItemsForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ReportDataSource1 As Microsoft.Reporting.WinForms.ReportDataSource = New Microsoft.Reporting.WinForms.ReportDataSource()
-        Dim ReportDataSource2 As Microsoft.Reporting.WinForms.ReportDataSource = New Microsoft.Reporting.WinForms.ReportDataSource()
-        Dim ReportDataSource3 As Microsoft.Reporting.WinForms.ReportDataSource = New Microsoft.Reporting.WinForms.ReportDataSource()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ItemsForm))
-        Me.OrderItemsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.SeedDataSet = New SeedApp.SeedDataSet()
-        Me.SeedOrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.SeedOrderDetailBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ItemsDataGridView = New System.Windows.Forms.DataGridView()
         Me.OrdersPage = New System.Windows.Forms.TabControl()
         Me.OrderTabPage = New System.Windows.Forms.TabPage()
+        Me.IsMixCB = New System.Windows.Forms.CheckBox()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.ControlNbrTB = New System.Windows.Forms.TextBox()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.MixNameTB = New System.Windows.Forms.TextBox()
+        Me.NewBtn = New System.Windows.Forms.Button()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.OrderUnitsCB = New System.Windows.Forms.ComboBox()
         Me.CopyOrderBtn = New System.Windows.Forms.Button()
         Me.SaveOrderBtn = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -52,7 +53,7 @@ Partial Class ItemsForm
         Me.OrderTotalTB = New System.Windows.Forms.TextBox()
         Me.OrderIDTB = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.AcresTB = New System.Windows.Forms.TextBox()
+        Me.UnitsTB = New System.Windows.Forms.TextBox()
         Me.OrderItemsGridView = New System.Windows.Forms.DataGridView()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.InvoiceTB = New System.Windows.Forms.TextBox()
@@ -76,7 +77,7 @@ Partial Class ItemsForm
         Me.OrdersSearchTB = New System.Windows.Forms.TextBox()
         Me.OrdersGridView = New System.Windows.Forms.DataGridView()
         Me.ReportsTabPage = New System.Windows.Forms.TabPage()
-        Me.ReportsCheckListBox = New System.Windows.Forms.CheckedListBox()
+        Me.ReportsDGV = New System.Windows.Forms.DataGridView()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.ReportViewer2 = New Microsoft.Reporting.WinForms.ReportViewer()
@@ -84,15 +85,16 @@ Partial Class ItemsForm
         Me.Label7 = New System.Windows.Forms.Label()
         Me.CurrentItemAvailableTB = New System.Windows.Forms.TextBox()
         Me.InventoryDGV = New System.Windows.Forms.DataGridView()
-        Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
-        Me.NewBtn = New System.Windows.Forms.Button()
+        Me.SeedDataSet = New SeedApp.SeedDataSet()
+        Me.SeedReportsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.OrderItemsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.SeedOrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.SeedOrderDetailBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.OrderItemsTableAdapter = New SeedApp.SeedDataSetTableAdapters.OrderItemsTableAdapter()
         Me.SeedOrderTableAdapter = New SeedApp.SeedDataSetTableAdapters.SeedOrderTableAdapter()
         Me.SeedOrderDetailTableAdapter = New SeedApp.SeedDataSetTableAdapters.SeedOrderDetailTableAdapter()
-        CType(Me.OrderItemsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SeedDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SeedOrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SeedOrderDetailBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SeedReportsTableAdapter = New SeedApp.SeedDataSetTableAdapters.SeedReportsTableAdapter()
+        Me.SeedDataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.ItemsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.OrdersPage.SuspendLayout()
         Me.OrderTabPage.SuspendLayout()
@@ -103,40 +105,31 @@ Partial Class ItemsForm
         Me.OrdersTabPage.SuspendLayout()
         CType(Me.OrdersGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ReportsTabPage.SuspendLayout()
+        CType(Me.ReportsDGV, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.InventoryTP.SuspendLayout()
         CType(Me.InventoryDGV, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SeedDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SeedReportsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.OrderItemsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SeedOrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SeedOrderDetailBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SeedDataSetBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'OrderItemsBindingSource
-        '
-        Me.OrderItemsBindingSource.DataMember = "OrderItems"
-        Me.OrderItemsBindingSource.DataSource = Me.SeedDataSet
-        '
-        'SeedDataSet
-        '
-        Me.SeedDataSet.DataSetName = "SeedDataSet"
-        Me.SeedDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'SeedOrderBindingSource
-        '
-        Me.SeedOrderBindingSource.DataMember = "SeedOrder"
-        Me.SeedOrderBindingSource.DataSource = Me.SeedDataSet
-        '
-        'SeedOrderDetailBindingSource
-        '
-        Me.SeedOrderDetailBindingSource.DataMember = "SeedOrderDetail"
-        Me.SeedOrderDetailBindingSource.DataSource = Me.SeedDataSet
         '
         'ItemsDataGridView
         '
         Me.ItemsDataGridView.AllowUserToDeleteRows = False
         Me.ItemsDataGridView.AllowUserToOrderColumns = True
+        Me.ItemsDataGridView.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ItemsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.ItemsDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText
         Me.ItemsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.ItemsDataGridView.Location = New System.Drawing.Point(3, 44)
         Me.ItemsDataGridView.Name = "ItemsDataGridView"
-        Me.ItemsDataGridView.Size = New System.Drawing.Size(1183, 718)
+        Me.ItemsDataGridView.Size = New System.Drawing.Size(1315, 718)
         Me.ItemsDataGridView.TabIndex = 0
         '
         'OrdersPage
@@ -147,16 +140,26 @@ Partial Class ItemsForm
         Me.OrdersPage.Controls.Add(Me.OrdersTabPage)
         Me.OrdersPage.Controls.Add(Me.ReportsTabPage)
         Me.OrdersPage.Controls.Add(Me.InventoryTP)
-        Me.OrdersPage.Location = New System.Drawing.Point(12, 25)
+        Me.OrdersPage.Dock = System.Windows.Forms.DockStyle.Top
+        Me.OrdersPage.Location = New System.Drawing.Point(0, 0)
         Me.OrdersPage.Name = "OrdersPage"
         Me.OrdersPage.SelectedIndex = 0
-        Me.OrdersPage.Size = New System.Drawing.Size(1200, 823)
+        Me.OrdersPage.Size = New System.Drawing.Size(1387, 823)
+        Me.OrdersPage.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight
         Me.OrdersPage.TabIndex = 1
         Me.OrdersPage.TabStop = False
         '
         'OrderTabPage
         '
         Me.OrderTabPage.AutoScroll = True
+        Me.OrderTabPage.Controls.Add(Me.IsMixCB)
+        Me.OrderTabPage.Controls.Add(Me.Label15)
+        Me.OrderTabPage.Controls.Add(Me.ControlNbrTB)
+        Me.OrderTabPage.Controls.Add(Me.Label14)
+        Me.OrderTabPage.Controls.Add(Me.MixNameTB)
+        Me.OrderTabPage.Controls.Add(Me.NewBtn)
+        Me.OrderTabPage.Controls.Add(Me.Label13)
+        Me.OrderTabPage.Controls.Add(Me.OrderUnitsCB)
         Me.OrderTabPage.Controls.Add(Me.CopyOrderBtn)
         Me.OrderTabPage.Controls.Add(Me.SaveOrderBtn)
         Me.OrderTabPage.Controls.Add(Me.Label11)
@@ -175,7 +178,7 @@ Partial Class ItemsForm
         Me.OrderTabPage.Controls.Add(Me.OrderTotalTB)
         Me.OrderTabPage.Controls.Add(Me.OrderIDTB)
         Me.OrderTabPage.Controls.Add(Me.Label3)
-        Me.OrderTabPage.Controls.Add(Me.AcresTB)
+        Me.OrderTabPage.Controls.Add(Me.UnitsTB)
         Me.OrderTabPage.Controls.Add(Me.OrderItemsGridView)
         Me.OrderTabPage.Controls.Add(Me.Label2)
         Me.OrderTabPage.Controls.Add(Me.InvoiceTB)
@@ -184,14 +187,90 @@ Partial Class ItemsForm
         Me.OrderTabPage.Location = New System.Drawing.Point(4, 22)
         Me.OrderTabPage.Name = "OrderTabPage"
         Me.OrderTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.OrderTabPage.Size = New System.Drawing.Size(1192, 797)
+        Me.OrderTabPage.Size = New System.Drawing.Size(1379, 797)
         Me.OrderTabPage.TabIndex = 0
         Me.OrderTabPage.Text = "Order"
         Me.OrderTabPage.UseVisualStyleBackColor = True
         '
+        'IsMixCB
+        '
+        Me.IsMixCB.AutoSize = True
+        Me.IsMixCB.Checked = True
+        Me.IsMixCB.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.IsMixCB.Location = New System.Drawing.Point(980, 35)
+        Me.IsMixCB.Name = "IsMixCB"
+        Me.IsMixCB.Size = New System.Drawing.Size(59, 17)
+        Me.IsMixCB.TabIndex = 32
+        Me.IsMixCB.Text = "Is Mix?"
+        Me.IsMixCB.UseVisualStyleBackColor = True
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(16, 65)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(50, 13)
+        Me.Label15.TabIndex = 31
+        Me.Label15.Text = "Control #"
+        Me.Label15.UseWaitCursor = True
+        '
+        'ControlNbrTB
+        '
+        Me.ControlNbrTB.AcceptsReturn = True
+        Me.ControlNbrTB.Location = New System.Drawing.Point(72, 62)
+        Me.ControlNbrTB.Name = "ControlNbrTB"
+        Me.ControlNbrTB.Size = New System.Drawing.Size(232, 20)
+        Me.ControlNbrTB.TabIndex = 2
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(14, 90)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(54, 13)
+        Me.Label14.TabIndex = 29
+        Me.Label14.Text = "Mix Name"
+        Me.Label14.UseWaitCursor = True
+        '
+        'MixNameTB
+        '
+        Me.MixNameTB.AcceptsReturn = True
+        Me.MixNameTB.Location = New System.Drawing.Point(72, 87)
+        Me.MixNameTB.Name = "MixNameTB"
+        Me.MixNameTB.Size = New System.Drawing.Size(232, 20)
+        Me.MixNameTB.TabIndex = 3
+        '
+        'NewBtn
+        '
+        Me.NewBtn.Location = New System.Drawing.Point(786, 87)
+        Me.NewBtn.Name = "NewBtn"
+        Me.NewBtn.Size = New System.Drawing.Size(172, 23)
+        Me.NewBtn.TabIndex = 9
+        Me.NewBtn.TabStop = False
+        Me.NewBtn.Text = "New Order"
+        Me.NewBtn.UseVisualStyleBackColor = True
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(13, 173)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(53, 13)
+        Me.Label13.TabIndex = 27
+        Me.Label13.Text = "Unit Type"
+        Me.Label13.UseWaitCursor = True
+        '
+        'OrderUnitsCB
+        '
+        Me.OrderUnitsCB.FormattingEnabled = True
+        Me.OrderUnitsCB.Location = New System.Drawing.Point(70, 173)
+        Me.OrderUnitsCB.Name = "OrderUnitsCB"
+        Me.OrderUnitsCB.Size = New System.Drawing.Size(230, 21)
+        Me.OrderUnitsCB.TabIndex = 6
+        '
         'CopyOrderBtn
         '
-        Me.CopyOrderBtn.Location = New System.Drawing.Point(691, 70)
+        Me.CopyOrderBtn.Location = New System.Drawing.Point(786, 60)
         Me.CopyOrderBtn.Name = "CopyOrderBtn"
         Me.CopyOrderBtn.Size = New System.Drawing.Size(172, 23)
         Me.CopyOrderBtn.TabIndex = 25
@@ -200,7 +279,7 @@ Partial Class ItemsForm
         '
         'SaveOrderBtn
         '
-        Me.SaveOrderBtn.Location = New System.Drawing.Point(691, 7)
+        Me.SaveOrderBtn.Location = New System.Drawing.Point(786, 7)
         Me.SaveOrderBtn.Name = "SaveOrderBtn"
         Me.SaveOrderBtn.Size = New System.Drawing.Size(172, 23)
         Me.SaveOrderBtn.TabIndex = 7
@@ -210,7 +289,7 @@ Partial Class ItemsForm
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(268, 38)
+        Me.Label11.Location = New System.Drawing.Point(363, 38)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(66, 13)
         Me.Label11.TabIndex = 24
@@ -219,7 +298,7 @@ Partial Class ItemsForm
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(261, 70)
+        Me.Label10.Location = New System.Drawing.Point(356, 70)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(73, 13)
         Me.Label10.TabIndex = 23
@@ -228,7 +307,7 @@ Partial Class ItemsForm
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(275, 12)
+        Me.Label9.Location = New System.Drawing.Point(370, 12)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(59, 13)
         Me.Label9.TabIndex = 22
@@ -237,7 +316,7 @@ Partial Class ItemsForm
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(16, 66)
+        Me.Label8.Location = New System.Drawing.Point(14, 117)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(50, 13)
         Me.Label8.TabIndex = 21
@@ -248,14 +327,14 @@ Partial Class ItemsForm
         '
         Me.PriceListCB.FormattingEnabled = True
         Me.PriceListCB.Items.AddRange(New Object() {"Distributor", "Retail", "Wholesale"})
-        Me.PriceListCB.Location = New System.Drawing.Point(72, 63)
+        Me.PriceListCB.Location = New System.Drawing.Point(70, 114)
         Me.PriceListCB.Name = "PriceListCB"
-        Me.PriceListCB.Size = New System.Drawing.Size(156, 21)
-        Me.PriceListCB.TabIndex = 2
+        Me.PriceListCB.Size = New System.Drawing.Size(232, 21)
+        Me.PriceListCB.TabIndex = 4
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(691, 39)
+        Me.Button6.Location = New System.Drawing.Point(786, 34)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(172, 23)
         Me.Button6.TabIndex = 8
@@ -265,36 +344,36 @@ Partial Class ItemsForm
         'OrderStatusCB
         '
         Me.OrderStatusCB.FormattingEnabled = True
-        Me.OrderStatusCB.Location = New System.Drawing.Point(340, 38)
+        Me.OrderStatusCB.Location = New System.Drawing.Point(435, 38)
         Me.OrderStatusCB.Name = "OrderStatusCB"
         Me.OrderStatusCB.Size = New System.Drawing.Size(200, 21)
-        Me.OrderStatusCB.TabIndex = 5
+        Me.OrderStatusCB.TabIndex = 8
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(232, 122)
+        Me.Label6.Location = New System.Drawing.Point(327, 122)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(102, 13)
+        Me.Label6.Size = New System.Drawing.Size(99, 13)
         Me.Label6.TabIndex = 16
-        Me.Label6.Text = "Total Price Per Acre"
+        Me.Label6.Text = "Total Price Per Unit"
         Me.Label6.UseWaitCursor = True
         '
         'TotalPricePerAcreTB
         '
-        Me.TotalPricePerAcreTB.Location = New System.Drawing.Point(340, 119)
+        Me.TotalPricePerAcreTB.Location = New System.Drawing.Point(435, 119)
         Me.TotalPricePerAcreTB.Name = "TotalPricePerAcreTB"
         Me.TotalPricePerAcreTB.Size = New System.Drawing.Size(156, 20)
-        Me.TotalPricePerAcreTB.TabIndex = 15
+        Me.TotalPricePerAcreTB.TabIndex = 11
         Me.TotalPricePerAcreTB.TabStop = False
-        Me.TotalPricePerAcreTB.Text = "0.00"
+        Me.TotalPricePerAcreTB.Text = "$0.00"
         '
         'OrderDatePicker
         '
-        Me.OrderDatePicker.Location = New System.Drawing.Point(340, 10)
+        Me.OrderDatePicker.Location = New System.Drawing.Point(435, 10)
         Me.OrderDatePicker.Name = "OrderDatePicker"
         Me.OrderDatePicker.Size = New System.Drawing.Size(200, 20)
-        Me.OrderDatePicker.TabIndex = 4
+        Me.OrderDatePicker.TabIndex = 7
         '
         'Label5
         '
@@ -311,13 +390,13 @@ Partial Class ItemsForm
         Me.ProjectTB.AcceptsReturn = True
         Me.ProjectTB.Location = New System.Drawing.Point(72, 36)
         Me.ProjectTB.Name = "ProjectTB"
-        Me.ProjectTB.Size = New System.Drawing.Size(156, 20)
+        Me.ProjectTB.Size = New System.Drawing.Size(232, 20)
         Me.ProjectTB.TabIndex = 1
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(276, 148)
+        Me.Label4.Location = New System.Drawing.Point(371, 148)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(58, 13)
         Me.Label4.TabIndex = 11
@@ -326,16 +405,16 @@ Partial Class ItemsForm
         '
         'OrderTotalTB
         '
-        Me.OrderTotalTB.Location = New System.Drawing.Point(340, 145)
+        Me.OrderTotalTB.Location = New System.Drawing.Point(435, 145)
         Me.OrderTotalTB.Name = "OrderTotalTB"
         Me.OrderTotalTB.Size = New System.Drawing.Size(156, 20)
-        Me.OrderTotalTB.TabIndex = 10
+        Me.OrderTotalTB.TabIndex = 12
         Me.OrderTotalTB.TabStop = False
-        Me.OrderTotalTB.Text = "0.00"
+        Me.OrderTotalTB.Text = "$0.00"
         '
         'OrderIDTB
         '
-        Me.OrderIDTB.Location = New System.Drawing.Point(340, 67)
+        Me.OrderIDTB.Location = New System.Drawing.Point(435, 67)
         Me.OrderIDTB.Name = "OrderIDTB"
         Me.OrderIDTB.Size = New System.Drawing.Size(200, 20)
         Me.OrderIDTB.TabIndex = 9
@@ -344,36 +423,40 @@ Partial Class ItemsForm
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(32, 93)
+        Me.Label3.Location = New System.Drawing.Point(30, 144)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(34, 13)
+        Me.Label3.Size = New System.Drawing.Size(31, 13)
         Me.Label3.TabIndex = 7
-        Me.Label3.Text = "Acres"
+        Me.Label3.Text = "Units"
         Me.Label3.UseWaitCursor = True
         '
-        'AcresTB
+        'UnitsTB
         '
-        Me.AcresTB.Location = New System.Drawing.Point(72, 90)
-        Me.AcresTB.Name = "AcresTB"
-        Me.AcresTB.Size = New System.Drawing.Size(156, 20)
-        Me.AcresTB.TabIndex = 3
-        Me.AcresTB.Text = "0.00"
+        Me.UnitsTB.Location = New System.Drawing.Point(70, 141)
+        Me.UnitsTB.Name = "UnitsTB"
+        Me.UnitsTB.Size = New System.Drawing.Size(232, 20)
+        Me.UnitsTB.TabIndex = 5
+        Me.UnitsTB.Text = "0.00"
         '
         'OrderItemsGridView
         '
         Me.OrderItemsGridView.AllowUserToAddRows = False
         Me.OrderItemsGridView.AllowUserToOrderColumns = True
+        Me.OrderItemsGridView.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OrderItemsGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.OrderItemsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.OrderItemsGridView.Location = New System.Drawing.Point(12, 201)
+        Me.OrderItemsGridView.Location = New System.Drawing.Point(12, 200)
         Me.OrderItemsGridView.MultiSelect = False
         Me.OrderItemsGridView.Name = "OrderItemsGridView"
-        Me.OrderItemsGridView.Size = New System.Drawing.Size(1172, 385)
+        Me.OrderItemsGridView.Size = New System.Drawing.Size(1347, 517)
         Me.OrderItemsGridView.TabIndex = 6
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(282, 93)
+        Me.Label2.Location = New System.Drawing.Point(377, 93)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(52, 13)
         Me.Label2.TabIndex = 3
@@ -381,10 +464,10 @@ Partial Class ItemsForm
         '
         'InvoiceTB
         '
-        Me.InvoiceTB.Location = New System.Drawing.Point(340, 93)
+        Me.InvoiceTB.Location = New System.Drawing.Point(435, 93)
         Me.InvoiceTB.Name = "InvoiceTB"
         Me.InvoiceTB.Size = New System.Drawing.Size(156, 20)
-        Me.InvoiceTB.TabIndex = 2
+        Me.InvoiceTB.TabIndex = 10
         Me.InvoiceTB.TabStop = False
         '
         'Label1
@@ -401,7 +484,7 @@ Partial Class ItemsForm
         Me.CustomerCB.FormattingEnabled = True
         Me.CustomerCB.Location = New System.Drawing.Point(72, 9)
         Me.CustomerCB.Name = "CustomerCB"
-        Me.CustomerCB.Size = New System.Drawing.Size(156, 21)
+        Me.CustomerCB.Size = New System.Drawing.Size(232, 21)
         Me.CustomerCB.TabIndex = 0
         '
         'ItemTabPage
@@ -416,7 +499,7 @@ Partial Class ItemsForm
         Me.ItemTabPage.Location = New System.Drawing.Point(4, 22)
         Me.ItemTabPage.Name = "ItemTabPage"
         Me.ItemTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.ItemTabPage.Size = New System.Drawing.Size(1192, 797)
+        Me.ItemTabPage.Size = New System.Drawing.Size(1362, 797)
         Me.ItemTabPage.TabIndex = 1
         Me.ItemTabPage.Text = "Items"
         Me.ItemTabPage.UseVisualStyleBackColor = True
@@ -484,7 +567,7 @@ Partial Class ItemsForm
         Me.CustomerTabPage.Controls.Add(Me.CustomerDataGridView)
         Me.CustomerTabPage.Location = New System.Drawing.Point(4, 22)
         Me.CustomerTabPage.Name = "CustomerTabPage"
-        Me.CustomerTabPage.Size = New System.Drawing.Size(1192, 797)
+        Me.CustomerTabPage.Size = New System.Drawing.Size(1362, 797)
         Me.CustomerTabPage.TabIndex = 2
         Me.CustomerTabPage.Text = "Customers"
         Me.CustomerTabPage.UseVisualStyleBackColor = True
@@ -522,10 +605,14 @@ Partial Class ItemsForm
         '
         Me.CustomerDataGridView.AllowUserToDeleteRows = False
         Me.CustomerDataGridView.AllowUserToOrderColumns = True
+        Me.CustomerDataGridView.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CustomerDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.CustomerDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.CustomerDataGridView.Location = New System.Drawing.Point(3, 44)
         Me.CustomerDataGridView.Name = "CustomerDataGridView"
-        Me.CustomerDataGridView.Size = New System.Drawing.Size(1179, 750)
+        Me.CustomerDataGridView.Size = New System.Drawing.Size(1315, 750)
         Me.CustomerDataGridView.TabIndex = 0
         '
         'OrdersTabPage
@@ -537,7 +624,7 @@ Partial Class ItemsForm
         Me.OrdersTabPage.Location = New System.Drawing.Point(4, 22)
         Me.OrdersTabPage.Name = "OrdersTabPage"
         Me.OrdersTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.OrdersTabPage.Size = New System.Drawing.Size(1192, 797)
+        Me.OrdersTabPage.Size = New System.Drawing.Size(1362, 797)
         Me.OrdersTabPage.TabIndex = 3
         Me.OrdersTabPage.Text = "Orders"
         Me.OrdersTabPage.UseVisualStyleBackColor = True
@@ -569,39 +656,49 @@ Partial Class ItemsForm
         '
         'OrdersGridView
         '
+        Me.OrdersGridView.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OrdersGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.OrdersGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.OrdersGridView.Location = New System.Drawing.Point(3, 44)
         Me.OrdersGridView.MultiSelect = False
         Me.OrdersGridView.Name = "OrdersGridView"
         Me.OrdersGridView.ReadOnly = True
-        Me.OrdersGridView.Size = New System.Drawing.Size(1183, 718)
+        Me.OrdersGridView.Size = New System.Drawing.Size(1315, 718)
         Me.OrdersGridView.TabIndex = 0
         '
         'ReportsTabPage
         '
-        Me.ReportsTabPage.Controls.Add(Me.ReportsCheckListBox)
+        Me.ReportsTabPage.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ReportsTabPage.AutoScroll = True
+        Me.ReportsTabPage.Controls.Add(Me.ReportsDGV)
         Me.ReportsTabPage.Controls.Add(Me.Button5)
         Me.ReportsTabPage.Controls.Add(Me.Panel1)
         Me.ReportsTabPage.Location = New System.Drawing.Point(4, 22)
         Me.ReportsTabPage.Name = "ReportsTabPage"
         Me.ReportsTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.ReportsTabPage.Size = New System.Drawing.Size(1192, 797)
+        Me.ReportsTabPage.Size = New System.Drawing.Size(1379, 797)
         Me.ReportsTabPage.TabIndex = 4
         Me.ReportsTabPage.Text = "Reports"
         Me.ReportsTabPage.UseVisualStyleBackColor = True
         '
-        'ReportsCheckListBox
+        'ReportsDGV
         '
-        Me.ReportsCheckListBox.CheckOnClick = True
-        Me.ReportsCheckListBox.FormattingEnabled = True
-        Me.ReportsCheckListBox.Location = New System.Drawing.Point(6, 6)
-        Me.ReportsCheckListBox.Name = "ReportsCheckListBox"
-        Me.ReportsCheckListBox.Size = New System.Drawing.Size(156, 64)
-        Me.ReportsCheckListBox.TabIndex = 3
+        Me.ReportsDGV.AllowUserToAddRows = False
+        Me.ReportsDGV.AllowUserToDeleteRows = False
+        Me.ReportsDGV.BackgroundColor = System.Drawing.Color.White
+        Me.ReportsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.ReportsDGV.Location = New System.Drawing.Point(8, 7)
+        Me.ReportsDGV.Name = "ReportsDGV"
+        Me.ReportsDGV.Size = New System.Drawing.Size(395, 125)
+        Me.ReportsDGV.TabIndex = 4
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(168, 6)
+        Me.Button5.Location = New System.Drawing.Point(480, 6)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(117, 23)
         Me.Button5.TabIndex = 2
@@ -610,29 +707,25 @@ Partial Class ItemsForm
         '
         'Panel1
         '
+        Me.Panel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel1.AutoScroll = True
+        Me.Panel1.AutoSize = True
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel1.Controls.Add(Me.ReportViewer2)
-        Me.Panel1.Location = New System.Drawing.Point(0, 76)
+        Me.Panel1.Location = New System.Drawing.Point(0, 137)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1154, 721)
+        Me.Panel1.Size = New System.Drawing.Size(1396, 599)
         Me.Panel1.TabIndex = 0
         '
         'ReportViewer2
         '
         Me.ReportViewer2.Dock = System.Windows.Forms.DockStyle.Fill
-        ReportDataSource1.Name = "OrderItems"
-        ReportDataSource1.Value = Me.OrderItemsBindingSource
-        ReportDataSource2.Name = "SeedOrder"
-        ReportDataSource2.Value = Me.SeedOrderBindingSource
-        ReportDataSource3.Name = "SeedOrderDetail"
-        ReportDataSource3.Value = Me.SeedOrderDetailBindingSource
-        Me.ReportViewer2.LocalReport.DataSources.Add(ReportDataSource1)
-        Me.ReportViewer2.LocalReport.DataSources.Add(ReportDataSource2)
-        Me.ReportViewer2.LocalReport.DataSources.Add(ReportDataSource3)
-        Me.ReportViewer2.LocalReport.ReportEmbeddedResource = "SeedApp.Bag.rdlc"
+        Me.ReportViewer2.LocalReport.ReportEmbeddedResource = "SeedApp.AllReports.rdlc"
         Me.ReportViewer2.Location = New System.Drawing.Point(0, 0)
         Me.ReportViewer2.Name = "ReportViewer2"
-        Me.ReportViewer2.Size = New System.Drawing.Size(1152, 719)
+        Me.ReportViewer2.Size = New System.Drawing.Size(1394, 597)
         Me.ReportViewer2.TabIndex = 0
         '
         'InventoryTP
@@ -642,7 +735,7 @@ Partial Class ItemsForm
         Me.InventoryTP.Controls.Add(Me.InventoryDGV)
         Me.InventoryTP.Location = New System.Drawing.Point(4, 22)
         Me.InventoryTP.Name = "InventoryTP"
-        Me.InventoryTP.Size = New System.Drawing.Size(1192, 797)
+        Me.InventoryTP.Size = New System.Drawing.Size(1362, 797)
         Me.InventoryTP.TabIndex = 5
         Me.InventoryTP.Text = "Inventory"
         Me.InventoryTP.UseVisualStyleBackColor = True
@@ -667,28 +760,41 @@ Partial Class ItemsForm
         '
         Me.InventoryDGV.AllowUserToDeleteRows = False
         Me.InventoryDGV.AllowUserToOrderColumns = True
+        Me.InventoryDGV.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.InventoryDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.InventoryDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.InventoryDGV.Location = New System.Drawing.Point(12, 60)
         Me.InventoryDGV.Name = "InventoryDGV"
-        Me.InventoryDGV.Size = New System.Drawing.Size(1160, 360)
+        Me.InventoryDGV.Size = New System.Drawing.Size(1306, 360)
         Me.InventoryDGV.TabIndex = 0
         '
-        'ReportViewer1
+        'SeedDataSet
         '
-        Me.ReportViewer1.Location = New System.Drawing.Point(0, 0)
-        Me.ReportViewer1.Name = "ReportViewer1"
-        Me.ReportViewer1.Size = New System.Drawing.Size(396, 246)
-        Me.ReportViewer1.TabIndex = 0
+        Me.SeedDataSet.DataSetName = "SeedDataSet"
+        Me.SeedDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
-        'NewBtn
+        'SeedReportsBindingSource
         '
-        Me.NewBtn.Location = New System.Drawing.Point(1552, 18)
-        Me.NewBtn.Name = "NewBtn"
-        Me.NewBtn.Size = New System.Drawing.Size(117, 23)
-        Me.NewBtn.TabIndex = 9
-        Me.NewBtn.TabStop = False
-        Me.NewBtn.Text = "New Order"
-        Me.NewBtn.UseVisualStyleBackColor = True
+        Me.SeedReportsBindingSource.DataMember = "SeedReports"
+        Me.SeedReportsBindingSource.DataSource = Me.SeedDataSet
+        Me.SeedReportsBindingSource.Sort = "SortOrder"
+        '
+        'OrderItemsBindingSource
+        '
+        Me.OrderItemsBindingSource.DataMember = "OrderItems"
+        Me.OrderItemsBindingSource.DataSource = Me.SeedDataSet
+        '
+        'SeedOrderBindingSource
+        '
+        Me.SeedOrderBindingSource.DataMember = "SeedOrder"
+        Me.SeedOrderBindingSource.DataSource = Me.SeedDataSet
+        '
+        'SeedOrderDetailBindingSource
+        '
+        Me.SeedOrderDetailBindingSource.DataMember = "SeedOrderDetail"
+        Me.SeedOrderDetailBindingSource.DataSource = Me.SeedDataSet
         '
         'OrderItemsTableAdapter
         '
@@ -702,23 +808,30 @@ Partial Class ItemsForm
         '
         Me.SeedOrderDetailTableAdapter.ClearBeforeFill = True
         '
+        'SeedReportsTableAdapter
+        '
+        Me.SeedReportsTableAdapter.ClearBeforeFill = True
+        '
+        'SeedDataSetBindingSource
+        '
+        Me.SeedDataSetBindingSource.DataSource = Me.SeedDataSet
+        Me.SeedDataSetBindingSource.Position = 0
+        '
         'ItemsForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScroll = True
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(1224, 874)
-        Me.Controls.Add(Me.NewBtn)
+        Me.ClientSize = New System.Drawing.Size(1404, 719)
         Me.Controls.Add(Me.OrdersPage)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MinimumSize = New System.Drawing.Size(1278, 758)
         Me.Name = "ItemsForm"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Miller Seed Company"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        CType(Me.OrderItemsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SeedDataSet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SeedOrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SeedOrderDetailBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ItemsDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.OrdersPage.ResumeLayout(False)
         Me.OrderTabPage.ResumeLayout(False)
@@ -733,10 +846,18 @@ Partial Class ItemsForm
         Me.OrdersTabPage.PerformLayout()
         CType(Me.OrdersGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ReportsTabPage.ResumeLayout(False)
+        Me.ReportsTabPage.PerformLayout()
+        CType(Me.ReportsDGV, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.InventoryTP.ResumeLayout(False)
         Me.InventoryTP.PerformLayout()
         CType(Me.InventoryDGV, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SeedDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SeedReportsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.OrderItemsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SeedOrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SeedOrderDetailBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SeedDataSetBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -756,7 +877,7 @@ Partial Class ItemsForm
     Friend WithEvents ItemsSearchTB As TextBox
     Friend WithEvents Button3 As Button
     Friend WithEvents Label3 As Label
-    Friend WithEvents AcresTB As TextBox
+    Friend WithEvents UnitsTB As TextBox
     Friend WithEvents EditItemsCB As CheckBox
     Friend WithEvents EditCustomersCB As CheckBox
     Friend WithEvents OrderIDTB As TextBox
@@ -773,16 +894,17 @@ Partial Class ItemsForm
     Friend WithEvents Label4 As Label
     Friend WithEvents OrderDatePicker As DateTimePicker
     Friend WithEvents ReportsTabPage As TabPage
-    Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer
     Friend WithEvents Panel1 As Panel
     Friend WithEvents ReportViewer2 As Microsoft.Reporting.WinForms.ReportViewer
     Friend WithEvents OrderItemsBindingSource As BindingSource
     Friend WithEvents SeedDataSet As SeedDataSet
     Friend WithEvents SeedOrderBindingSource As BindingSource
     Friend WithEvents SeedOrderDetailBindingSource As BindingSource
+    Friend WithEvents SeedReportsBindingSource As BindingSource
     Friend WithEvents OrderItemsTableAdapter As SeedDataSetTableAdapters.OrderItemsTableAdapter
     Friend WithEvents SeedOrderTableAdapter As SeedDataSetTableAdapters.SeedOrderTableAdapter
     Friend WithEvents SeedOrderDetailTableAdapter As SeedDataSetTableAdapters.SeedOrderDetailTableAdapter
+    Friend WithEvents SeedReportsTableAdapter As SeedDataSetTableAdapters.SeedReportsTableAdapter
     Friend WithEvents Button5 As Button
     Friend WithEvents Label6 As Label
     Friend WithEvents TotalPricePerAcreTB As TextBox
@@ -792,7 +914,6 @@ Partial Class ItemsForm
     Friend WithEvents Label7 As Label
     Friend WithEvents CurrentItemAvailableTB As TextBox
     Friend WithEvents InventoryDGV As DataGridView
-    Friend WithEvents ReportsCheckListBox As CheckedListBox
     Friend WithEvents PriceListCB As ComboBox
     Friend WithEvents Label11 As Label
     Friend WithEvents Label10 As Label
@@ -803,4 +924,13 @@ Partial Class ItemsForm
     Friend WithEvents CopyOrderBtn As Button
     Friend WithEvents Label12 As Label
     Friend WithEvents TypeFilterCB As ComboBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents OrderUnitsCB As ComboBox
+    Friend WithEvents Label15 As Label
+    Friend WithEvents ControlNbrTB As TextBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents MixNameTB As TextBox
+    Friend WithEvents IsMixCB As CheckBox
+    Friend WithEvents ReportsDGV As DataGridView
+    Friend WithEvents SeedDataSetBindingSource As BindingSource
 End Class

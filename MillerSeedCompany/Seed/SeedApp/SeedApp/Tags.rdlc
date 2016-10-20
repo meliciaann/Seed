@@ -1724,7 +1724,7 @@ Phone: 402-438-1232</Value>
                                       <Paragraph>
                                         <TextRuns>
                                           <TextRun>
-                                            <Value />
+                                            <Value>=Fields!NoxiousWeeds.Value</Value>
                                             <Style>
                                               <FontFamily>Calibri</FontFamily>
                                             </Style>
@@ -2303,14 +2303,6 @@ Phone: 402-438-1232</Value>
           <DataField>Retail</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="Item1">
-          <DataField>Item1</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Item2">
-          <DataField>Item2</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="ScientificName">
           <DataField>ScientificName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -2321,6 +2313,18 @@ Phone: 402-438-1232</Value>
         </Field>
         <Field Name="Type">
           <DataField>Type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="UnitTypeName">
+          <DataField>UnitTypeName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BotanicalName">
+          <DataField>BotanicalName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NoxiousWeeds">
+          <DataField>NoxiousWeeds</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

@@ -39,20 +39,20 @@ Partial Public Class CustomersDataContext
     End Sub
 #End Region
     Public Sub New()
-        MyBase.New(My.MySettings.Default.SeedConnectionString, mappingSource)
+        MyBase.New(Global.SeedGeneral.My.MySettings.Default.SeedConnectionString, mappingSource)
         OnCreated()
     End Sub
     Public Sub New(ByVal connection As String)
-		MyBase.New(connection, mappingSource)
-		OnCreated
-	End Sub
-	
-	Public Sub New(ByVal connection As System.Data.IDbConnection)
-		MyBase.New(connection, mappingSource)
-		OnCreated
-	End Sub
-	
-	Public Sub New(ByVal connection As String, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
+        MyBase.New(connection, mappingSource)
+        OnCreated()
+    End Sub
+
+    Public Sub New(ByVal connection As System.Data.IDbConnection)
+        MyBase.New(connection, mappingSource)
+        OnCreated()
+    End Sub
+
+    Public Sub New(ByVal connection As String, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
 		MyBase.New(connection, mappingSource)
 		OnCreated
 	End Sub
@@ -90,6 +90,10 @@ Partial Public Class Customer
 	Private _CustomerZip As String
 	
 	Private _QBId As String
+	
+	Private _CustomerPhone As String
+	
+	Private _Email As String
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -129,6 +133,14 @@ Partial Public Class Customer
     Partial Private Sub OnQBIdChanging(value As String)
     End Sub
     Partial Private Sub OnQBIdChanged()
+    End Sub
+    Partial Private Sub OnCustomerPhoneChanging(value As String)
+    End Sub
+    Partial Private Sub OnCustomerPhoneChanged()
+    End Sub
+    Partial Private Sub OnEmailChanging(value As String)
+    End Sub
+    Partial Private Sub OnEmailChanged()
     End Sub
     #End Region
 	
@@ -262,6 +274,38 @@ Partial Public Class Customer
 				Me._QBId = value
 				Me.SendPropertyChanged("QBId")
 				Me.OnQBIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CustomerPhone", DbType:="NVarChar(100)")>  _
+	Public Property CustomerPhone() As String
+		Get
+			Return Me._CustomerPhone
+		End Get
+		Set
+			If (String.Equals(Me._CustomerPhone, value) = false) Then
+				Me.OnCustomerPhoneChanging(value)
+				Me.SendPropertyChanging
+				Me._CustomerPhone = value
+				Me.SendPropertyChanged("CustomerPhone")
+				Me.OnCustomerPhoneChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Email", DbType:="NVarChar(100)")>  _
+	Public Property Email() As String
+		Get
+			Return Me._Email
+		End Get
+		Set
+			If (String.Equals(Me._Email, value) = false) Then
+				Me.OnEmailChanging(value)
+				Me.SendPropertyChanging
+				Me._Email = value
+				Me.SendPropertyChanged("Email")
+				Me.OnEmailChanged
 			End If
 		End Set
 	End Property

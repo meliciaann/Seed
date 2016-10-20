@@ -35,7 +35,7 @@ Partial Public Class SeedDataSet
     
     Private tableSeedOrders As SeedOrdersDataTable
     
-    Private tableReports As ReportsDataTable
+    Private tableSeedReports As SeedReportsDataTable
     
     Private tableSeedOrderDetail As SeedOrderDetailDataTable
     
@@ -85,8 +85,8 @@ Partial Public Class SeedDataSet
             If (Not (ds.Tables("SeedOrders")) Is Nothing) Then
                 MyBase.Tables.Add(New SeedOrdersDataTable(ds.Tables("SeedOrders")))
             End If
-            If (Not (ds.Tables("Reports")) Is Nothing) Then
-                MyBase.Tables.Add(New ReportsDataTable(ds.Tables("Reports")))
+            If (Not (ds.Tables("SeedReports")) Is Nothing) Then
+                MyBase.Tables.Add(New SeedReportsDataTable(ds.Tables("SeedReports")))
             End If
             If (Not (ds.Tables("SeedOrderDetail")) Is Nothing) Then
                 MyBase.Tables.Add(New SeedOrderDetailDataTable(ds.Tables("SeedOrderDetail")))
@@ -165,9 +165,9 @@ Partial Public Class SeedDataSet
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property Reports() As ReportsDataTable
+    Public ReadOnly Property SeedReports() As SeedReportsDataTable
         Get
-            Return Me.tableReports
+            Return Me.tableSeedReports
         End Get
     End Property
     
@@ -273,8 +273,8 @@ Partial Public Class SeedDataSet
             If (Not (ds.Tables("SeedOrders")) Is Nothing) Then
                 MyBase.Tables.Add(New SeedOrdersDataTable(ds.Tables("SeedOrders")))
             End If
-            If (Not (ds.Tables("Reports")) Is Nothing) Then
-                MyBase.Tables.Add(New ReportsDataTable(ds.Tables("Reports")))
+            If (Not (ds.Tables("SeedReports")) Is Nothing) Then
+                MyBase.Tables.Add(New SeedReportsDataTable(ds.Tables("SeedReports")))
             End If
             If (Not (ds.Tables("SeedOrderDetail")) Is Nothing) Then
                 MyBase.Tables.Add(New SeedOrderDetailDataTable(ds.Tables("SeedOrderDetail")))
@@ -344,10 +344,10 @@ Partial Public Class SeedDataSet
                 Me.tableSeedOrders.InitVars
             End If
         End If
-        Me.tableReports = CType(MyBase.Tables("Reports"),ReportsDataTable)
+        Me.tableSeedReports = CType(MyBase.Tables("SeedReports"),SeedReportsDataTable)
         If (initTable = true) Then
-            If (Not (Me.tableReports) Is Nothing) Then
-                Me.tableReports.InitVars
+            If (Not (Me.tableSeedReports) Is Nothing) Then
+                Me.tableSeedReports.InitVars
             End If
         End If
         Me.tableSeedOrderDetail = CType(MyBase.Tables("SeedOrderDetail"),SeedOrderDetailDataTable)
@@ -382,8 +382,8 @@ Partial Public Class SeedDataSet
         MyBase.Tables.Add(Me.tableSeedOrder)
         Me.tableSeedOrders = New SeedOrdersDataTable()
         MyBase.Tables.Add(Me.tableSeedOrders)
-        Me.tableReports = New ReportsDataTable()
-        MyBase.Tables.Add(Me.tableReports)
+        Me.tableSeedReports = New SeedReportsDataTable()
+        MyBase.Tables.Add(Me.tableSeedReports)
         Me.tableSeedOrderDetail = New SeedOrderDetailDataTable()
         MyBase.Tables.Add(Me.tableSeedOrderDetail)
         Me.tableItems = New ItemsDataTable()
@@ -422,7 +422,7 @@ Partial Public Class SeedDataSet
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Private Function ShouldSerializeReports() As Boolean
+    Private Function ShouldSerializeSeedReports() As Boolean
         Return false
     End Function
     
@@ -512,7 +512,7 @@ Partial Public Class SeedDataSet
     Public Delegate Sub SeedOrdersRowChangeEventHandler(ByVal sender As Object, ByVal e As SeedOrdersRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Delegate Sub ReportsRowChangeEventHandler(ByVal sender As Object, ByVal e As ReportsRowChangeEvent)
+    Public Delegate Sub SeedReportsRowChangeEventHandler(ByVal sender As Object, ByVal e As SeedReportsRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Public Delegate Sub SeedOrderDetailRowChangeEventHandler(ByVal sender As Object, ByVal e As SeedOrderDetailRowChangeEvent)
@@ -1207,6 +1207,12 @@ Partial Public Class SeedDataSet
         
         Private columnCustomerZip As Global.System.Data.DataColumn
         
+        Private columnQBId As Global.System.Data.DataColumn
+        
+        Private columnCustomerPhone As Global.System.Data.DataColumn
+        
+        Private columnEmail As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -1299,6 +1305,30 @@ Partial Public Class SeedDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property QBIdColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnQBId
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CustomerPhoneColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCustomerPhone
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property EmailColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEmail
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1335,9 +1365,9 @@ Partial Public Class SeedDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddCustomersRow(ByVal CustomerName As String, ByVal CustomerAddressLine1 As String, ByVal CustomerAddressLine2 As String, ByVal CustomerCity As String, ByVal CustomerState As String, ByVal CustomerZip As String) As CustomersRow
+        Public Overloads Function AddCustomersRow(ByVal CustomerName As String, ByVal CustomerAddressLine1 As String, ByVal CustomerAddressLine2 As String, ByVal CustomerCity As String, ByVal CustomerState As String, ByVal CustomerZip As String, ByVal QBId As String, ByVal CustomerPhone As String, ByVal Email As String) As CustomersRow
             Dim rowCustomersRow As CustomersRow = CType(Me.NewRow,CustomersRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, CustomerName, CustomerAddressLine1, CustomerAddressLine2, CustomerCity, CustomerState, CustomerZip}
+            Dim columnValuesArray() As Object = New Object() {Nothing, CustomerName, CustomerAddressLine1, CustomerAddressLine2, CustomerCity, CustomerState, CustomerZip, QBId, CustomerPhone, Email}
             rowCustomersRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowCustomersRow)
             Return rowCustomersRow
@@ -1373,6 +1403,9 @@ Partial Public Class SeedDataSet
             Me.columnCustomerCity = MyBase.Columns("CustomerCity")
             Me.columnCustomerState = MyBase.Columns("CustomerState")
             Me.columnCustomerZip = MyBase.Columns("CustomerZip")
+            Me.columnQBId = MyBase.Columns("QBId")
+            Me.columnCustomerPhone = MyBase.Columns("CustomerPhone")
+            Me.columnEmail = MyBase.Columns("Email")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1392,6 +1425,12 @@ Partial Public Class SeedDataSet
             MyBase.Columns.Add(Me.columnCustomerState)
             Me.columnCustomerZip = New Global.System.Data.DataColumn("CustomerZip", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCustomerZip)
+            Me.columnQBId = New Global.System.Data.DataColumn("QBId", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnQBId)
+            Me.columnCustomerPhone = New Global.System.Data.DataColumn("CustomerPhone", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCustomerPhone)
+            Me.columnEmail = New Global.System.Data.DataColumn("Email", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEmail)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnCustomerId}, true))
             Me.columnCustomerId.AutoIncrement = true
             Me.columnCustomerId.AutoIncrementSeed = -1
@@ -1405,6 +1444,9 @@ Partial Public Class SeedDataSet
             Me.columnCustomerCity.MaxLength = 100
             Me.columnCustomerState.MaxLength = 10
             Me.columnCustomerZip.MaxLength = 10
+            Me.columnQBId.MaxLength = 2147483647
+            Me.columnCustomerPhone.MaxLength = 100
+            Me.columnEmail.MaxLength = 100
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1564,6 +1606,12 @@ Partial Public Class SeedDataSet
         
         Private columnCustomerZip As Global.System.Data.DataColumn
         
+        Private columnUnitTypeName As Global.System.Data.DataColumn
+        
+        Private columnControlNumber As Global.System.Data.DataColumn
+        
+        Private columnMixName As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -1688,6 +1736,30 @@ Partial Public Class SeedDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property UnitTypeNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnUnitTypeName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ControlNumberColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnControlNumber
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property MixNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMixName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1724,9 +1796,9 @@ Partial Public Class SeedDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddSeedOrderRow(ByVal InvoiceID As String, ByVal Project As String, ByVal Acres As Decimal, ByVal orderdate As Date, ByVal CustomerName As String, ByVal CustomerAddressLine1 As String, ByVal CustomerAddressLine2 As String, ByVal CustomerCity As String, ByVal CustomerZip As String) As SeedOrderRow
+        Public Overloads Function AddSeedOrderRow(ByVal InvoiceID As String, ByVal Project As String, ByVal Acres As Decimal, ByVal orderdate As Date, ByVal CustomerName As String, ByVal CustomerAddressLine1 As String, ByVal CustomerAddressLine2 As String, ByVal CustomerCity As String, ByVal CustomerZip As String, ByVal UnitTypeName As String, ByVal ControlNumber As String, ByVal MixName As String) As SeedOrderRow
             Dim rowSeedOrderRow As SeedOrderRow = CType(Me.NewRow,SeedOrderRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, InvoiceID, Project, Acres, orderdate, Nothing, CustomerName, CustomerAddressLine1, CustomerAddressLine2, CustomerCity, CustomerZip}
+            Dim columnValuesArray() As Object = New Object() {Nothing, InvoiceID, Project, Acres, orderdate, Nothing, CustomerName, CustomerAddressLine1, CustomerAddressLine2, CustomerCity, CustomerZip, UnitTypeName, ControlNumber, MixName}
             rowSeedOrderRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowSeedOrderRow)
             Return rowSeedOrderRow
@@ -1766,6 +1838,9 @@ Partial Public Class SeedDataSet
             Me.columnCustomerAddressLine2 = MyBase.Columns("CustomerAddressLine2")
             Me.columnCustomerCity = MyBase.Columns("CustomerCity")
             Me.columnCustomerZip = MyBase.Columns("CustomerZip")
+            Me.columnUnitTypeName = MyBase.Columns("UnitTypeName")
+            Me.columnControlNumber = MyBase.Columns("ControlNumber")
+            Me.columnMixName = MyBase.Columns("MixName")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1793,6 +1868,12 @@ Partial Public Class SeedDataSet
             MyBase.Columns.Add(Me.columnCustomerCity)
             Me.columnCustomerZip = New Global.System.Data.DataColumn("CustomerZip", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCustomerZip)
+            Me.columnUnitTypeName = New Global.System.Data.DataColumn("UnitTypeName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnUnitTypeName)
+            Me.columnControlNumber = New Global.System.Data.DataColumn("ControlNumber", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnControlNumber)
+            Me.columnMixName = New Global.System.Data.DataColumn("MixName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMixName)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnOrderID, Me.columnCustomerId}, true))
             Me.columnOrderID.AutoIncrement = true
             Me.columnOrderID.AllowDBNull = false
@@ -1807,6 +1888,8 @@ Partial Public Class SeedDataSet
             Me.columnCustomerAddressLine2.MaxLength = 255
             Me.columnCustomerCity.MaxLength = 100
             Me.columnCustomerZip.MaxLength = 10
+            Me.columnControlNumber.MaxLength = 100
+            Me.columnMixName.MaxLength = 100
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2007,6 +2090,10 @@ Partial Public Class SeedDataSet
         Private columnScientificName As Global.System.Data.DataColumn
         
         Private columnItemID As Global.System.Data.DataColumn
+        
+        Private columnNoxiousWeeds As Global.System.Data.DataColumn
+        
+        Private columnBotanicalName As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -2300,6 +2387,22 @@ Partial Public Class SeedDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NoxiousWeedsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNoxiousWeeds
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BotanicalNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBotanicalName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2364,9 +2467,11 @@ Partial Public Class SeedDataSet
                     ByVal Retail As Decimal,  _
                     ByVal Item1 As String,  _
                     ByVal Item2 As String,  _
-                    ByVal ScientificName As String) As SeedOrdersRow
+                    ByVal ScientificName As String,  _
+                    ByVal NoxiousWeeds As String,  _
+                    ByVal BotanicalName As String) As SeedOrdersRow
             Dim rowSeedOrdersRow As SeedOrdersRow = CType(Me.NewRow,SeedOrdersRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, InvoiceID, Project, Acres, Nothing, CustomerName, CustomerAddressLine1, CustomerAddressLine2, CustomerCity, CustomerZip, Nothing, PricePerAcre, TotalPrice, Item, lot, _PLS_, variety, Purity, Crop, Weeds, Germ, Dormant, Total, Test_Date, Orgin, Distributor, Wholesale, Retail, Item1, Item2, ScientificName, Nothing}
+            Dim columnValuesArray() As Object = New Object() {Nothing, InvoiceID, Project, Acres, Nothing, CustomerName, CustomerAddressLine1, CustomerAddressLine2, CustomerCity, CustomerZip, Nothing, PricePerAcre, TotalPrice, Item, lot, _PLS_, variety, Purity, Crop, Weeds, Germ, Dormant, Total, Test_Date, Orgin, Distributor, Wholesale, Retail, Item1, Item2, ScientificName, Nothing, NoxiousWeeds, BotanicalName}
             rowSeedOrdersRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowSeedOrdersRow)
             Return rowSeedOrdersRow
@@ -2427,6 +2532,8 @@ Partial Public Class SeedDataSet
             Me.columnItem2 = MyBase.Columns("Item2")
             Me.columnScientificName = MyBase.Columns("ScientificName")
             Me.columnItemID = MyBase.Columns("ItemID")
+            Me.columnNoxiousWeeds = MyBase.Columns("NoxiousWeeds")
+            Me.columnBotanicalName = MyBase.Columns("BotanicalName")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2502,6 +2609,10 @@ Partial Public Class SeedDataSet
             MyBase.Columns.Add(Me.columnScientificName)
             Me.columnItemID = New Global.System.Data.DataColumn("ItemID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnItemID)
+            Me.columnNoxiousWeeds = New Global.System.Data.DataColumn("NoxiousWeeds", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNoxiousWeeds)
+            Me.columnBotanicalName = New Global.System.Data.DataColumn("BotanicalName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBotanicalName)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnOrderID, Me.columnCustomerId, Me.columnorderitemid, Me.columnItemID}, true))
             Me.columnOrderID.AutoIncrement = true
             Me.columnOrderID.AllowDBNull = false
@@ -2529,6 +2640,8 @@ Partial Public Class SeedDataSet
             Me.columnItemID.AutoIncrement = true
             Me.columnItemID.AllowDBNull = false
             Me.columnItemID.ReadOnly = true
+            Me.columnNoxiousWeeds.MaxLength = 100
+            Me.columnBotanicalName.MaxLength = 100
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2663,8 +2776,8 @@ Partial Public Class SeedDataSet
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class ReportsDataTable
-        Inherits Global.System.Data.TypedTableBase(Of ReportsRow)
+    Partial Public Class SeedReportsDataTable
+        Inherits Global.System.Data.TypedTableBase(Of SeedReportsRow)
         
         Private columnReportFileName As Global.System.Data.DataColumn
         
@@ -2674,11 +2787,15 @@ Partial Public Class SeedDataSet
         
         Private columnHasSubReports As Global.System.Data.DataColumn
         
+        Private columnSortOrder As Global.System.Data.DataColumn
+        
+        Private columnIsVisible As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
             MyBase.New
-            Me.TableName = "Reports"
+            Me.TableName = "SeedReports"
             Me.BeginInit
             Me.InitClass
             Me.EndInit
@@ -2742,6 +2859,22 @@ Partial Public Class SeedDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SortOrderColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSortOrder
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property IsVisibleColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIsVisible
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2752,44 +2885,50 @@ Partial Public Class SeedDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As ReportsRow
+        Public Default ReadOnly Property Item(ByVal index As Integer) As SeedReportsRow
             Get
-                Return CType(Me.Rows(index),ReportsRow)
+                Return CType(Me.Rows(index),SeedReportsRow)
             End Get
         End Property
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event ReportsRowChanging As ReportsRowChangeEventHandler
+        Public Event SeedReportsRowChanging As SeedReportsRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event ReportsRowChanged As ReportsRowChangeEventHandler
+        Public Event SeedReportsRowChanged As SeedReportsRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event ReportsRowDeleting As ReportsRowChangeEventHandler
+        Public Event SeedReportsRowDeleting As SeedReportsRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event ReportsRowDeleted As ReportsRowChangeEventHandler
+        Public Event SeedReportsRowDeleted As SeedReportsRowChangeEventHandler
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Sub AddReportsRow(ByVal row As ReportsRow)
+        Public Overloads Sub AddSeedReportsRow(ByVal row As SeedReportsRow)
             Me.Rows.Add(row)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddReportsRow(ByVal ReportFileName As String, ByVal FriendlyName As String, ByVal ReportID As Long, ByVal HasSubReports As Boolean) As ReportsRow
-            Dim rowReportsRow As ReportsRow = CType(Me.NewRow,ReportsRow)
-            Dim columnValuesArray() As Object = New Object() {ReportFileName, FriendlyName, ReportID, HasSubReports}
-            rowReportsRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowReportsRow)
-            Return rowReportsRow
+        Public Overloads Function AddSeedReportsRow(ByVal ReportFileName As String, ByVal FriendlyName As String, ByVal ReportID As Long, ByVal HasSubReports As Boolean, ByVal SortOrder As Integer, ByVal IsVisible As Boolean) As SeedReportsRow
+            Dim rowSeedReportsRow As SeedReportsRow = CType(Me.NewRow,SeedReportsRow)
+            Dim columnValuesArray() As Object = New Object() {ReportFileName, FriendlyName, ReportID, HasSubReports, SortOrder, IsVisible}
+            rowSeedReportsRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowSeedReportsRow)
+            Return rowSeedReportsRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function FindByReportID(ByVal ReportID As Long) As SeedReportsRow
+            Return CType(Me.Rows.Find(New Object() {ReportID}),SeedReportsRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As ReportsDataTable = CType(MyBase.Clone,ReportsDataTable)
+            Dim cln As SeedReportsDataTable = CType(MyBase.Clone,SeedReportsDataTable)
             cln.InitVars
             Return cln
         End Function
@@ -2797,7 +2936,7 @@ Partial Public Class SeedDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New ReportsDataTable()
+            Return New SeedReportsDataTable()
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2807,6 +2946,8 @@ Partial Public Class SeedDataSet
             Me.columnFriendlyName = MyBase.Columns("FriendlyName")
             Me.columnReportID = MyBase.Columns("ReportID")
             Me.columnHasSubReports = MyBase.Columns("HasSubReports")
+            Me.columnSortOrder = MyBase.Columns("SortOrder")
+            Me.columnIsVisible = MyBase.Columns("IsVisible")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2820,34 +2961,41 @@ Partial Public Class SeedDataSet
             MyBase.Columns.Add(Me.columnReportID)
             Me.columnHasSubReports = New Global.System.Data.DataColumn("HasSubReports", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnHasSubReports)
+            Me.columnSortOrder = New Global.System.Data.DataColumn("SortOrder", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSortOrder)
+            Me.columnIsVisible = New Global.System.Data.DataColumn("IsVisible", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIsVisible)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnReportID}, true))
             Me.columnReportFileName.MaxLength = 100
             Me.columnFriendlyName.MaxLength = 100
+            Me.columnReportID.AllowDBNull = false
+            Me.columnReportID.Unique = true
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function NewReportsRow() As ReportsRow
-            Return CType(Me.NewRow,ReportsRow)
+        Public Function NewSeedReportsRow() As SeedReportsRow
+            Return CType(Me.NewRow,SeedReportsRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New ReportsRow(builder)
+            Return New SeedReportsRow(builder)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(ReportsRow)
+            Return GetType(SeedReportsRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanged(e)
-            If (Not (Me.ReportsRowChangedEvent) Is Nothing) Then
-                RaiseEvent ReportsRowChanged(Me, New ReportsRowChangeEvent(CType(e.Row,ReportsRow), e.Action))
+            If (Not (Me.SeedReportsRowChangedEvent) Is Nothing) Then
+                RaiseEvent SeedReportsRowChanged(Me, New SeedReportsRowChangeEvent(CType(e.Row,SeedReportsRow), e.Action))
             End If
         End Sub
         
@@ -2855,8 +3003,8 @@ Partial Public Class SeedDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanging(e)
-            If (Not (Me.ReportsRowChangingEvent) Is Nothing) Then
-                RaiseEvent ReportsRowChanging(Me, New ReportsRowChangeEvent(CType(e.Row,ReportsRow), e.Action))
+            If (Not (Me.SeedReportsRowChangingEvent) Is Nothing) Then
+                RaiseEvent SeedReportsRowChanging(Me, New SeedReportsRowChangeEvent(CType(e.Row,SeedReportsRow), e.Action))
             End If
         End Sub
         
@@ -2864,8 +3012,8 @@ Partial Public Class SeedDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleted(e)
-            If (Not (Me.ReportsRowDeletedEvent) Is Nothing) Then
-                RaiseEvent ReportsRowDeleted(Me, New ReportsRowChangeEvent(CType(e.Row,ReportsRow), e.Action))
+            If (Not (Me.SeedReportsRowDeletedEvent) Is Nothing) Then
+                RaiseEvent SeedReportsRowDeleted(Me, New SeedReportsRowChangeEvent(CType(e.Row,SeedReportsRow), e.Action))
             End If
         End Sub
         
@@ -2873,14 +3021,14 @@ Partial Public Class SeedDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleting(e)
-            If (Not (Me.ReportsRowDeletingEvent) Is Nothing) Then
-                RaiseEvent ReportsRowDeleting(Me, New ReportsRowChangeEvent(CType(e.Row,ReportsRow), e.Action))
+            If (Not (Me.SeedReportsRowDeletingEvent) Is Nothing) Then
+                RaiseEvent SeedReportsRowDeleting(Me, New SeedReportsRowChangeEvent(CType(e.Row,SeedReportsRow), e.Action))
             End If
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub RemoveReportsRow(ByVal row As ReportsRow)
+        Public Sub RemoveSeedReportsRow(ByVal row As SeedReportsRow)
             Me.Rows.Remove(row)
         End Sub
         
@@ -2907,7 +3055,7 @@ Partial Public Class SeedDataSet
             type.Attributes.Add(attribute1)
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "ReportsDataTable"
+            attribute2.FixedValue = "SeedReportsDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -3023,15 +3171,17 @@ Partial Public Class SeedDataSet
         
         Private columnRetail As Global.System.Data.DataColumn
         
-        Private columnItem1 As Global.System.Data.DataColumn
-        
-        Private columnItem2 As Global.System.Data.DataColumn
-        
         Private columnScientificName As Global.System.Data.DataColumn
         
         Private columnItemID As Global.System.Data.DataColumn
         
         Private columnType As Global.System.Data.DataColumn
+        
+        Private columnUnitTypeName As Global.System.Data.DataColumn
+        
+        Private columnBotanicalName As Global.System.Data.DataColumn
+        
+        Private columnNoxiousWeeds As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -3326,22 +3476,6 @@ Partial Public Class SeedDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Item1Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnItem1
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Item2Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnItem2
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property ScientificNameColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnScientificName
@@ -3361,6 +3495,30 @@ Partial Public Class SeedDataSet
         Public ReadOnly Property TypeColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnType
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property UnitTypeNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnUnitTypeName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BotanicalNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBotanicalName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NoxiousWeedsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNoxiousWeeds
             End Get
         End Property
         
@@ -3431,12 +3589,13 @@ Partial Public Class SeedDataSet
                     ByVal Distributor As Decimal,  _
                     ByVal Wholesale As Decimal,  _
                     ByVal Retail As Decimal,  _
-                    ByVal Item1 As String,  _
-                    ByVal Item2 As String,  _
                     ByVal ScientificName As String,  _
-                    ByVal Type As String) As SeedOrderDetailRow
+                    ByVal Type As String,  _
+                    ByVal UnitTypeName As String,  _
+                    ByVal BotanicalName As String,  _
+                    ByVal NoxiousWeeds As String) As SeedOrderDetailRow
             Dim rowSeedOrderDetailRow As SeedOrderDetailRow = CType(Me.NewRow,SeedOrderDetailRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, InvoiceID, Project, Acres, Nothing, CustomerName, CustomerAddressLine1, CustomerAddressLine2, CustomerCity, CustomerZip, Nothing, PricePerAcre, TotalPrice, Item, lot, PLS_Percent, PLSPerAcre, PLS_LBS, BULK_LBS, variety, Purity, Crop, inert, Weeds, Germ, Dormant, Total, TestDate, Orgin, Distributor, Wholesale, Retail, Item1, Item2, ScientificName, Nothing, Type}
+            Dim columnValuesArray() As Object = New Object() {Nothing, InvoiceID, Project, Acres, Nothing, CustomerName, CustomerAddressLine1, CustomerAddressLine2, CustomerCity, CustomerZip, Nothing, PricePerAcre, TotalPrice, Item, lot, PLS_Percent, PLSPerAcre, PLS_LBS, BULK_LBS, variety, Purity, Crop, inert, Weeds, Germ, Dormant, Total, TestDate, Orgin, Distributor, Wholesale, Retail, ScientificName, Nothing, Type, UnitTypeName, BotanicalName, NoxiousWeeds}
             rowSeedOrderDetailRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowSeedOrderDetailRow)
             Return rowSeedOrderDetailRow
@@ -3497,11 +3656,12 @@ Partial Public Class SeedDataSet
             Me.columnDistributor = MyBase.Columns("Distributor")
             Me.columnWholesale = MyBase.Columns("Wholesale")
             Me.columnRetail = MyBase.Columns("Retail")
-            Me.columnItem1 = MyBase.Columns("Item1")
-            Me.columnItem2 = MyBase.Columns("Item2")
             Me.columnScientificName = MyBase.Columns("ScientificName")
             Me.columnItemID = MyBase.Columns("ItemID")
             Me.columnType = MyBase.Columns("Type")
+            Me.columnUnitTypeName = MyBase.Columns("UnitTypeName")
+            Me.columnBotanicalName = MyBase.Columns("BotanicalName")
+            Me.columnNoxiousWeeds = MyBase.Columns("NoxiousWeeds")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3575,16 +3735,18 @@ Partial Public Class SeedDataSet
             MyBase.Columns.Add(Me.columnWholesale)
             Me.columnRetail = New Global.System.Data.DataColumn("Retail", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRetail)
-            Me.columnItem1 = New Global.System.Data.DataColumn("Item1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnItem1)
-            Me.columnItem2 = New Global.System.Data.DataColumn("Item2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnItem2)
             Me.columnScientificName = New Global.System.Data.DataColumn("ScientificName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnScientificName)
             Me.columnItemID = New Global.System.Data.DataColumn("ItemID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnItemID)
             Me.columnType = New Global.System.Data.DataColumn("Type", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnType)
+            Me.columnUnitTypeName = New Global.System.Data.DataColumn("UnitTypeName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnUnitTypeName)
+            Me.columnBotanicalName = New Global.System.Data.DataColumn("BotanicalName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBotanicalName)
+            Me.columnNoxiousWeeds = New Global.System.Data.DataColumn("NoxiousWeeds", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNoxiousWeeds)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnOrderID, Me.columnCustomerId, Me.columnorderitemid, Me.columnItemID}, true))
             Me.columnOrderID.AutoIncrement = true
             Me.columnOrderID.AllowDBNull = false
@@ -3608,13 +3770,13 @@ Partial Public Class SeedDataSet
             Me.columnBULK_LBS.ReadOnly = true
             Me.columnvariety.MaxLength = 100
             Me.columnOrgin.MaxLength = 100
-            Me.columnItem1.MaxLength = 100
-            Me.columnItem2.MaxLength = 100
             Me.columnScientificName.MaxLength = 255
             Me.columnItemID.AutoIncrement = true
             Me.columnItemID.AllowDBNull = false
             Me.columnItemID.ReadOnly = true
             Me.columnType.MaxLength = 50
+            Me.columnUnitTypeName.MaxLength = 100
+            Me.columnNoxiousWeeds.MaxLength = 100
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3784,10 +3946,6 @@ Partial Public Class SeedDataSet
         
         Private columnRetail As Global.System.Data.DataColumn
         
-        Private columnItem1 As Global.System.Data.DataColumn
-        
-        Private columnItem2 As Global.System.Data.DataColumn
-        
         Private columnReorderQTY As Global.System.Data.DataColumn
         
         Private columnReorder As Global.System.Data.DataColumn
@@ -3799,6 +3957,10 @@ Partial Public Class SeedDataSet
         Private columnItemID As Global.System.Data.DataColumn
         
         Private columnType As Global.System.Data.DataColumn
+        
+        Private columnBotanicalName As Global.System.Data.DataColumn
+        
+        Private columnNoxiousWeeds As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -3965,22 +4127,6 @@ Partial Public Class SeedDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Item1Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnItem1
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Item2Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnItem2
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property ReorderQTYColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnReorderQTY
@@ -4024,6 +4170,22 @@ Partial Public Class SeedDataSet
         Public ReadOnly Property TypeColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnType
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BotanicalNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBotanicalName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NoxiousWeedsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNoxiousWeeds
             End Get
         End Property
         
@@ -4081,15 +4243,15 @@ Partial Public Class SeedDataSet
                     ByVal Distributor As Decimal,  _
                     ByVal Wholesale As Decimal,  _
                     ByVal Retail As Decimal,  _
-                    ByVal Item1 As String,  _
-                    ByVal Item2 As String,  _
                     ByVal ReorderQTY As Decimal,  _
                     ByVal Reorder As Boolean,  _
                     ByVal Discontinued As Boolean,  _
                     ByVal ScientificName As String,  _
-                    ByVal Type As String) As ItemsRow
+                    ByVal Type As String,  _
+                    ByVal BotanicalName As String,  _
+                    ByVal NoxiousWeeds As String) As ItemsRow
             Dim rowItemsRow As ItemsRow = CType(Me.NewRow,ItemsRow)
-            Dim columnValuesArray() As Object = New Object() {Item, Lot, _PLS_, variety, Purity, Crop, Inert, Weeds, Germ, Dormant, Total, Test_Date, Orgin, Distributor, Wholesale, Retail, Item1, Item2, ReorderQTY, Reorder, Discontinued, ScientificName, Nothing, Type}
+            Dim columnValuesArray() As Object = New Object() {Item, Lot, _PLS_, variety, Purity, Crop, Inert, Weeds, Germ, Dormant, Total, Test_Date, Orgin, Distributor, Wholesale, Retail, ReorderQTY, Reorder, Discontinued, ScientificName, Nothing, Type, BotanicalName, NoxiousWeeds}
             rowItemsRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowItemsRow)
             Return rowItemsRow
@@ -4134,14 +4296,14 @@ Partial Public Class SeedDataSet
             Me.columnDistributor = MyBase.Columns("Distributor")
             Me.columnWholesale = MyBase.Columns("Wholesale")
             Me.columnRetail = MyBase.Columns("Retail")
-            Me.columnItem1 = MyBase.Columns("Item1")
-            Me.columnItem2 = MyBase.Columns("Item2")
             Me.columnReorderQTY = MyBase.Columns("ReorderQTY")
             Me.columnReorder = MyBase.Columns("Reorder")
             Me.columnDiscontinued = MyBase.Columns("Discontinued")
             Me.columnScientificName = MyBase.Columns("ScientificName")
             Me.columnItemID = MyBase.Columns("ItemID")
             Me.columnType = MyBase.Columns("Type")
+            Me.columnBotanicalName = MyBase.Columns("BotanicalName")
+            Me.columnNoxiousWeeds = MyBase.Columns("NoxiousWeeds")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4185,10 +4347,6 @@ Partial Public Class SeedDataSet
             MyBase.Columns.Add(Me.columnWholesale)
             Me.columnRetail = New Global.System.Data.DataColumn("Retail", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRetail)
-            Me.columnItem1 = New Global.System.Data.DataColumn("Item1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnItem1)
-            Me.columnItem2 = New Global.System.Data.DataColumn("Item2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnItem2)
             Me.columnReorderQTY = New Global.System.Data.DataColumn("ReorderQTY", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnReorderQTY)
             Me.columnReorder = New Global.System.Data.DataColumn("Reorder", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
@@ -4201,13 +4359,15 @@ Partial Public Class SeedDataSet
             MyBase.Columns.Add(Me.columnItemID)
             Me.columnType = New Global.System.Data.DataColumn("Type", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnType)
+            Me.columnBotanicalName = New Global.System.Data.DataColumn("BotanicalName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBotanicalName)
+            Me.columnNoxiousWeeds = New Global.System.Data.DataColumn("NoxiousWeeds", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNoxiousWeeds)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnItemID}, true))
             Me.columnItem.MaxLength = 100
             Me.columnLot.MaxLength = 100
             Me.columnvariety.MaxLength = 100
             Me.columnOrgin.MaxLength = 100
-            Me.columnItem1.MaxLength = 100
-            Me.columnItem2.MaxLength = 100
             Me.columnScientificName.MaxLength = 255
             Me.columnItemID.AutoIncrement = true
             Me.columnItemID.AutoIncrementSeed = -1
@@ -4216,6 +4376,8 @@ Partial Public Class SeedDataSet
             Me.columnItemID.ReadOnly = true
             Me.columnItemID.Unique = true
             Me.columnType.MaxLength = 50
+            Me.columnBotanicalName.MaxLength = 100
+            Me.columnNoxiousWeeds.MaxLength = 100
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4739,6 +4901,51 @@ Partial Public Class SeedDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property QBId() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableCustomers.QBIdColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'QBId' in table 'Customers' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCustomers.QBIdColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property CustomerPhone() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableCustomers.CustomerPhoneColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'CustomerPhone' in table 'Customers' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCustomers.CustomerPhoneColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Email() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableCustomers.EmailColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Email' in table 'Customers' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCustomers.EmailColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCustomerNameNull() As Boolean
             Return Me.IsNull(Me.tableCustomers.CustomerNameColumn)
         End Function
@@ -4807,6 +5014,42 @@ Partial Public Class SeedDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetCustomerZipNull()
             Me(Me.tableCustomers.CustomerZipColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsQBIdNull() As Boolean
+            Return Me.IsNull(Me.tableCustomers.QBIdColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetQBIdNull()
+            Me(Me.tableCustomers.QBIdColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCustomerPhoneNull() As Boolean
+            Return Me.IsNull(Me.tableCustomers.CustomerPhoneColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCustomerPhoneNull()
+            Me(Me.tableCustomers.CustomerPhoneColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsEmailNull() As Boolean
+            Return Me.IsNull(Me.tableCustomers.EmailColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetEmailNull()
+            Me(Me.tableCustomers.EmailColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -4984,6 +5227,51 @@ Partial Public Class SeedDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property UnitTypeName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableSeedOrder.UnitTypeNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'UnitTypeName' in table 'SeedOrder' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableSeedOrder.UnitTypeNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ControlNumber() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableSeedOrder.ControlNumberColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ControlNumber' in table 'SeedOrder' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableSeedOrder.ControlNumberColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property MixName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableSeedOrder.MixNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MixName' in table 'SeedOrder' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableSeedOrder.MixNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsInvoiceIDNull() As Boolean
             Return Me.IsNull(Me.tableSeedOrder.InvoiceIDColumn)
         End Function
@@ -5088,6 +5376,42 @@ Partial Public Class SeedDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetCustomerZipNull()
             Me(Me.tableSeedOrder.CustomerZipColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsUnitTypeNameNull() As Boolean
+            Return Me.IsNull(Me.tableSeedOrder.UnitTypeNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetUnitTypeNameNull()
+            Me(Me.tableSeedOrder.UnitTypeNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsControlNumberNull() As Boolean
+            Return Me.IsNull(Me.tableSeedOrder.ControlNumberColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetControlNumberNull()
+            Me(Me.tableSeedOrder.ControlNumberColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsMixNameNull() As Boolean
+            Return Me.IsNull(Me.tableSeedOrder.MixNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetMixNameNull()
+            Me(Me.tableSeedOrder.MixNameColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -5572,6 +5896,36 @@ Partial Public Class SeedDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property NoxiousWeeds() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableSeedOrders.NoxiousWeedsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'NoxiousWeeds' in table 'SeedOrders' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableSeedOrders.NoxiousWeedsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BotanicalName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableSeedOrders.BotanicalNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BotanicalName' in table 'SeedOrders' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableSeedOrders.BotanicalNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsInvoiceIDNull() As Boolean
             Return Me.IsNull(Me.tableSeedOrders.InvoiceIDColumn)
         End Function
@@ -5905,21 +6259,45 @@ Partial Public Class SeedDataSet
         Public Sub SetScientificNameNull()
             Me(Me.tableSeedOrders.ScientificNameColumn) = Global.System.Convert.DBNull
         End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNoxiousWeedsNull() As Boolean
+            Return Me.IsNull(Me.tableSeedOrders.NoxiousWeedsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNoxiousWeedsNull()
+            Me(Me.tableSeedOrders.NoxiousWeedsColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBotanicalNameNull() As Boolean
+            Return Me.IsNull(Me.tableSeedOrders.BotanicalNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBotanicalNameNull()
+            Me(Me.tableSeedOrders.BotanicalNameColumn) = Global.System.Convert.DBNull
+        End Sub
     End Class
     
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
-    Partial Public Class ReportsRow
+    Partial Public Class SeedReportsRow
         Inherits Global.System.Data.DataRow
         
-        Private tableReports As ReportsDataTable
+        Private tableSeedReports As SeedReportsDataTable
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.tableReports = CType(Me.Table,ReportsDataTable)
+            Me.tableSeedReports = CType(Me.Table,SeedReportsDataTable)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5927,13 +6305,13 @@ Partial Public Class SeedDataSet
         Public Property ReportFileName() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableReports.ReportFileNameColumn),String)
+                    Return CType(Me(Me.tableSeedReports.ReportFileNameColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'ReportFileName' in table 'Reports' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ReportFileName' in table 'SeedReports' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableReports.ReportFileNameColumn) = value
+                Me(Me.tableSeedReports.ReportFileNameColumn) = value
             End Set
         End Property
         
@@ -5942,13 +6320,13 @@ Partial Public Class SeedDataSet
         Public Property FriendlyName() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableReports.FriendlyNameColumn),String)
+                    Return CType(Me(Me.tableSeedReports.FriendlyNameColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'FriendlyName' in table 'Reports' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'FriendlyName' in table 'SeedReports' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableReports.FriendlyNameColumn) = value
+                Me(Me.tableSeedReports.FriendlyNameColumn) = value
             End Set
         End Property
         
@@ -5956,14 +6334,10 @@ Partial Public Class SeedDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property ReportID() As Long
             Get
-                Try 
-                    Return CType(Me(Me.tableReports.ReportIDColumn),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'ReportID' in table 'Reports' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tableSeedReports.ReportIDColumn),Long)
             End Get
             Set
-                Me(Me.tableReports.ReportIDColumn) = value
+                Me(Me.tableSeedReports.ReportIDColumn) = value
             End Set
         End Property
         
@@ -5972,62 +6346,104 @@ Partial Public Class SeedDataSet
         Public Property HasSubReports() As Boolean
             Get
                 Try 
-                    Return CType(Me(Me.tableReports.HasSubReportsColumn),Boolean)
+                    Return CType(Me(Me.tableSeedReports.HasSubReportsColumn),Boolean)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'HasSubReports' in table 'Reports' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'HasSubReports' in table 'SeedReports' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableReports.HasSubReportsColumn) = value
+                Me(Me.tableSeedReports.HasSubReportsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property SortOrder() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableSeedReports.SortOrderColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SortOrder' in table 'SeedReports' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableSeedReports.SortOrderColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property IsVisible() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableSeedReports.IsVisibleColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'IsVisible' in table 'SeedReports' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableSeedReports.IsVisibleColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsReportFileNameNull() As Boolean
-            Return Me.IsNull(Me.tableReports.ReportFileNameColumn)
+            Return Me.IsNull(Me.tableSeedReports.ReportFileNameColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetReportFileNameNull()
-            Me(Me.tableReports.ReportFileNameColumn) = Global.System.Convert.DBNull
+            Me(Me.tableSeedReports.ReportFileNameColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsFriendlyNameNull() As Boolean
-            Return Me.IsNull(Me.tableReports.FriendlyNameColumn)
+            Return Me.IsNull(Me.tableSeedReports.FriendlyNameColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetFriendlyNameNull()
-            Me(Me.tableReports.FriendlyNameColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsReportIDNull() As Boolean
-            Return Me.IsNull(Me.tableReports.ReportIDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetReportIDNull()
-            Me(Me.tableReports.ReportIDColumn) = Global.System.Convert.DBNull
+            Me(Me.tableSeedReports.FriendlyNameColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsHasSubReportsNull() As Boolean
-            Return Me.IsNull(Me.tableReports.HasSubReportsColumn)
+            Return Me.IsNull(Me.tableSeedReports.HasSubReportsColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetHasSubReportsNull()
-            Me(Me.tableReports.HasSubReportsColumn) = Global.System.Convert.DBNull
+            Me(Me.tableSeedReports.HasSubReportsColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSortOrderNull() As Boolean
+            Return Me.IsNull(Me.tableSeedReports.SortOrderColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSortOrderNull()
+            Me(Me.tableSeedReports.SortOrderColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsIsVisibleNull() As Boolean
+            Return Me.IsNull(Me.tableSeedReports.IsVisibleColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetIsVisibleNull()
+            Me(Me.tableSeedReports.IsVisibleColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -6518,36 +6934,6 @@ Partial Public Class SeedDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Item1() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableSeedOrderDetail.Item1Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Item1' in table 'SeedOrderDetail' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableSeedOrderDetail.Item1Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Item2() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableSeedOrderDetail.Item2Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Item2' in table 'SeedOrderDetail' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableSeedOrderDetail.Item2Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property ScientificName() As String
             Get
                 Try 
@@ -6584,6 +6970,51 @@ Partial Public Class SeedDataSet
             End Get
             Set
                 Me(Me.tableSeedOrderDetail.TypeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property UnitTypeName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableSeedOrderDetail.UnitTypeNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'UnitTypeName' in table 'SeedOrderDetail' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableSeedOrderDetail.UnitTypeNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BotanicalName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableSeedOrderDetail.BotanicalNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BotanicalName' in table 'SeedOrderDetail' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableSeedOrderDetail.BotanicalNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property NoxiousWeeds() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableSeedOrderDetail.NoxiousWeedsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'NoxiousWeeds' in table 'SeedOrderDetail' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableSeedOrderDetail.NoxiousWeedsColumn) = value
             End Set
         End Property
         
@@ -6937,30 +7368,6 @@ Partial Public Class SeedDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsItem1Null() As Boolean
-            Return Me.IsNull(Me.tableSeedOrderDetail.Item1Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetItem1Null()
-            Me(Me.tableSeedOrderDetail.Item1Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsItem2Null() As Boolean
-            Return Me.IsNull(Me.tableSeedOrderDetail.Item2Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetItem2Null()
-            Me(Me.tableSeedOrderDetail.Item2Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsScientificNameNull() As Boolean
             Return Me.IsNull(Me.tableSeedOrderDetail.ScientificNameColumn)
         End Function
@@ -6981,6 +7388,42 @@ Partial Public Class SeedDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetTypeNull()
             Me(Me.tableSeedOrderDetail.TypeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsUnitTypeNameNull() As Boolean
+            Return Me.IsNull(Me.tableSeedOrderDetail.UnitTypeNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetUnitTypeNameNull()
+            Me(Me.tableSeedOrderDetail.UnitTypeNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBotanicalNameNull() As Boolean
+            Return Me.IsNull(Me.tableSeedOrderDetail.BotanicalNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBotanicalNameNull()
+            Me(Me.tableSeedOrderDetail.BotanicalNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNoxiousWeedsNull() As Boolean
+            Return Me.IsNull(Me.tableSeedOrderDetail.NoxiousWeedsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNoxiousWeedsNull()
+            Me(Me.tableSeedOrderDetail.NoxiousWeedsColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -7241,36 +7684,6 @@ Partial Public Class SeedDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Item1() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableItems.Item1Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Item1' in table 'Items' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableItems.Item1Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Item2() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableItems.Item2Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Item2' in table 'Items' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableItems.Item2Column) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property ReorderQTY() As Decimal
             Get
                 Try 
@@ -7352,6 +7765,36 @@ Partial Public Class SeedDataSet
             End Get
             Set
                 Me(Me.tableItems.TypeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property BotanicalName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableItems.BotanicalNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BotanicalName' in table 'Items' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableItems.BotanicalNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property NoxiousWeeds() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableItems.NoxiousWeedsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'NoxiousWeeds' in table 'Items' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableItems.NoxiousWeedsColumn) = value
             End Set
         End Property
         
@@ -7549,30 +7992,6 @@ Partial Public Class SeedDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsItem1Null() As Boolean
-            Return Me.IsNull(Me.tableItems.Item1Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetItem1Null()
-            Me(Me.tableItems.Item1Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsItem2Null() As Boolean
-            Return Me.IsNull(Me.tableItems.Item2Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetItem2Null()
-            Me(Me.tableItems.Item2Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsReorderQTYNull() As Boolean
             Return Me.IsNull(Me.tableItems.ReorderQTYColumn)
         End Function
@@ -7629,6 +8048,30 @@ Partial Public Class SeedDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetTypeNull()
             Me(Me.tableItems.TypeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBotanicalNameNull() As Boolean
+            Return Me.IsNull(Me.tableItems.BotanicalNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBotanicalNameNull()
+            Me(Me.tableItems.BotanicalNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNoxiousWeedsNull() As Boolean
+            Return Me.IsNull(Me.tableItems.NoxiousWeedsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNoxiousWeedsNull()
+            Me(Me.tableItems.NoxiousWeedsColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -7816,16 +8259,16 @@ Partial Public Class SeedDataSet
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Class ReportsRowChangeEvent
+    Public Class SeedReportsRowChangeEvent
         Inherits Global.System.EventArgs
         
-        Private eventRow As ReportsRow
+        Private eventRow As SeedReportsRow
         
         Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New(ByVal row As ReportsRow, ByVal action As Global.System.Data.DataRowAction)
+        Public Sub New(ByVal row As SeedReportsRow, ByVal action As Global.System.Data.DataRowAction)
             MyBase.New
             Me.eventRow = row
             Me.eventAction = action
@@ -7833,7 +8276,7 @@ Partial Public Class SeedDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Row() As ReportsRow
+        Public ReadOnly Property Row() As SeedReportsRow
             Get
                 Return Me.eventRow
             End Get
@@ -8910,6 +9353,9 @@ Namespace SeedDataSetTableAdapters
             tableMapping.ColumnMappings.Add("CustomerCity", "CustomerCity")
             tableMapping.ColumnMappings.Add("CustomerState", "CustomerState")
             tableMapping.ColumnMappings.Add("CustomerZip", "CustomerZip")
+            tableMapping.ColumnMappings.Add("QBId", "QBId")
+            tableMapping.ColumnMappings.Add("CustomerPhone", "CustomerPhone")
+            tableMapping.ColumnMappings.Add("Email", "Email")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -8922,7 +9368,9 @@ Namespace SeedDataSetTableAdapters
                 "= 1 AND [CustomerCity] IS NULL) OR ([CustomerCity] = @Original_CustomerCity)) AN"& _ 
                 "D ((@IsNull_CustomerState = 1 AND [CustomerState] IS NULL) OR ([CustomerState] ="& _ 
                 " @Original_CustomerState)) AND ((@IsNull_CustomerZip = 1 AND [CustomerZip] IS NU"& _ 
-                "LL) OR ([CustomerZip] = @Original_CustomerZip)))"
+                "LL) OR ([CustomerZip] = @Original_CustomerZip)) AND ((@IsNull_CustomerPhone = 1 "& _ 
+                "AND [CustomerPhone] IS NULL) OR ([CustomerPhone] = @Original_CustomerPhone)) AND"& _ 
+                " ((@IsNull_Email = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CustomerId", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerId", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CustomerName", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerName", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
@@ -8937,14 +9385,19 @@ Namespace SeedDataSetTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CustomerState", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerState", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CustomerZip", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerZip", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CustomerZip", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerZip", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CustomerPhone", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerPhone", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CustomerPhone", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerPhone", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Email", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Email", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Email", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Email", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Customers] ([CustomerName], [CustomerAddressLine1], [CustomerA"& _ 
-                "ddressLine2], [CustomerCity], [CustomerState], [CustomerZip]) VALUES (@CustomerN"& _ 
-                "ame, @CustomerAddressLine1, @CustomerAddressLine2, @CustomerCity, @CustomerState"& _ 
-                ", @CustomerZip);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT CustomerId, CustomerName, CustomerAddressLine1, Custome"& _ 
-                "rAddressLine2, CustomerCity, CustomerState, CustomerZip FROM Customers WHERE (Cu"& _ 
-                "stomerId = SCOPE_IDENTITY())"
+                "ddressLine2], [CustomerCity], [CustomerState], [CustomerZip], [QBId], [CustomerP"& _ 
+                "hone], [Email]) VALUES (@CustomerName, @CustomerAddressLine1, @CustomerAddressLi"& _ 
+                "ne2, @CustomerCity, @CustomerState, @CustomerZip, @QBId, @CustomerPhone, @Email)"& _ 
+                ";"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT CustomerId, CustomerName, CustomerAddressLine1, CustomerAddressLine2, "& _ 
+                "CustomerCity, CustomerState, CustomerZip, QBId, CustomerPhone, Email FROM Custom"& _ 
+                "ers WHERE (CustomerId = SCOPE_IDENTITY())"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CustomerName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CustomerAddressLine1", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerAddressLine1", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -8952,23 +9405,30 @@ Namespace SeedDataSetTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CustomerCity", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerCity", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CustomerState", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerState", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CustomerZip", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerZip", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QBId", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QBId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CustomerPhone", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerPhone", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Email", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Email", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Customers] SET [CustomerName] = @CustomerName, [CustomerAddressLine"& _ 
                 "1] = @CustomerAddressLine1, [CustomerAddressLine2] = @CustomerAddressLine2, [Cus"& _ 
                 "tomerCity] = @CustomerCity, [CustomerState] = @CustomerState, [CustomerZip] = @C"& _ 
-                "ustomerZip WHERE (([CustomerId] = @Original_CustomerId) AND ((@IsNull_CustomerNa"& _ 
-                "me = 1 AND [CustomerName] IS NULL) OR ([CustomerName] = @Original_CustomerName))"& _ 
-                " AND ((@IsNull_CustomerAddressLine1 = 1 AND [CustomerAddressLine1] IS NULL) OR ("& _ 
-                "[CustomerAddressLine1] = @Original_CustomerAddressLine1)) AND ((@IsNull_Customer"& _ 
-                "AddressLine2 = 1 AND [CustomerAddressLine2] IS NULL) OR ([CustomerAddressLine2] "& _ 
-                "= @Original_CustomerAddressLine2)) AND ((@IsNull_CustomerCity = 1 AND [CustomerC"& _ 
-                "ity] IS NULL) OR ([CustomerCity] = @Original_CustomerCity)) AND ((@IsNull_Custom"& _ 
-                "erState = 1 AND [CustomerState] IS NULL) OR ([CustomerState] = @Original_Custome"& _ 
-                "rState)) AND ((@IsNull_CustomerZip = 1 AND [CustomerZip] IS NULL) OR ([CustomerZ"& _ 
-                "ip] = @Original_CustomerZip)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT CustomerId, CustomerName, CustomerAddres"& _ 
-                "sLine1, CustomerAddressLine2, CustomerCity, CustomerState, CustomerZip FROM Cust"& _ 
-                "omers WHERE (CustomerId = @CustomerId)"
+                "ustomerZip, [QBId] = @QBId, [CustomerPhone] = @CustomerPhone, [Email] = @Email W"& _ 
+                "HERE (([CustomerId] = @Original_CustomerId) AND ((@IsNull_CustomerName = 1 AND ["& _ 
+                "CustomerName] IS NULL) OR ([CustomerName] = @Original_CustomerName)) AND ((@IsNu"& _ 
+                "ll_CustomerAddressLine1 = 1 AND [CustomerAddressLine1] IS NULL) OR ([CustomerAdd"& _ 
+                "ressLine1] = @Original_CustomerAddressLine1)) AND ((@IsNull_CustomerAddressLine2"& _ 
+                " = 1 AND [CustomerAddressLine2] IS NULL) OR ([CustomerAddressLine2] = @Original_"& _ 
+                "CustomerAddressLine2)) AND ((@IsNull_CustomerCity = 1 AND [CustomerCity] IS NULL"& _ 
+                ") OR ([CustomerCity] = @Original_CustomerCity)) AND ((@IsNull_CustomerState = 1 "& _ 
+                "AND [CustomerState] IS NULL) OR ([CustomerState] = @Original_CustomerState)) AND"& _ 
+                " ((@IsNull_CustomerZip = 1 AND [CustomerZip] IS NULL) OR ([CustomerZip] = @Origi"& _ 
+                "nal_CustomerZip)) AND ((@IsNull_CustomerPhone = 1 AND [CustomerPhone] IS NULL) O"& _ 
+                "R ([CustomerPhone] = @Original_CustomerPhone)) AND ((@IsNull_Email = 1 AND [Emai"& _ 
+                "l] IS NULL) OR ([Email] = @Original_Email)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT CustomerId, CustomerName, "& _ 
+                "CustomerAddressLine1, CustomerAddressLine2, CustomerCity, CustomerState, Custome"& _ 
+                "rZip, QBId, CustomerPhone, Email FROM Customers WHERE (CustomerId = @CustomerId)"& _ 
+                ""
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CustomerName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CustomerAddressLine1", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerAddressLine1", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -8976,6 +9436,9 @@ Namespace SeedDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CustomerCity", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerCity", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CustomerState", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerState", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CustomerZip", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerZip", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QBId", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QBId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CustomerPhone", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerPhone", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Email", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Email", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CustomerId", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerId", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CustomerName", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerName", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CustomerName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerName", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -8989,6 +9452,10 @@ Namespace SeedDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CustomerState", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerState", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CustomerZip", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerZip", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CustomerZip", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerZip", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CustomerPhone", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerPhone", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CustomerPhone", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerPhone", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Email", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Email", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Email", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Email", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CustomerId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
@@ -9005,8 +9472,7 @@ Namespace SeedDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT CustomerId, CustomerName, CustomerAddressLine1, CustomerAddressLine2, Cust"& _ 
-                "omerCity, CustomerState, CustomerZip FROM dbo.Customers"
+            Me._commandCollection(0).CommandText = "SELECT * FROM dbo.Customers"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -9066,7 +9532,7 @@ Namespace SeedDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_CustomerId As Integer, ByVal Original_CustomerName As String, ByVal Original_CustomerAddressLine1 As String, ByVal Original_CustomerAddressLine2 As String, ByVal Original_CustomerCity As String, ByVal Original_CustomerState As String, ByVal Original_CustomerZip As String) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_CustomerId As Integer, ByVal Original_CustomerName As String, ByVal Original_CustomerAddressLine1 As String, ByVal Original_CustomerAddressLine2 As String, ByVal Original_CustomerCity As String, ByVal Original_CustomerState As String, ByVal Original_CustomerZip As String, ByVal Original_CustomerPhone As String, ByVal Original_Email As String) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_CustomerId,Integer)
             If (Original_CustomerName Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(1).Value = CType(1,Object)
@@ -9110,6 +9576,20 @@ Namespace SeedDataSetTableAdapters
                 Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0,Object)
                 Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_CustomerZip,String)
             End If
+            If (Original_CustomerPhone Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(14).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_CustomerPhone,String)
+            End If
+            If (Original_Email Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(16).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_Email,String)
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -9129,7 +9609,7 @@ Namespace SeedDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal CustomerName As String, ByVal CustomerAddressLine1 As String, ByVal CustomerAddressLine2 As String, ByVal CustomerCity As String, ByVal CustomerState As String, ByVal CustomerZip As String) As Integer
+        Public Overloads Overridable Function Insert(ByVal CustomerName As String, ByVal CustomerAddressLine1 As String, ByVal CustomerAddressLine2 As String, ByVal CustomerCity As String, ByVal CustomerState As String, ByVal CustomerZip As String, ByVal QBId As String, ByVal CustomerPhone As String, ByVal Email As String) As Integer
             If (CustomerName Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -9160,6 +9640,21 @@ Namespace SeedDataSetTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(5).Value = CType(CustomerZip,String)
             End If
+            If (QBId Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(QBId,String)
+            End If
+            If (CustomerPhone Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(CustomerPhone,String)
+            End If
+            If (Email Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(Email,String)
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -9179,7 +9674,26 @@ Namespace SeedDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal CustomerName As String, ByVal CustomerAddressLine1 As String, ByVal CustomerAddressLine2 As String, ByVal CustomerCity As String, ByVal CustomerState As String, ByVal CustomerZip As String, ByVal Original_CustomerId As Integer, ByVal Original_CustomerName As String, ByVal Original_CustomerAddressLine1 As String, ByVal Original_CustomerAddressLine2 As String, ByVal Original_CustomerCity As String, ByVal Original_CustomerState As String, ByVal Original_CustomerZip As String, ByVal CustomerId As Integer) As Integer
+        Public Overloads Overridable Function Update( _
+                    ByVal CustomerName As String,  _
+                    ByVal CustomerAddressLine1 As String,  _
+                    ByVal CustomerAddressLine2 As String,  _
+                    ByVal CustomerCity As String,  _
+                    ByVal CustomerState As String,  _
+                    ByVal CustomerZip As String,  _
+                    ByVal QBId As String,  _
+                    ByVal CustomerPhone As String,  _
+                    ByVal Email As String,  _
+                    ByVal Original_CustomerId As Integer,  _
+                    ByVal Original_CustomerName As String,  _
+                    ByVal Original_CustomerAddressLine1 As String,  _
+                    ByVal Original_CustomerAddressLine2 As String,  _
+                    ByVal Original_CustomerCity As String,  _
+                    ByVal Original_CustomerState As String,  _
+                    ByVal Original_CustomerZip As String,  _
+                    ByVal Original_CustomerPhone As String,  _
+                    ByVal Original_Email As String,  _
+                    ByVal CustomerId As Integer) As Integer
             If (CustomerName Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -9210,50 +9724,79 @@ Namespace SeedDataSetTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(5).Value = CType(CustomerZip,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Original_CustomerId,Integer)
-            If (Original_CustomerName Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(1,Object)
+            If (QBId Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(QBId,String)
+            End If
+            If (CustomerPhone Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(CustomerPhone,String)
+            End If
+            If (Email Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_CustomerName,String)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Email,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_CustomerId,Integer)
+            If (Original_CustomerName Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_CustomerName,String)
             End If
             If (Original_CustomerAddressLine1 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_CustomerAddressLine1,String)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_CustomerAddressLine1,String)
             End If
             If (Original_CustomerAddressLine2 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_CustomerAddressLine2,String)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_CustomerAddressLine2,String)
             End If
             If (Original_CustomerCity Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_CustomerCity,String)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_CustomerCity,String)
             End If
             If (Original_CustomerState Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_CustomerState,String)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_CustomerState,String)
             End If
             If (Original_CustomerZip Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_CustomerZip,String)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_CustomerZip,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(19).Value = CType(CustomerId,Integer)
+            If (Original_CustomerPhone Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_CustomerPhone,String)
+            End If
+            If (Original_Email Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_Email,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(26).Value = CType(CustomerId,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -9273,8 +9816,26 @@ Namespace SeedDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal CustomerName As String, ByVal CustomerAddressLine1 As String, ByVal CustomerAddressLine2 As String, ByVal CustomerCity As String, ByVal CustomerState As String, ByVal CustomerZip As String, ByVal Original_CustomerId As Integer, ByVal Original_CustomerName As String, ByVal Original_CustomerAddressLine1 As String, ByVal Original_CustomerAddressLine2 As String, ByVal Original_CustomerCity As String, ByVal Original_CustomerState As String, ByVal Original_CustomerZip As String) As Integer
-            Return Me.Update(CustomerName, CustomerAddressLine1, CustomerAddressLine2, CustomerCity, CustomerState, CustomerZip, Original_CustomerId, Original_CustomerName, Original_CustomerAddressLine1, Original_CustomerAddressLine2, Original_CustomerCity, Original_CustomerState, Original_CustomerZip, Original_CustomerId)
+        Public Overloads Overridable Function Update( _
+                    ByVal CustomerName As String,  _
+                    ByVal CustomerAddressLine1 As String,  _
+                    ByVal CustomerAddressLine2 As String,  _
+                    ByVal CustomerCity As String,  _
+                    ByVal CustomerState As String,  _
+                    ByVal CustomerZip As String,  _
+                    ByVal QBId As String,  _
+                    ByVal CustomerPhone As String,  _
+                    ByVal Email As String,  _
+                    ByVal Original_CustomerId As Integer,  _
+                    ByVal Original_CustomerName As String,  _
+                    ByVal Original_CustomerAddressLine1 As String,  _
+                    ByVal Original_CustomerAddressLine2 As String,  _
+                    ByVal Original_CustomerCity As String,  _
+                    ByVal Original_CustomerState As String,  _
+                    ByVal Original_CustomerZip As String,  _
+                    ByVal Original_CustomerPhone As String,  _
+                    ByVal Original_Email As String) As Integer
+            Return Me.Update(CustomerName, CustomerAddressLine1, CustomerAddressLine2, CustomerCity, CustomerState, CustomerZip, QBId, CustomerPhone, Email, Original_CustomerId, Original_CustomerName, Original_CustomerAddressLine1, Original_CustomerAddressLine2, Original_CustomerCity, Original_CustomerState, Original_CustomerZip, Original_CustomerPhone, Original_Email, Original_CustomerId)
         End Function
     End Class
     
@@ -9416,6 +9977,9 @@ Namespace SeedDataSetTableAdapters
             tableMapping.ColumnMappings.Add("CustomerAddressLine2", "CustomerAddressLine2")
             tableMapping.ColumnMappings.Add("CustomerCity", "CustomerCity")
             tableMapping.ColumnMappings.Add("CustomerZip", "CustomerZip")
+            tableMapping.ColumnMappings.Add("UnitTypeName", "UnitTypeName")
+            tableMapping.ColumnMappings.Add("ControlNumber", "ControlNumber")
+            tableMapping.ColumnMappings.Add("MixName", "MixName")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -9632,6 +10196,8 @@ Namespace SeedDataSetTableAdapters
             tableMapping.ColumnMappings.Add("Item2", "Item2")
             tableMapping.ColumnMappings.Add("ScientificName", "ScientificName")
             tableMapping.ColumnMappings.Add("ItemID", "ItemID")
+            tableMapping.ColumnMappings.Add("NoxiousWeeds", "NoxiousWeeds")
+            tableMapping.ColumnMappings.Add("BotanicalName", "BotanicalName")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -9698,7 +10264,7 @@ Namespace SeedDataSetTableAdapters
      Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
      Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class ReportsTableAdapter
+    Partial Public Class SeedReportsTableAdapter
         Inherits Global.System.ComponentModel.Component
         
         Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
@@ -9815,21 +10381,78 @@ Namespace SeedDataSetTableAdapters
             Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "Reports"
+            tableMapping.DataSetTable = "SeedReports"
             tableMapping.ColumnMappings.Add("ReportFileName", "ReportFileName")
             tableMapping.ColumnMappings.Add("FriendlyName", "FriendlyName")
             tableMapping.ColumnMappings.Add("ReportID", "ReportID")
             tableMapping.ColumnMappings.Add("HasSubReports", "HasSubReports")
+            tableMapping.ColumnMappings.Add("SortOrder", "SortOrder")
+            tableMapping.ColumnMappings.Add("IsVisible", "IsVisible")
             Me._adapter.TableMappings.Add(tableMapping)
+            Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.DeleteCommand.Connection = Me.Connection
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[SeedReports] WHERE (((@IsNull_ReportFileName = 1 AND [ReportFi"& _ 
+                "leName] IS NULL) OR ([ReportFileName] = @Original_ReportFileName)) AND ((@IsNull"& _ 
+                "_FriendlyName = 1 AND [FriendlyName] IS NULL) OR ([FriendlyName] = @Original_Fri"& _ 
+                "endlyName)) AND ([ReportID] = @Original_ReportID) AND ((@IsNull_HasSubReports = "& _ 
+                "1 AND [HasSubReports] IS NULL) OR ([HasSubReports] = @Original_HasSubReports)) A"& _ 
+                "ND ((@IsNull_SortOrder = 1 AND [SortOrder] IS NULL) OR ([SortOrder] = @Original_"& _ 
+                "SortOrder)) AND ((@IsNull_IsVisible = 1 AND [IsVisible] IS NULL) OR ([IsVisible]"& _ 
+                " = @Original_IsVisible)))"
+            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ReportFileName", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ReportFileName", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ReportFileName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ReportFileName", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_FriendlyName", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FriendlyName", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_FriendlyName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FriendlyName", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ReportID", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ReportID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_HasSubReports", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "HasSubReports", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_HasSubReports", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "HasSubReports", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_SortOrder", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SortOrder", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_SortOrder", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SortOrder", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_IsVisible", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsVisible", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IsVisible", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsVisible", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Reports] ([ReportFileName], [FriendlyName], [ReportID], [HasSu"& _ 
-                "bReports]) VALUES (@ReportFileName, @FriendlyName, @ReportID, @HasSubReports)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[SeedReports] ([ReportFileName], [FriendlyName], [ReportID], [H"& _ 
+                "asSubReports], [SortOrder], [IsVisible]) VALUES (@ReportFileName, @FriendlyName,"& _ 
+                " @ReportID, @HasSubReports, @SortOrder, @IsVisible)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ReportFileName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ReportFileName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FriendlyName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FriendlyName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ReportID", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ReportID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@HasSubReports", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "HasSubReports", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SortOrder", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SortOrder", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsVisible", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsVisible", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.UpdateCommand.Connection = Me.Connection
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[SeedReports] SET [ReportFileName] = @ReportFileName, [FriendlyName]"& _ 
+                " = @FriendlyName, [ReportID] = @ReportID, [HasSubReports] = @HasSubReports, [Sor"& _ 
+                "tOrder] = @SortOrder, [IsVisible] = @IsVisible WHERE (((@IsNull_ReportFileName ="& _ 
+                " 1 AND [ReportFileName] IS NULL) OR ([ReportFileName] = @Original_ReportFileName"& _ 
+                ")) AND ((@IsNull_FriendlyName = 1 AND [FriendlyName] IS NULL) OR ([FriendlyName]"& _ 
+                " = @Original_FriendlyName)) AND ([ReportID] = @Original_ReportID) AND ((@IsNull_"& _ 
+                "HasSubReports = 1 AND [HasSubReports] IS NULL) OR ([HasSubReports] = @Original_H"& _ 
+                "asSubReports)) AND ((@IsNull_SortOrder = 1 AND [SortOrder] IS NULL) OR ([SortOrd"& _ 
+                "er] = @Original_SortOrder)) AND ((@IsNull_IsVisible = 1 AND [IsVisible] IS NULL)"& _ 
+                " OR ([IsVisible] = @Original_IsVisible)))"
+            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ReportFileName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ReportFileName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FriendlyName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FriendlyName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ReportID", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ReportID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@HasSubReports", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "HasSubReports", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SortOrder", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SortOrder", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsVisible", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsVisible", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ReportFileName", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ReportFileName", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ReportFileName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ReportFileName", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_FriendlyName", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FriendlyName", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_FriendlyName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FriendlyName", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ReportID", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ReportID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_HasSubReports", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "HasSubReports", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_HasSubReports", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "HasSubReports", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_SortOrder", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SortOrder", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_SortOrder", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SortOrder", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_IsVisible", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsVisible", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IsVisible", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsVisible", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -9842,18 +10465,24 @@ Namespace SeedDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT ReportFileName, FriendlyName, ReportID, HasSubReports FROM dbo.Reports"
+            Me._commandCollection(0).CommandText = "SELECT ReportFileName, FriendlyName, ReportID, HasSubReports,SortOrder,IsVisible "& _ 
+                "FROM dbo.SeedReports"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT FriendlyName, HasSubReports, IsVisible, ReportFileName, ReportID, SortOrde"& _ 
+                "r FROM SeedReports WHERE (IsVisible = 1)"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As SeedDataSet.ReportsDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As SeedDataSet.SeedReportsDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -9866,17 +10495,30 @@ Namespace SeedDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As SeedDataSet.ReportsDataTable
+        Public Overloads Overridable Function GetData() As SeedDataSet.SeedReportsDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As SeedDataSet.ReportsDataTable = New SeedDataSet.ReportsDataTable()
+            Dim dataTable As SeedDataSet.SeedReportsDataTable = New SeedDataSet.SeedReportsDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillVisibleReports(ByVal dataTable As SeedDataSet.SeedReportsDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As SeedDataSet.ReportsDataTable) As Integer
+        Public Overloads Overridable Function Update(ByVal dataTable As SeedDataSet.SeedReportsDataTable) As Integer
             Return Me.Adapter.Update(dataTable)
         End Function
         
@@ -9884,7 +10526,7 @@ Namespace SeedDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function Update(ByVal dataSet As SeedDataSet) As Integer
-            Return Me.Adapter.Update(dataSet, "Reports")
+            Return Me.Adapter.Update(dataSet, "SeedReports")
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -9899,46 +10541,6 @@ Namespace SeedDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
             Return Me.Adapter.Update(dataRows)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal ReportFileName As String, ByVal FriendlyName As String, ByVal ReportID As Global.System.Nullable(Of Long), ByVal HasSubReports As Global.System.Nullable(Of Boolean)) As Integer
-            If (ReportFileName Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(0).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(ReportFileName,String)
-            End If
-            If (FriendlyName Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(FriendlyName,String)
-            End If
-            If (ReportID.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(ReportID.Value,Long)
-            Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
-            End If
-            If (HasSubReports.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(HasSubReports.Value,Boolean)
-            Else
-                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
-                End If
-            End Try
         End Function
     End Class
     
@@ -10101,11 +10703,11 @@ Namespace SeedDataSetTableAdapters
             tableMapping.ColumnMappings.Add("Distributor", "Distributor")
             tableMapping.ColumnMappings.Add("Wholesale", "Wholesale")
             tableMapping.ColumnMappings.Add("Retail", "Retail")
-            tableMapping.ColumnMappings.Add("Item1", "Item1")
-            tableMapping.ColumnMappings.Add("Item2", "Item2")
             tableMapping.ColumnMappings.Add("ScientificName", "ScientificName")
             tableMapping.ColumnMappings.Add("ItemID", "ItemID")
             tableMapping.ColumnMappings.Add("Type", "Type")
+            tableMapping.ColumnMappings.Add("UnitTypeName", "UnitTypeName")
+            tableMapping.ColumnMappings.Add("NoxiousWeeds", "NoxiousWeeds")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -10306,14 +10908,14 @@ Namespace SeedDataSetTableAdapters
             tableMapping.ColumnMappings.Add("Distributor", "Distributor")
             tableMapping.ColumnMappings.Add("Wholesale", "Wholesale")
             tableMapping.ColumnMappings.Add("Retail", "Retail")
-            tableMapping.ColumnMappings.Add("Item1", "Item1")
-            tableMapping.ColumnMappings.Add("Item2", "Item2")
             tableMapping.ColumnMappings.Add("ReorderQTY", "ReorderQTY")
             tableMapping.ColumnMappings.Add("Reorder", "Reorder")
             tableMapping.ColumnMappings.Add("Discontinued", "Discontinued")
             tableMapping.ColumnMappings.Add("ScientificName", "ScientificName")
             tableMapping.ColumnMappings.Add("ItemID", "ItemID")
             tableMapping.ColumnMappings.Add("Type", "Type")
+            tableMapping.ColumnMappings.Add("BotanicalName", "BotanicalName")
+            tableMapping.ColumnMappings.Add("NoxiousWeeds", "NoxiousWeeds")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -10333,38 +10935,39 @@ Namespace SeedDataSetTableAdapters
                 "ibutor = 1 AND [Distributor] IS NULL) OR ([Distributor] = @Original_Distributor)"& _ 
                 ") AND ((@IsNull_Wholesale = 1 AND [Wholesale] IS NULL) OR ([Wholesale] = @Origin"& _ 
                 "al_Wholesale)) AND ((@IsNull_Retail = 1 AND [Retail] IS NULL) OR ([Retail] = @Or"& _ 
-                "iginal_Retail)) AND ((@IsNull_Item1 = 1 AND [Item1] IS NULL) OR ([Item1] = @Orig"& _ 
-                "inal_Item1)) AND ((@IsNull_Item2 = 1 AND [Item2] IS NULL) OR ([Item2] = @Origina"& _ 
-                "l_Item2)) AND ((@IsNull_ReorderQTY = 1 AND [ReorderQTY] IS NULL) OR ([ReorderQTY"& _ 
-                "] = @Original_ReorderQTY)) AND ((@IsNull_Reorder = 1 AND [Reorder] IS NULL) OR ("& _ 
-                "[Reorder] = @Original_Reorder)) AND ((@IsNull_Discontinued = 1 AND [Discontinued"& _ 
-                "] IS NULL) OR ([Discontinued] = @Original_Discontinued)) AND ((@IsNull_Scientifi"& _ 
-                "cName = 1 AND [ScientificName] IS NULL) OR ([ScientificName] = @Original_Scienti"& _ 
-                "ficName)) AND ([ItemID] = @Original_ItemID) AND ((@IsNull_Type = 1 AND [Type] IS"& _ 
-                " NULL) OR ([Type] = @Original_Type)))"
+                "iginal_Retail)) AND ((@IsNull_ReorderQTY = 1 AND [ReorderQTY] IS NULL) OR ([Reor"& _ 
+                "derQTY] = @Original_ReorderQTY)) AND ((@IsNull_Reorder = 1 AND [Reorder] IS NULL"& _ 
+                ") OR ([Reorder] = @Original_Reorder)) AND ((@IsNull_Discontinued = 1 AND [Discon"& _ 
+                "tinued] IS NULL) OR ([Discontinued] = @Original_Discontinued)) AND ((@IsNull_Sci"& _ 
+                "entificName = 1 AND [ScientificName] IS NULL) OR ([ScientificName] = @Original_S"& _ 
+                "cientificName)) AND ([ItemID] = @Original_ItemID) AND ((@IsNull_Type = 1 AND [Ty"& _ 
+                "pe] IS NULL) OR ([Type] = @Original_Type)) AND ((@IsNull_BotanicalName = 1 AND ["& _ 
+                "BotanicalName] IS NULL) OR ([BotanicalName] = @Original_BotanicalName)) AND ((@I"& _ 
+                "sNull_NoxiousWeeds = 1 AND [NoxiousWeeds] IS NULL) OR ([NoxiousWeeds] = @Origina"& _ 
+                "l_NoxiousWeeds)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Item", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Item", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Item", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Item", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Lot", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Lot", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Lot", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Lot", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@p3", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PLS%", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@p2", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "PLS%", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@p2", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "PLS%", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_variety", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "variety", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_variety", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "variety", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Purity", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Purity", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Purity", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Purity", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Purity", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Purity", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Crop", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Crop", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Crop", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Crop", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Crop", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Crop", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Inert", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Inert", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Inert", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Inert", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Weeds", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Weeds", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Weeds", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Weeds", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Weeds", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Weeds", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Germ", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Germ", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Germ", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Germ", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Germ", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Germ", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Dormant", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Dormant", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Dormant", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Dormant", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Dormant", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Dormant", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Total", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Total", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Total", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Total", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Total", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Total", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Test_Date", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Test Date", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Test_Date", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Test Date", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Orgin", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Orgin", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
@@ -10375,10 +10978,6 @@ Namespace SeedDataSetTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Wholesale", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Wholesale", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Retail", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Retail", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Retail", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Retail", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Item1", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Item1", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Item1", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Item1", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Item2", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Item2", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Item2", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Item2", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ReorderQTY", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ReorderQTY", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ReorderQTY", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "ReorderQTY", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Reorder", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Reorder", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
@@ -10390,124 +10989,130 @@ Namespace SeedDataSetTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ItemID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ItemID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Type", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Type", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Type", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Type", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_BotanicalName", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BotanicalName", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_BotanicalName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BotanicalName", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_NoxiousWeeds", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NoxiousWeeds", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_NoxiousWeeds", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NoxiousWeeds", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Items] ([Item], [Lot], [PLS%], [variety], [Purity], [Crop], [I"& _ 
                 "nert], [Weeds], [Germ], [Dormant], [Total], [Test Date], [Orgin], [Distributor],"& _ 
-                " [Wholesale], [Retail], [Item1], [Item2], [ReorderQTY], [Reorder], [Discontinued"& _ 
-                "], [ScientificName], [Type]) VALUES (@Item, @Lot, @p1, @variety, @Purity, @Crop,"& _ 
-                " @Inert, @Weeds, @Germ, @Dormant, @Total, @Test_Date, @Orgin, @Distributor, @Who"& _ 
-                "lesale, @Retail, @Item1, @Item2, @ReorderQTY, @Reorder, @Discontinued, @Scientif"& _ 
-                "icName, @Type);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Item, Lot, [PLS%], variety, Purity, Crop, Inert, Weeds, "& _ 
-                "Germ, Dormant, Total, [Test Date], Orgin, Distributor, Wholesale, Retail, Item1,"& _ 
-                " Item2, ReorderQTY, Reorder, Discontinued, ScientificName, ItemID, Type FROM Ite"& _ 
-                "ms WHERE (ItemID = SCOPE_IDENTITY())"
+                " [Wholesale], [Retail], [ReorderQTY], [Reorder], [Discontinued], [ScientificName"& _ 
+                "], [Type], [BotanicalName], [NoxiousWeeds]) VALUES (@Item, @Lot, @p1, @variety, "& _ 
+                "@Purity, @Crop, @Inert, @Weeds, @Germ, @Dormant, @Total, @Test_Date, @Orgin, @Di"& _ 
+                "stributor, @Wholesale, @Retail, @ReorderQTY, @Reorder, @Discontinued, @Scientifi"& _ 
+                "cName, @Type, @BotanicalName, @NoxiousWeeds);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Item, Lot, [PLS%], variety"& _ 
+                ", Purity, Crop, Inert, Weeds, Germ, Dormant, Total, [Test Date], Orgin, Distribu"& _ 
+                "tor, Wholesale, Retail, ReorderQTY, Reorder, Discontinued, ScientificName, ItemI"& _ 
+                "D, Type, BotanicalName, NoxiousWeeds FROM Items WHERE (ItemID = SCOPE_IDENTITY()"& _ 
+                ")"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Item", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Item", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Lot", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Lot", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@p1", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "PLS%", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@p1", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "PLS%", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@variety", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "variety", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Purity", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Purity", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Crop", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Crop", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Purity", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Purity", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Crop", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Crop", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Inert", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Inert", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Weeds", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Weeds", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Germ", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Germ", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Dormant", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Dormant", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Total", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Total", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Weeds", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Weeds", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Germ", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Germ", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Dormant", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Dormant", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Total", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Total", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Test_Date", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Test Date", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Orgin", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Orgin", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Distributor", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Distributor", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Wholesale", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Wholesale", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Retail", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Retail", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Item1", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Item1", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Item2", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Item2", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ReorderQTY", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "ReorderQTY", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Reorder", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Reorder", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Discontinued", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Discontinued", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ScientificName", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ScientificName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Type", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Type", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@BotanicalName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BotanicalName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@NoxiousWeeds", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NoxiousWeeds", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Items] SET [Item] = @Item, [Lot] = @Lot, [PLS%] = @p1, [variety] = "& _ 
                 "@variety, [Purity] = @Purity, [Crop] = @Crop, [Inert] = @Inert, [Weeds] = @Weeds"& _ 
                 ", [Germ] = @Germ, [Dormant] = @Dormant, [Total] = @Total, [Test Date] = @Test_Da"& _ 
                 "te, [Orgin] = @Orgin, [Distributor] = @Distributor, [Wholesale] = @Wholesale, [R"& _ 
-                "etail] = @Retail, [Item1] = @Item1, [Item2] = @Item2, [ReorderQTY] = @ReorderQTY"& _ 
-                ", [Reorder] = @Reorder, [Discontinued] = @Discontinued, [ScientificName] = @Scie"& _ 
-                "ntificName, [Type] = @Type WHERE (((@IsNull_Item = 1 AND [Item] IS NULL) OR ([It"& _ 
-                "em] = @Original_Item)) AND ((@IsNull_Lot = 1 AND [Lot] IS NULL) OR ([Lot] = @Ori"& _ 
-                "ginal_Lot)) AND ((@p3 = 1 AND [PLS%] IS NULL) OR ([PLS%] = @p2)) AND ((@IsNull_v"& _ 
-                "ariety = 1 AND [variety] IS NULL) OR ([variety] = @Original_variety)) AND ((@IsN"& _ 
-                "ull_Purity = 1 AND [Purity] IS NULL) OR ([Purity] = @Original_Purity)) AND ((@Is"& _ 
-                "Null_Crop = 1 AND [Crop] IS NULL) OR ([Crop] = @Original_Crop)) AND ((@IsNull_In"& _ 
-                "ert = 1 AND [Inert] IS NULL) OR ([Inert] = @Original_Inert)) AND ((@IsNull_Weeds"& _ 
-                " = 1 AND [Weeds] IS NULL) OR ([Weeds] = @Original_Weeds)) AND ((@IsNull_Germ = 1"& _ 
-                " AND [Germ] IS NULL) OR ([Germ] = @Original_Germ)) AND ((@IsNull_Dormant = 1 AND"& _ 
-                " [Dormant] IS NULL) OR ([Dormant] = @Original_Dormant)) AND ((@IsNull_Total = 1 "& _ 
-                "AND [Total] IS NULL) OR ([Total] = @Original_Total)) AND ((@IsNull_Test_Date = 1"& _ 
-                " AND [Test Date] IS NULL) OR ([Test Date] = @Original_Test_Date)) AND ((@IsNull_"& _ 
-                "Orgin = 1 AND [Orgin] IS NULL) OR ([Orgin] = @Original_Orgin)) AND ((@IsNull_Dis"& _ 
-                "tributor = 1 AND [Distributor] IS NULL) OR ([Distributor] = @Original_Distributo"& _ 
-                "r)) AND ((@IsNull_Wholesale = 1 AND [Wholesale] IS NULL) OR ([Wholesale] = @Orig"& _ 
-                "inal_Wholesale)) AND ((@IsNull_Retail = 1 AND [Retail] IS NULL) OR ([Retail] = @"& _ 
-                "Original_Retail)) AND ((@IsNull_Item1 = 1 AND [Item1] IS NULL) OR ([Item1] = @Or"& _ 
-                "iginal_Item1)) AND ((@IsNull_Item2 = 1 AND [Item2] IS NULL) OR ([Item2] = @Origi"& _ 
-                "nal_Item2)) AND ((@IsNull_ReorderQTY = 1 AND [ReorderQTY] IS NULL) OR ([ReorderQ"& _ 
-                "TY] = @Original_ReorderQTY)) AND ((@IsNull_Reorder = 1 AND [Reorder] IS NULL) OR"& _ 
-                " ([Reorder] = @Original_Reorder)) AND ((@IsNull_Discontinued = 1 AND [Discontinu"& _ 
-                "ed] IS NULL) OR ([Discontinued] = @Original_Discontinued)) AND ((@IsNull_Scienti"& _ 
-                "ficName = 1 AND [ScientificName] IS NULL) OR ([ScientificName] = @Original_Scien"& _ 
-                "tificName)) AND ([ItemID] = @Original_ItemID) AND ((@IsNull_Type = 1 AND [Type] "& _ 
-                "IS NULL) OR ([Type] = @Original_Type)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Item, Lot, [PLS%], variety, Pur"& _ 
-                "ity, Crop, Inert, Weeds, Germ, Dormant, Total, [Test Date], Orgin, Distributor, "& _ 
-                "Wholesale, Retail, Item1, Item2, ReorderQTY, Reorder, Discontinued, ScientificNa"& _ 
-                "me, ItemID, Type FROM Items WHERE (ItemID = @ItemID)"
+                "etail] = @Retail, [ReorderQTY] = @ReorderQTY, [Reorder] = @Reorder, [Discontinue"& _ 
+                "d] = @Discontinued, [ScientificName] = @ScientificName, [Type] = @Type, [Botanic"& _ 
+                "alName] = @BotanicalName, [NoxiousWeeds] = @NoxiousWeeds WHERE (((@IsNull_Item ="& _ 
+                " 1 AND [Item] IS NULL) OR ([Item] = @Original_Item)) AND ((@IsNull_Lot = 1 AND ["& _ 
+                "Lot] IS NULL) OR ([Lot] = @Original_Lot)) AND ((@p3 = 1 AND [PLS%] IS NULL) OR ("& _ 
+                "[PLS%] = @p2)) AND ((@IsNull_variety = 1 AND [variety] IS NULL) OR ([variety] = "& _ 
+                "@Original_variety)) AND ((@IsNull_Purity = 1 AND [Purity] IS NULL) OR ([Purity] "& _ 
+                "= @Original_Purity)) AND ((@IsNull_Crop = 1 AND [Crop] IS NULL) OR ([Crop] = @Or"& _ 
+                "iginal_Crop)) AND ((@IsNull_Inert = 1 AND [Inert] IS NULL) OR ([Inert] = @Origin"& _ 
+                "al_Inert)) AND ((@IsNull_Weeds = 1 AND [Weeds] IS NULL) OR ([Weeds] = @Original_"& _ 
+                "Weeds)) AND ((@IsNull_Germ = 1 AND [Germ] IS NULL) OR ([Germ] = @Original_Germ))"& _ 
+                " AND ((@IsNull_Dormant = 1 AND [Dormant] IS NULL) OR ([Dormant] = @Original_Dorm"& _ 
+                "ant)) AND ((@IsNull_Total = 1 AND [Total] IS NULL) OR ([Total] = @Original_Total"& _ 
+                ")) AND ((@IsNull_Test_Date = 1 AND [Test Date] IS NULL) OR ([Test Date] = @Origi"& _ 
+                "nal_Test_Date)) AND ((@IsNull_Orgin = 1 AND [Orgin] IS NULL) OR ([Orgin] = @Orig"& _ 
+                "inal_Orgin)) AND ((@IsNull_Distributor = 1 AND [Distributor] IS NULL) OR ([Distr"& _ 
+                "ibutor] = @Original_Distributor)) AND ((@IsNull_Wholesale = 1 AND [Wholesale] IS"& _ 
+                " NULL) OR ([Wholesale] = @Original_Wholesale)) AND ((@IsNull_Retail = 1 AND [Ret"& _ 
+                "ail] IS NULL) OR ([Retail] = @Original_Retail)) AND ((@IsNull_ReorderQTY = 1 AND"& _ 
+                " [ReorderQTY] IS NULL) OR ([ReorderQTY] = @Original_ReorderQTY)) AND ((@IsNull_R"& _ 
+                "eorder = 1 AND [Reorder] IS NULL) OR ([Reorder] = @Original_Reorder)) AND ((@IsN"& _ 
+                "ull_Discontinued = 1 AND [Discontinued] IS NULL) OR ([Discontinued] = @Original_"& _ 
+                "Discontinued)) AND ((@IsNull_ScientificName = 1 AND [ScientificName] IS NULL) OR"& _ 
+                " ([ScientificName] = @Original_ScientificName)) AND ([ItemID] = @Original_ItemID"& _ 
+                ") AND ((@IsNull_Type = 1 AND [Type] IS NULL) OR ([Type] = @Original_Type)) AND ("& _ 
+                "(@IsNull_BotanicalName = 1 AND [BotanicalName] IS NULL) OR ([BotanicalName] = @O"& _ 
+                "riginal_BotanicalName)) AND ((@IsNull_NoxiousWeeds = 1 AND [NoxiousWeeds] IS NUL"& _ 
+                "L) OR ([NoxiousWeeds] = @Original_NoxiousWeeds)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Item, Lot, [PLS%], va"& _ 
+                "riety, Purity, Crop, Inert, Weeds, Germ, Dormant, Total, [Test Date], Orgin, Dis"& _ 
+                "tributor, Wholesale, Retail, ReorderQTY, Reorder, Discontinued, ScientificName, "& _ 
+                "ItemID, Type, BotanicalName, NoxiousWeeds FROM Items WHERE (ItemID = @ItemID)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Item", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Item", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Lot", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Lot", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@p1", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "PLS%", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@p1", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "PLS%", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@variety", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "variety", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Purity", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Purity", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Crop", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Crop", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Purity", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Purity", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Crop", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Crop", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Inert", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Inert", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Weeds", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Weeds", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Germ", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Germ", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Dormant", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Dormant", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Total", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Total", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Weeds", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Weeds", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Germ", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Germ", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Dormant", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Dormant", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Total", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Total", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Test_Date", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Test Date", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Orgin", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Orgin", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Distributor", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Distributor", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Wholesale", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Wholesale", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Retail", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Retail", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Item1", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Item1", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Item2", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Item2", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ReorderQTY", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "ReorderQTY", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Reorder", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Reorder", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Discontinued", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Discontinued", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ScientificName", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ScientificName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Type", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Type", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@BotanicalName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BotanicalName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@NoxiousWeeds", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NoxiousWeeds", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Item", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Item", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Item", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Item", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Lot", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Lot", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Lot", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Lot", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@p3", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PLS%", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@p2", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "PLS%", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@p2", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "PLS%", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_variety", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "variety", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_variety", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "variety", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Purity", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Purity", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Purity", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Purity", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Purity", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Purity", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Crop", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Crop", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Crop", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Crop", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Crop", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Crop", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Inert", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Inert", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Inert", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Inert", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Weeds", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Weeds", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Weeds", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Weeds", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Weeds", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Weeds", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Germ", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Germ", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Germ", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Germ", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Germ", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Germ", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Dormant", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Dormant", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Dormant", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Dormant", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Dormant", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Dormant", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Total", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Total", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Total", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 20, 10, "Total", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Total", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Total", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Test_Date", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Test Date", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Test_Date", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Test Date", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Orgin", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Orgin", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
@@ -10518,10 +11123,6 @@ Namespace SeedDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Wholesale", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Wholesale", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Retail", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Retail", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Retail", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "Retail", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Item1", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Item1", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Item1", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Item1", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Item2", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Item2", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Item2", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Item2", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ReorderQTY", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ReorderQTY", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ReorderQTY", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 12, 4, "ReorderQTY", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Reorder", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Reorder", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
@@ -10533,6 +11134,10 @@ Namespace SeedDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ItemID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ItemID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Type", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Type", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Type", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Type", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_BotanicalName", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BotanicalName", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_BotanicalName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BotanicalName", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_NoxiousWeeds", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NoxiousWeeds", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_NoxiousWeeds", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NoxiousWeeds", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ItemID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "ItemID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
@@ -10549,9 +11154,7 @@ Namespace SeedDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT Item, Lot, [PLS%], variety, Purity, Crop, Inert, Weeds, Germ, Dormant, Tot"& _ 
-                "al, [Test Date], Orgin, Distributor, Wholesale, Retail, Item1, Item2, ReorderQTY"& _ 
-                ", Reorder, Discontinued, ScientificName, ItemID, Type FROM dbo.Items"
+            Me._commandCollection(0).CommandText = "SELECT * FROM dbo.Items"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -10628,14 +11231,14 @@ Namespace SeedDataSetTableAdapters
                     ByVal Original_Distributor As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_Wholesale As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_Retail As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Item1 As String,  _
-                    ByVal Original_Item2 As String,  _
                     ByVal Original_ReorderQTY As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_Reorder As Global.System.Nullable(Of Boolean),  _
                     ByVal Original_Discontinued As Global.System.Nullable(Of Boolean),  _
                     ByVal Original_ScientificName As String,  _
                     ByVal Original_ItemID As Integer,  _
-                    ByVal Original_Type As String) As Integer
+                    ByVal Original_Type As String,  _
+                    ByVal Original_BotanicalName As String,  _
+                    ByVal Original_NoxiousWeeds As String) As Integer
             If (Original_Item Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(0).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(1).Value = Global.System.DBNull.Value
@@ -10748,55 +11351,55 @@ Namespace SeedDataSetTableAdapters
                 Me.Adapter.DeleteCommand.Parameters(30).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(31).Value = Global.System.DBNull.Value
             End If
-            If (Original_Item1 Is Nothing) Then
+            If (Original_ReorderQTY.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(32).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(33).Value = CType(Original_ReorderQTY.Value,Decimal)
+            Else
                 Me.Adapter.DeleteCommand.Parameters(32).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(33).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(32).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(33).Value = CType(Original_Item1,String)
             End If
-            If (Original_Item2 Is Nothing) Then
+            If (Original_Reorder.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(34).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(35).Value = CType(Original_Reorder.Value,Boolean)
+            Else
                 Me.Adapter.DeleteCommand.Parameters(34).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(35).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(34).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(35).Value = CType(Original_Item2,String)
             End If
-            If (Original_ReorderQTY.HasValue = true) Then
+            If (Original_Discontinued.HasValue = true) Then
                 Me.Adapter.DeleteCommand.Parameters(36).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(37).Value = CType(Original_ReorderQTY.Value,Decimal)
+                Me.Adapter.DeleteCommand.Parameters(37).Value = CType(Original_Discontinued.Value,Boolean)
             Else
                 Me.Adapter.DeleteCommand.Parameters(36).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(37).Value = Global.System.DBNull.Value
             End If
-            If (Original_Reorder.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(38).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(39).Value = CType(Original_Reorder.Value,Boolean)
-            Else
+            If (Original_ScientificName Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(38).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(39).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Discontinued.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(40).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(41).Value = CType(Original_Discontinued.Value,Boolean)
             Else
-                Me.Adapter.DeleteCommand.Parameters(40).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(41).Value = Global.System.DBNull.Value
+                Me.Adapter.DeleteCommand.Parameters(38).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(39).Value = CType(Original_ScientificName,String)
             End If
-            If (Original_ScientificName Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(42).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(43).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(42).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(43).Value = CType(Original_ScientificName,String)
-            End If
-            Me.Adapter.DeleteCommand.Parameters(44).Value = CType(Original_ItemID,Integer)
+            Me.Adapter.DeleteCommand.Parameters(40).Value = CType(Original_ItemID,Integer)
             If (Original_Type Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(41).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(42).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(41).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(42).Value = CType(Original_Type,String)
+            End If
+            If (Original_BotanicalName Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(43).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(44).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(43).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(44).Value = CType(Original_BotanicalName,String)
+            End If
+            If (Original_NoxiousWeeds Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(45).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(46).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.DeleteCommand.Parameters(45).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(46).Value = CType(Original_Type,String)
+                Me.Adapter.DeleteCommand.Parameters(46).Value = CType(Original_NoxiousWeeds,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -10834,13 +11437,13 @@ Namespace SeedDataSetTableAdapters
                     ByVal Distributor As Global.System.Nullable(Of Decimal),  _
                     ByVal Wholesale As Global.System.Nullable(Of Decimal),  _
                     ByVal Retail As Global.System.Nullable(Of Decimal),  _
-                    ByVal Item1 As String,  _
-                    ByVal Item2 As String,  _
                     ByVal ReorderQTY As Global.System.Nullable(Of Decimal),  _
                     ByVal Reorder As Global.System.Nullable(Of Boolean),  _
                     ByVal Discontinued As Global.System.Nullable(Of Boolean),  _
                     ByVal ScientificName As String,  _
-                    ByVal Type As String) As Integer
+                    ByVal Type As String,  _
+                    ByVal BotanicalName As String,  _
+                    ByVal NoxiousWeeds As String) As Integer
             If (Item Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -10921,40 +11524,40 @@ Namespace SeedDataSetTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
             End If
-            If (Item1 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(16).Value = CType(Item1,String)
-            End If
-            If (Item2 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(17).Value = CType(Item2,String)
-            End If
             If (ReorderQTY.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(18).Value = CType(ReorderQTY.Value,Decimal)
+                Me.Adapter.InsertCommand.Parameters(16).Value = CType(ReorderQTY.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
+            End If
+            If (Reorder.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(17).Value = CType(Reorder.Value,Boolean)
+            Else
+                Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
+            End If
+            If (Discontinued.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(18).Value = CType(Discontinued.Value,Boolean)
             Else
                 Me.Adapter.InsertCommand.Parameters(18).Value = Global.System.DBNull.Value
             End If
-            If (Reorder.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(19).Value = CType(Reorder.Value,Boolean)
-            Else
-                Me.Adapter.InsertCommand.Parameters(19).Value = Global.System.DBNull.Value
-            End If
-            If (Discontinued.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(20).Value = CType(Discontinued.Value,Boolean)
-            Else
-                Me.Adapter.InsertCommand.Parameters(20).Value = Global.System.DBNull.Value
-            End If
             If (ScientificName Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(21).Value = Global.System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(19).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(21).Value = CType(ScientificName,String)
+                Me.Adapter.InsertCommand.Parameters(19).Value = CType(ScientificName,String)
             End If
             If (Type Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(20).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(20).Value = CType(Type,String)
+            End If
+            If (BotanicalName Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(21).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(21).Value = CType(BotanicalName,String)
+            End If
+            If (NoxiousWeeds Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(22).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(22).Value = CType(Type,String)
+                Me.Adapter.InsertCommand.Parameters(22).Value = CType(NoxiousWeeds,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -10992,13 +11595,13 @@ Namespace SeedDataSetTableAdapters
                     ByVal Distributor As Global.System.Nullable(Of Decimal),  _
                     ByVal Wholesale As Global.System.Nullable(Of Decimal),  _
                     ByVal Retail As Global.System.Nullable(Of Decimal),  _
-                    ByVal Item1 As String,  _
-                    ByVal Item2 As String,  _
                     ByVal ReorderQTY As Global.System.Nullable(Of Decimal),  _
                     ByVal Reorder As Global.System.Nullable(Of Boolean),  _
                     ByVal Discontinued As Global.System.Nullable(Of Boolean),  _
                     ByVal ScientificName As String,  _
                     ByVal Type As String,  _
+                    ByVal BotanicalName As String,  _
+                    ByVal NoxiousWeeds As String,  _
                     ByVal Original_Item As String,  _
                     ByVal Original_Lot As String,  _
                     ByVal p2 As Global.System.Nullable(Of Decimal),  _
@@ -11015,14 +11618,14 @@ Namespace SeedDataSetTableAdapters
                     ByVal Original_Distributor As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_Wholesale As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_Retail As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Item1 As String,  _
-                    ByVal Original_Item2 As String,  _
                     ByVal Original_ReorderQTY As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_Reorder As Global.System.Nullable(Of Boolean),  _
                     ByVal Original_Discontinued As Global.System.Nullable(Of Boolean),  _
                     ByVal Original_ScientificName As String,  _
                     ByVal Original_ItemID As Integer,  _
                     ByVal Original_Type As String,  _
+                    ByVal Original_BotanicalName As String,  _
+                    ByVal Original_NoxiousWeeds As String,  _
                     ByVal ItemID As Integer) As Integer
             If (Item Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(0).Value = Global.System.DBNull.Value
@@ -11104,40 +11707,40 @@ Namespace SeedDataSetTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
             End If
-            If (Item1 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Item1,String)
-            End If
-            If (Item2 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Item2,String)
-            End If
             If (ReorderQTY.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(ReorderQTY.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(ReorderQTY.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+            End If
+            If (Reorder.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Reorder.Value,Boolean)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
+            End If
+            If (Discontinued.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Discontinued.Value,Boolean)
             Else
                 Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
             End If
-            If (Reorder.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Reorder.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
-            End If
-            If (Discontinued.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Discontinued.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
-            End If
             If (ScientificName Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(ScientificName,String)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(ScientificName,String)
             End If
             If (Type Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Type,String)
+            End If
+            If (BotanicalName Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(BotanicalName,String)
+            End If
+            If (NoxiousWeeds Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Type,String)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(NoxiousWeeds,String)
             End If
             If (Original_Item Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(23).Value = CType(1,Object)
@@ -11251,55 +11854,55 @@ Namespace SeedDataSetTableAdapters
                 Me.Adapter.UpdateCommand.Parameters(53).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(54).Value = Global.System.DBNull.Value
             End If
-            If (Original_Item1 Is Nothing) Then
+            If (Original_ReorderQTY.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(56).Value = CType(Original_ReorderQTY.Value,Decimal)
+            Else
                 Me.Adapter.UpdateCommand.Parameters(55).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(56).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(56).Value = CType(Original_Item1,String)
             End If
-            If (Original_Item2 Is Nothing) Then
+            If (Original_Reorder.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(57).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(58).Value = CType(Original_Reorder.Value,Boolean)
+            Else
                 Me.Adapter.UpdateCommand.Parameters(57).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(58).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(57).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(58).Value = CType(Original_Item2,String)
             End If
-            If (Original_ReorderQTY.HasValue = true) Then
+            If (Original_Discontinued.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(59).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(60).Value = CType(Original_ReorderQTY.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(60).Value = CType(Original_Discontinued.Value,Boolean)
             Else
                 Me.Adapter.UpdateCommand.Parameters(59).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(60).Value = Global.System.DBNull.Value
             End If
-            If (Original_Reorder.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(61).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(62).Value = CType(Original_Reorder.Value,Boolean)
-            Else
+            If (Original_ScientificName Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(61).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(62).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Discontinued.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(63).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(64).Value = CType(Original_Discontinued.Value,Boolean)
             Else
-                Me.Adapter.UpdateCommand.Parameters(63).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(64).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(61).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(62).Value = CType(Original_ScientificName,String)
             End If
-            If (Original_ScientificName Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(65).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(66).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(65).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(66).Value = CType(Original_ScientificName,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(67).Value = CType(Original_ItemID,Integer)
+            Me.Adapter.UpdateCommand.Parameters(63).Value = CType(Original_ItemID,Integer)
             If (Original_Type Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(64).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(65).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(64).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(65).Value = CType(Original_Type,String)
+            End If
+            If (Original_BotanicalName Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(66).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(67).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(66).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(67).Value = CType(Original_BotanicalName,String)
+            End If
+            If (Original_NoxiousWeeds Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(68).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(69).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.UpdateCommand.Parameters(68).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(69).Value = CType(Original_Type,String)
+                Me.Adapter.UpdateCommand.Parameters(69).Value = CType(Original_NoxiousWeeds,String)
             End If
             Me.Adapter.UpdateCommand.Parameters(70).Value = CType(ItemID,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
@@ -11338,13 +11941,13 @@ Namespace SeedDataSetTableAdapters
                     ByVal Distributor As Global.System.Nullable(Of Decimal),  _
                     ByVal Wholesale As Global.System.Nullable(Of Decimal),  _
                     ByVal Retail As Global.System.Nullable(Of Decimal),  _
-                    ByVal Item1 As String,  _
-                    ByVal Item2 As String,  _
                     ByVal ReorderQTY As Global.System.Nullable(Of Decimal),  _
                     ByVal Reorder As Global.System.Nullable(Of Boolean),  _
                     ByVal Discontinued As Global.System.Nullable(Of Boolean),  _
                     ByVal ScientificName As String,  _
                     ByVal Type As String,  _
+                    ByVal BotanicalName As String,  _
+                    ByVal NoxiousWeeds As String,  _
                     ByVal Original_Item As String,  _
                     ByVal Original_Lot As String,  _
                     ByVal p2 As Global.System.Nullable(Of Decimal),  _
@@ -11361,15 +11964,15 @@ Namespace SeedDataSetTableAdapters
                     ByVal Original_Distributor As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_Wholesale As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_Retail As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Item1 As String,  _
-                    ByVal Original_Item2 As String,  _
                     ByVal Original_ReorderQTY As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_Reorder As Global.System.Nullable(Of Boolean),  _
                     ByVal Original_Discontinued As Global.System.Nullable(Of Boolean),  _
                     ByVal Original_ScientificName As String,  _
                     ByVal Original_ItemID As Integer,  _
-                    ByVal Original_Type As String) As Integer
-            Return Me.Update(Item, Lot, p1, variety, Purity, Crop, Inert, Weeds, Germ, Dormant, Total, Test_Date, Orgin, Distributor, Wholesale, Retail, Item1, Item2, ReorderQTY, Reorder, Discontinued, ScientificName, Type, Original_Item, Original_Lot, p2, Original_variety, Original_Purity, Original_Crop, Original_Inert, Original_Weeds, Original_Germ, Original_Dormant, Original_Total, Original_Test_Date, Original_Orgin, Original_Distributor, Original_Wholesale, Original_Retail, Original_Item1, Original_Item2, Original_ReorderQTY, Original_Reorder, Original_Discontinued, Original_ScientificName, Original_ItemID, Original_Type, Original_ItemID)
+                    ByVal Original_Type As String,  _
+                    ByVal Original_BotanicalName As String,  _
+                    ByVal Original_NoxiousWeeds As String) As Integer
+            Return Me.Update(Item, Lot, p1, variety, Purity, Crop, Inert, Weeds, Germ, Dormant, Total, Test_Date, Orgin, Distributor, Wholesale, Retail, ReorderQTY, Reorder, Discontinued, ScientificName, Type, BotanicalName, NoxiousWeeds, Original_Item, Original_Lot, p2, Original_variety, Original_Purity, Original_Crop, Original_Inert, Original_Weeds, Original_Germ, Original_Dormant, Original_Total, Original_Test_Date, Original_Orgin, Original_Distributor, Original_Wholesale, Original_Retail, Original_ReorderQTY, Original_Reorder, Original_Discontinued, Original_ScientificName, Original_ItemID, Original_Type, Original_BotanicalName, Original_NoxiousWeeds, Original_ItemID)
         End Function
     End Class
     
@@ -11392,7 +11995,7 @@ Namespace SeedDataSetTableAdapters
         
         Private _customersTableAdapter As CustomersTableAdapter
         
-        Private _reportsTableAdapter As ReportsTableAdapter
+        Private _seedReportsTableAdapter As SeedReportsTableAdapter
         
         Private _itemsTableAdapter As ItemsTableAdapter
         
@@ -11458,12 +12061,12 @@ Namespace SeedDataSetTableAdapters
          Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
             "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property ReportsTableAdapter() As ReportsTableAdapter
+        Public Property SeedReportsTableAdapter() As SeedReportsTableAdapter
             Get
-                Return Me._reportsTableAdapter
+                Return Me._seedReportsTableAdapter
             End Get
             Set
-                Me._reportsTableAdapter = value
+                Me._seedReportsTableAdapter = value
             End Set
         End Property
         
@@ -11512,9 +12115,9 @@ Namespace SeedDataSetTableAdapters
                             AndAlso (Not (Me._customersTableAdapter.Connection) Is Nothing)) Then
                     Return Me._customersTableAdapter.Connection
                 End If
-                If ((Not (Me._reportsTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._reportsTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._reportsTableAdapter.Connection
+                If ((Not (Me._seedReportsTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._seedReportsTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._seedReportsTableAdapter.Connection
                 End If
                 If ((Not (Me._itemsTableAdapter) Is Nothing)  _
                             AndAlso (Not (Me._itemsTableAdapter.Connection) Is Nothing)) Then
@@ -11542,7 +12145,7 @@ Namespace SeedDataSetTableAdapters
                 If (Not (Me._customersTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
-                If (Not (Me._reportsTableAdapter) Is Nothing) Then
+                If (Not (Me._seedReportsTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
                 If (Not (Me._itemsTableAdapter) Is Nothing) Then
@@ -11586,12 +12189,12 @@ Namespace SeedDataSetTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._reportsTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.Reports.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._seedReportsTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.SeedReports.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._reportsTableAdapter.Update(updatedRows))
+                    result = (result + Me._seedReportsTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -11638,11 +12241,11 @@ Namespace SeedDataSetTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._reportsTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.Reports.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._seedReportsTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.SeedReports.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._reportsTableAdapter.Update(addedRows))
+                    result = (result + Me._seedReportsTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -11672,11 +12275,11 @@ Namespace SeedDataSetTableAdapters
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
-            If (Not (Me._reportsTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.Reports.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+            If (Not (Me._seedReportsTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.SeedReports.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._reportsTableAdapter.Update(deletedRows))
+                    result = (result + Me._seedReportsTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -11760,8 +12363,8 @@ Namespace SeedDataSetTableAdapters
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
-            If ((Not (Me._reportsTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._reportsTableAdapter.Connection) = false)) Then
+            If ((Not (Me._seedReportsTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._seedReportsTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
@@ -11829,13 +12432,13 @@ Namespace SeedDataSetTableAdapters
                         adaptersWithAcceptChangesDuringUpdate.Add(Me._customersTableAdapter.Adapter)
                     End If
                 End If
-                If (Not (Me._reportsTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._reportsTableAdapter, Me._reportsTableAdapter.Connection)
-                    Me._reportsTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
-                    Me._reportsTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlClient.SqlTransaction)
-                    If Me._reportsTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._reportsTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._reportsTableAdapter.Adapter)
+                If (Not (Me._seedReportsTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._seedReportsTableAdapter, Me._seedReportsTableAdapter.Connection)
+                    Me._seedReportsTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
+                    Me._seedReportsTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlClient.SqlTransaction)
+                    If Me._seedReportsTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._seedReportsTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._seedReportsTableAdapter.Adapter)
                     End If
                 End If
                 If (Not (Me._itemsTableAdapter) Is Nothing) Then
@@ -11919,9 +12522,9 @@ Namespace SeedDataSetTableAdapters
                     Me._customersTableAdapter.Connection = CType(revertConnections(Me._customersTableAdapter),Global.System.Data.SqlClient.SqlConnection)
                     Me._customersTableAdapter.Transaction = Nothing
                 End If
-                If (Not (Me._reportsTableAdapter) Is Nothing) Then
-                    Me._reportsTableAdapter.Connection = CType(revertConnections(Me._reportsTableAdapter),Global.System.Data.SqlClient.SqlConnection)
-                    Me._reportsTableAdapter.Transaction = Nothing
+                If (Not (Me._seedReportsTableAdapter) Is Nothing) Then
+                    Me._seedReportsTableAdapter.Connection = CType(revertConnections(Me._seedReportsTableAdapter),Global.System.Data.SqlClient.SqlConnection)
+                    Me._seedReportsTableAdapter.Transaction = Nothing
                 End If
                 If (Not (Me._itemsTableAdapter) Is Nothing) Then
                     Me._itemsTableAdapter.Connection = CType(revertConnections(Me._itemsTableAdapter),Global.System.Data.SqlClient.SqlConnection)

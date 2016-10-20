@@ -61,6 +61,18 @@
           <DataField>CustomerZip</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="UnitTypeName">
+          <DataField>UnitTypeName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ControlNumber">
+          <DataField>ControlNumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MixName">
+          <DataField>MixName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>SeedDataSet</rd:DataSetName>
@@ -93,14 +105,22 @@
           <DataField>HasSubReports</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
+        <Field Name="SortOrder">
+          <DataField>SortOrder</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="UserChecked">
+          <DataField>UserChecked</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>SeedDataSet</rd:DataSetName>
         <rd:SchemaPath>C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedApp\SeedDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>Reports</rd:TableName>
+        <rd:TableName>SeedReports</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>ReportsTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>SeedReportsTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -108,180 +128,198 @@
     <ReportSection>
       <Body>
         <ReportItems>
-          <Subreport Name="Bag">
-            <ReportName>Bag</ReportName>
-            <Top>0.99528in</Top>
-            <Height>0.80209in</Height>
-            <Width>6.71875in</Width>
-            <Visibility>
-              <Hidden>=iif(InStr("," &amp; Join(Parameters!SubReportsVisible.Value, ",") &amp; ",","," &amp; "1" &amp; ",")&gt;0,False,True)</Hidden>
-            </Visibility>
+          <Tablix Name="Tablix4">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>4.60417in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Subreport Name="Bag">
+                          <ReportName>Bag</ReportName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Subreport>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Subreport Name="MixWorksheet">
+                          <ReportName>MixWorksheet</ReportName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Subreport>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Subreport Name="USDeptAg">
+                          <ReportName>USDeptAg</ReportName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Subreport>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Subreport Name="Tags">
+                          <ReportName>Tags</ReportName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Subreport>
+                        <rd:Selected>true</rd:Selected>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Subreport Name="WarehouseMixWorksheet">
+                          <ReportName>WarehouseMixWorksheet</ReportName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Subreport>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Subreport Name="Submittal">
+                          <ReportName>Submittal</ReportName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Subreport>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Details">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!ReportFileName.Value</GroupExpression>
+                    </GroupExpressions>
+                    <PageBreak>
+                      <BreakLocation>Between</BreakLocation>
+                    </PageBreak>
+                    <Filters>
+                      <Filter>
+                        <FilterExpression>=Fields!UserChecked.Value</FilterExpression>
+                        <Operator>Equal</Operator>
+                        <FilterValues>
+                          <FilterValue DataType="Boolean">true</FilterValue>
+                        </FilterValues>
+                      </Filter>
+                    </Filters>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!SortOrder.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember>
+                      <Visibility>
+                        <Hidden>=iif(Fields!ReportID.Value=1,False,True)</Hidden>
+                      </Visibility>
+                    </TablixMember>
+                    <TablixMember>
+                      <Visibility>
+                        <Hidden>=iif(Fields!ReportID.Value=2,False,True)</Hidden>
+                      </Visibility>
+                    </TablixMember>
+                    <TablixMember>
+                      <Visibility>
+                        <Hidden>=iif(Fields!ReportID.Value=3,False,True)</Hidden>
+                      </Visibility>
+                    </TablixMember>
+                    <TablixMember>
+                      <Visibility>
+                        <Hidden>=iif(Fields!ReportID.Value=4,False,True)</Hidden>
+                      </Visibility>
+                    </TablixMember>
+                    <TablixMember>
+                      <Visibility>
+                        <Hidden>=iif(Fields!ReportID.Value=6,False,True)</Hidden>
+                      </Visibility>
+                    </TablixMember>
+                    <TablixMember>
+                      <Visibility>
+                        <Hidden>=iif(Fields!ReportID.Value=7,False,True)</Hidden>
+                      </Visibility>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>SeedReports</DataSetName>
+            <Height>1.5in</Height>
+            <Width>4.60417in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
             </Style>
-          </Subreport>
-          <Subreport Name="MixWorksheet">
-            <ReportName>MixWorksheet</ReportName>
-            <Height>0.89583in</Height>
-            <Width>6.71875in</Width>
-            <ZIndex>1</ZIndex>
-            <Visibility>
-              <Hidden>=iif(InStr("," &amp; Join(Parameters!SubReportsVisible.Value, ",") &amp; ",","," &amp; "2" &amp; ",")&gt;0,False,True)</Hidden>
-            </Visibility>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Subreport>
-          <Rectangle Name="Rectangle1">
-            <PageBreak>
-              <BreakLocation>End</BreakLocation>
-              <Disabled>=iif(InStr("," &amp; Join(Parameters!SubReportsVisible.Value, ",") &amp; ",","," &amp; "2" &amp; ",")&gt;0,False,True)</Disabled>
-            </PageBreak>
-            <KeepTogether>true</KeepTogether>
-            <Top>0.91542in</Top>
-            <Height>0.01042in</Height>
-            <Width>6.71875in</Width>
-            <ZIndex>2</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Rectangle>
-          <Rectangle Name="Rectangle2">
-            <PageBreak>
-              <BreakLocation>End</BreakLocation>
-              <Disabled>=iif(InStr("," &amp; Join(Parameters!SubReportsVisible.Value, ",") &amp; ",", "," &amp; "1" &amp; ",") &gt; 0, False, True)</Disabled>
-            </PageBreak>
-            <KeepTogether>true</KeepTogether>
-            <Top>1.87833in</Top>
-            <Height>0.01042in</Height>
-            <Width>6.71875in</Width>
-            <ZIndex>3</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Rectangle>
-          <Subreport Name="USDeptAg">
-            <ReportName>USDeptAg</ReportName>
-            <Top>1.91653in</Top>
-            <Height>0.89583in</Height>
-            <Width>6.71875in</Width>
-            <ZIndex>4</ZIndex>
-            <Visibility>
-              <Hidden>=iif(InStr("," &amp; Join(Parameters!SubReportsVisible.Value, ",") &amp; ",","," &amp; "3" &amp; ",")&gt;0,False,True)</Hidden>
-            </Visibility>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Subreport>
-          <Rectangle Name="Rectangle3">
-            <ReportItems>
-              <Rectangle Name="Rectangle4">
-                <PageBreak>
-                  <BreakLocation>End</BreakLocation>
-                  <Disabled>=Microsoft.VisualBasic.Interaction.iif(Microsoft.VisualBasic.Strings.InStr("," &amp; Microsoft.VisualBasic.Strings.Join(Parameters!SubReportsVisible.Value, ",") &amp; ",", "," &amp; "3" &amp; ",") &gt; 0, False, True)</Disabled>
-                </PageBreak>
-                <KeepTogether>true</KeepTogether>
-                <Height>0.01042in</Height>
-                <Width>6.71875in</Width>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                </Style>
-              </Rectangle>
-            </ReportItems>
-            <PageBreak>
-              <BreakLocation>End</BreakLocation>
-              <Disabled>=Microsoft.VisualBasic.Interaction.iif(Microsoft.VisualBasic.Strings.InStr("," &amp; Microsoft.VisualBasic.Strings.Join(Parameters!SubReportsVisible.Value, ",") &amp; ",", "," &amp; "3" &amp; ",") &gt; 0, False, True)</Disabled>
-            </PageBreak>
-            <KeepTogether>true</KeepTogether>
-            <Top>2.83195in</Top>
-            <Height>0.01042in</Height>
-            <Width>6.71875in</Width>
-            <ZIndex>5</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Rectangle>
-          <Subreport Name="Tag">
-            <ReportName>Tags</ReportName>
-            <Top>2.90363in</Top>
-            <Height>0.89583in</Height>
-            <Width>6.71875in</Width>
-            <ZIndex>6</ZIndex>
-            <Visibility>
-              <Hidden>=Microsoft.VisualBasic.Interaction.iif(Microsoft.VisualBasic.Strings.InStr("," &amp; Microsoft.VisualBasic.Strings.Join(Parameters!SubReportsVisible.Value, ",") &amp; ",", "," &amp; "4" &amp; ",") &gt; 0, False, True)</Hidden>
-            </Visibility>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Subreport>
-          <Rectangle Name="Rectangle5">
-            <ReportItems>
-              <Rectangle Name="Rectangle6">
-                <PageBreak>
-                  <BreakLocation>End</BreakLocation>
-                  <Disabled>=Microsoft.VisualBasic.Interaction.iif(Microsoft.VisualBasic.Strings.InStr("," &amp; Microsoft.VisualBasic.Strings.Join(Parameters!SubReportsVisible.Value, ",") &amp; ",", "," &amp; "3" &amp; ",") &gt; 0, False, True)</Disabled>
-                </PageBreak>
-                <KeepTogether>true</KeepTogether>
-                <Height>0.01042in</Height>
-                <Width>6.71875in</Width>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                </Style>
-              </Rectangle>
-            </ReportItems>
-            <PageBreak>
-              <BreakLocation>End</BreakLocation>
-              <Disabled>=Microsoft.VisualBasic.Interaction.iif(Microsoft.VisualBasic.Strings.InStr("," &amp; Microsoft.VisualBasic.Strings.Join(Parameters!SubReportsVisible.Value, ",") &amp; ",", "," &amp; "4" &amp; ",") &gt; 0, False, True)</Disabled>
-            </PageBreak>
-            <KeepTogether>true</KeepTogether>
-            <Top>3.82723in</Top>
-            <Height>0.01042in</Height>
-            <Width>6.71875in</Width>
-            <ZIndex>7</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Rectangle>
-          <Subreport Name="WarehouseMixWorksheet">
-            <ReportName>WarehouseMixWorksheet</ReportName>
-            <Top>3.89321in</Top>
-            <Height>0.89583in</Height>
-            <Width>6.71875in</Width>
-            <ZIndex>8</ZIndex>
-            <Visibility>
-              <Hidden>=Microsoft.VisualBasic.Interaction.iif(Microsoft.VisualBasic.Strings.InStr("," &amp; Microsoft.VisualBasic.Strings.Join(Parameters!SubReportsVisible.Value, ",") &amp; ",", "," &amp; "6" &amp; ",") &gt; 0, False, True)</Hidden>
-            </Visibility>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Subreport>
+          </Tablix>
         </ReportItems>
-        <Height>4.78904in</Height>
+        <Height>1.5in</Height>
         <Style />
       </Body>
-      <Width>6.71875in</Width>
+      <Width>4.61459in</Width>
       <Page>
         <PageHeight>8.5in</PageHeight>
         <PageWidth>11in</PageWidth>
@@ -293,20 +331,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParameters>
-    <ReportParameter Name="SubReportsVisible">
-      <DataType>Integer</DataType>
-      <Prompt>ReportParameter1</Prompt>
-      <ValidValues>
-        <DataSetReference>
-          <DataSetName>SeedReports</DataSetName>
-          <ValueField>ReportID</ValueField>
-          <LabelField>ReportID</LabelField>
-        </DataSetReference>
-      </ValidValues>
-      <MultiValue>true</MultiValue>
-    </ReportParameter>
-  </ReportParameters>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>cff957bf-fde7-4cc9-bcda-a133e0fc61e6</rd:ReportID>
 </Report>

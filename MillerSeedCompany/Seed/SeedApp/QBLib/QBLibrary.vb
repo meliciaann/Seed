@@ -282,7 +282,10 @@ Public Class QBLibrary
             CustomerAddRq = requestMsgSet.AppendCustomerAddRq()
             CustomerAddRq.Name.SetValue(OrderDetail.CustomerName)
             CustomerAddRq.CompanyName.SetValue(OrderDetail.CustomerName)
-            CustomerAddRq.BillAddress.Addr1.SetValue(OrderDetail.CustomerAddressLine1)
+            CustomerAddRq.Name.SetValue(OrderDetail.CustomerName)
+            CustomerAddRq.BillAddress.Addr1.SetValue(OrderDetail.CustomerName)
+            CustomerAddRq.BillAddress.Addr2.SetValue(OrderDetail.CustomerAddressLine1)
+            CustomerAddRq.BillAddress.Addr3.SetValue(OrderDetail.CustomerAddressLine2)
             CustomerAddRq.BillAddress.City.SetValue(OrderDetail.CustomerCity)
             CustomerAddRq.BillAddress.State.SetValue(OrderDetail.CustomerState)
             CustomerAddRq.BillAddress.PostalCode.SetValue(OrderDetail.CustomerZip)
@@ -458,6 +461,7 @@ Public Class QBLibrary
         Dim sessionManager As QBSessionManager
         sessionManager = Nothing
         Dim RefNumber As String = Nothing
+        Dim responseMsgSet As IMsgSetResponse=Nothing
         Try
             'Create the session Manager object
             sessionManager = New QBSessionManager
@@ -495,68 +499,71 @@ Public Class QBLibrary
                     End If
                 End If
             End If
-                Dim Item As IORItemRet = Nothing
-            Dim desc As String
-            Dim OrderItem = OID.Take(1).FirstOrDefault
+
+            'Dim OrderItem = OID.Take(1).FirstOrDefault
             'Adds Line Items
-            If (OID.Count > 1) Then
-                Item = DoItemQuery("Seed Mix Per Worksheet", "NameFilter")
-                desc = "Seed Mix Per Worksheet"
-            Else
-                Item = DoItemQuery(OrderItem.Lot, "NameFilter")
-                desc = OrderItem.Item
-            End If
-
-            If Not (Item Is Nothing) Then
-                Dim InvoiceLineAdd As IInvoiceLineAdd = InvoiceAddRq.ORInvoiceLineAddList.Append.InvoiceLineAdd
-
-                Select Case Item.ortype
-                    Case ENORItemRet.orirItemInventoryAssemblyRet
-                        InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemInventoryAssemblyRet.ListID.GetValue)
-                        InvoiceLineAdd.Quantity.SetValue(OD.Acres)
-                        InvoiceLineAdd.Amount.SetValue(OD.PricePerAcre)
-                    Case ENORItemRet.orirItemNonInventoryRet
-                        InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemNonInventoryRet.ListID.GetValue)
-                        InvoiceLineAdd.Quantity.SetValue(OD.Acres)
-                        InvoiceLineAdd.Amount.SetValue((OD.PricePerAcre) * OD.Acres)
-                    Case ENORItemRet.orirItemServiceRet
-                        InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemServiceRet.ListID.GetValue)
-                        InvoiceLineAdd.Quantity.SetValue(OD.Acres)
-                        InvoiceLineAdd.Amount.SetValue(Decimal.Round(OD.PricePerAcre))
-                    Case ENORItemRet.orirItemDiscountRet
-                        InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemDiscountRet.ListID.GetValue)
-                        InvoiceLineAdd.Amount.SetValue(Decimal.Round(OD.PricePerAcre))
-                    Case ENORItemRet.orirItemInventoryRet
-                        InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemInventoryRet.ListID.GetValue)
-                        InvoiceLineAdd.Quantity.SetValue(OD.Acres)
-                        InvoiceLineAdd.Amount.SetValue(Decimal.Round(OD.PricePerAcre))
-                    Case ENORItemRet.orirItemOtherChargeRet
-                        InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemOtherChargeRet.ListID.GetValue)
-                        InvoiceLineAdd.Quantity.SetValue(OD.Acres)
-                        InvoiceLineAdd.Amount.SetValue(Decimal.Round(OD.PricePerAcre))
-                    Case ENORItemRet.orirItemSalesTaxRet
-                        InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemSalesTaxRet.ListID.GetValue)
-                        InvoiceLineAdd.Amount.SetValue(Decimal.Round(OD.PricePerAcre))
-                    Case ENORItemRet.orirItemSalesTaxGroupRet
-                        InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemSalesTaxGroupRet.ListID.GetValue)
-                        InvoiceLineAdd.Amount.SetValue(Decimal.Round(OD.PricePerAcre))
-                End Select
-                InvoiceLineAdd.Desc.SetValue(desc)
-            Else
-                MsgBox("Item: " + OrderItem.Lot + " doesn't exist. Please add to QuickBooks.  Invoice NOT Created")
-            End If
-
-
-            'Connect to QuickBooks and begin a session
             sessionManager.OpenConnection("", "Sample Code from OSR")
             connectionOpen = True
             sessionManager.BeginSession("", ENOpenMode.omDontCare)
             sessionBegun = True
 
-            'Send the request and get the response from QuickBooks
-            Dim responseMsgSet As IMsgSetResponse
-            responseMsgSet = sessionManager.DoRequests(requestMsgSet)
+            For Each OrderItem In OID
+                Dim Item As IORItemRet = Nothing
+                Dim desc As String
+                Dim ItemAmount As Decimal = Nothing
 
+                If (OD.IsMix) Then
+                    Item = DoItemQuery("Seed Mix Per Worksheet", "NameFilter")
+                    desc = "Seed Mix Per Worksheet"
+                    ItemAmount = (Decimal.Round(OD.OrderTotal, 2, MidpointRounding.AwayFromZero))
+                Else
+                    Item = DoItemQuery(OrderItem.Lot, "NameFilter")
+                    desc = OrderItem.Item
+                    ItemAmount = (Decimal.Round((OrderItem.PricePerAcre * OD.Acres), 2, MidpointRounding.AwayFromZero))
+                End If
+                If Not (Item Is Nothing) Then
+                        Dim InvoiceLineAdd As IInvoiceLineAdd = InvoiceAddRq.ORInvoiceLineAddList.Append.InvoiceLineAdd
+
+                        Select Case Item.ortype
+                            Case ENORItemRet.orirItemInventoryAssemblyRet
+                                InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemInventoryAssemblyRet.ListID.GetValue)
+                                InvoiceLineAdd.Quantity.SetValue(OD.Acres)
+                            InvoiceLineAdd.Amount.SetValue(ItemAmount)
+                        Case ENORItemRet.orirItemNonInventoryRet
+                                InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemNonInventoryRet.ListID.GetValue)
+                                InvoiceLineAdd.Quantity.SetValue(OD.Acres)
+                            InvoiceLineAdd.Amount.SetValue(ItemAmount)
+                        Case ENORItemRet.orirItemServiceRet
+                                InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemServiceRet.ListID.GetValue)
+                                InvoiceLineAdd.Quantity.SetValue(OD.Acres)
+                            InvoiceLineAdd.Amount.SetValue(ItemAmount)
+                        Case ENORItemRet.orirItemDiscountRet
+                                InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemDiscountRet.ListID.GetValue)
+                            InvoiceLineAdd.Amount.SetValue(ItemAmount)
+                        Case ENORItemRet.orirItemInventoryRet
+                                InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemInventoryRet.ListID.GetValue)
+                                InvoiceLineAdd.Quantity.SetValue(OD.Acres)
+                            InvoiceLineAdd.Amount.SetValue(ItemAmount)
+                        Case ENORItemRet.orirItemOtherChargeRet
+                                InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemOtherChargeRet.ListID.GetValue)
+                                InvoiceLineAdd.Quantity.SetValue(OD.Acres)
+                            InvoiceLineAdd.Amount.SetValue(ItemAmount)
+                        Case ENORItemRet.orirItemSalesTaxRet
+                                InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemSalesTaxRet.ListID.GetValue)
+                            InvoiceLineAdd.Amount.SetValue(ItemAmount)
+                        Case ENORItemRet.orirItemSalesTaxGroupRet
+                                InvoiceLineAdd.ItemRef.ListID.SetValue(Item.ItemSalesTaxGroupRet.ListID.GetValue)
+                            InvoiceLineAdd.Amount.SetValue(ItemAmount)
+                    End Select
+                        InvoiceLineAdd.Desc.SetValue(desc)
+                    Else
+                        MsgBox("Item: " + OrderItem.Lot + " doesn't exist. Please add to QuickBooks.  Invoice NOT Created")
+                    End If
+                If (OD.IsMix) Then
+                    Exit For
+                End If
+            Next
+            responseMsgSet = sessionManager.DoRequests(requestMsgSet)
             'End the session and close the connection to QuickBooks
             sessionManager.EndSession()
             sessionBegun = False

@@ -7,3 +7,4 @@ C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\bin\Debug\SeedGeneral.
 C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\bin\Debug\SeedGeneral.xml
 C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\obj\Debug\SeedGeneral.dll
 C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\obj\Debug\SeedGeneral.pdb
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\obj\Debug\SeedGeneral.vbprojResolveAssemblyReference.cache

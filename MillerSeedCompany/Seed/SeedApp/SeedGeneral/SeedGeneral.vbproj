@@ -75,6 +75,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Inventory.dbml</DependentUpon>
     </Compile>
+    <Compile Include="ItemsEdit.designer.vb">
+      <DependentUpon>ItemsEdit.dbml</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="ItemsEdit.vb">
+      <DependentUpon>ItemsEdit.dbml</DependentUpon>
+    </Compile>
     <Compile Include="OrderInfo.designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -108,9 +116,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="SeedReports.dbml.layout">
+      <DependentUpon>SeedReports.dbml</DependentUpon>
+    </None>
     <None Include="Inventory.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Inventory.designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ItemsEdit.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ItemsEdit.designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="OrderInfo.dbml.layout">
@@ -121,14 +137,14 @@
       <LastGenOutput>OrderInfo.designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="SeedReports.dbml.layout">
-      <DependentUpon>SeedReports.dbml</DependentUpon>
-    </None>
     <None Include="Customers.dbml.layout">
       <DependentUpon>Customers.dbml</DependentUpon>
     </None>
     <None Include="Inventory.dbml.layout">
       <DependentUpon>Inventory.dbml</DependentUpon>
+    </None>
+    <None Include="ItemsEdit.dbml.layout">
+      <DependentUpon>ItemsEdit.dbml</DependentUpon>
     </None>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

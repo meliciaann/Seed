@@ -296,7 +296,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Acres:</Value>
+                              <Value>=Fields!UnitTypeName.Value + ":"</Value>
                               <Style>
                                 <FontSize>14pt</FontSize>
                               </Style>
@@ -316,6 +316,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -734,7 +735,6 @@
         </TablixRowHierarchy>
         <DataSetName>SeedOrderDetail</DataSetName>
         <Top>1.57639in</Top>
-        <Left>0in</Left>
         <Height>0.98958in</Height>
         <Width>6.57292in</Width>
         <ZIndex>1</ZIndex>
@@ -851,6 +851,10 @@
         </Field>
         <Field Name="CustomerZip">
           <DataField>CustomerZip</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="UnitTypeName">
+          <DataField>UnitTypeName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

@@ -9,6 +9,8 @@
       <Column Name="CustomerState" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="CustomerZip" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="QBId" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CustomerPhone" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
