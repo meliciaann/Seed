@@ -7,6 +7,7 @@ Imports System.Data.Linq.Mapping
 Imports System.Linq
 Imports System.Linq.Expressions
 Imports System.Reflection
+Imports System.Windows.Forms
 Public Class OrderItemDetails
     Public Property Lot As String
     Public Property PLS As Decimal?
@@ -65,9 +66,7 @@ Public Class InventoryDetails
     Public Property Memo As String
     Public Property Item As String
     Public Property Lot As String
-
     Public Property InvoiceID As String
-
 End Class
 Public Class AvailableReport
 
@@ -86,6 +85,7 @@ Public Class AvailableReport
     Private _UserChecked As System.Nullable(Of Boolean)
 
     Private _HasSubReports As Boolean
+
 
     Public Property ReportFileName As String
         Get
@@ -162,20 +162,202 @@ Public Class ItemTypes
     Public Property ItemType As String
 End Class
 
-'Public Class GetData
-'    Private _ItemsDB As ItemsEditDataContext
+Public Class GetDataClass
+    Private _ItemsDB As ItemsEditDataContext
+    Private _Items As Table(Of Item)
+    Private _SeedReportsDB As SeedReportsDataContext
+    Private _SeedReports As Table(Of SeedReport)
+    Private _UserReports As List(Of AvailableReport)
+    Private _VisibleReportsBindingSource As BindingSource
+    Private _CustomersDB As CustomersDataContext
+    Private _Customers As Table(Of Customer)
+    Private _CurrentOrder As Order
+    Private _OrderInfoDB As OrderItemsDataContext
+    Private _OrderItems As Table(Of OrderItem)
+    Private _Orders As Table(Of Order)
+    Private _OrderStatusDB As OrderStatusDataContext
+    Public _InventoryDB As InventoryDataContext
+    Public _Inventory As Table(Of Inventory)
+    Public _OrderStatus As Table(Of OrderStatus)
+    Public _CurrentOrderItem As OrderItemDetails
+    Public _CurrentCustomer As SeedGeneral.Customer
+    Public _CustomerPriceList As String
+    Public _ItemID As Integer
+    Public _CurrentOrderUnit As OrderUnit
 
-'    Public Property ItemsDB As ItemsEditDataContext
-'        Get
-'            Return _ItemsDB
-'        End Get
-'        Set(value As ItemsEditDataContext)
-'            _ItemsDB = value
-'        End Set
-'    End Property
+    Public Property ItemsDB As ItemsEditDataContext
+        Get
+            Return _ItemsDB
+        End Get
+        Set(value As ItemsEditDataContext)
+            _ItemsDB = value
+        End Set
+    End Property
 
-'    'Public ItemsDB As New SeedGeneral.ItemsEditDataContext
+    Public Property Items As Table(Of Item)
+        Get
+            Return _Items
+        End Get
+        Set(value As Table(Of Item))
+            _Items = value
+        End Set
+    End Property
 
-'End Class
+    Public Property SeedReportsDB As SeedReportsDataContext
+        Get
+            Return _SeedReportsDB
+        End Get
+        Set(value As SeedReportsDataContext)
+            _SeedReportsDB = value
+        End Set
+    End Property
 
+    Public Property SeedReports As Table(Of SeedReport)
+        Get
+            Return _SeedReports
+        End Get
+        Set(value As Table(Of SeedReport))
+            _SeedReports = value
+        End Set
+    End Property
+
+    Public Property UserReports As List(Of AvailableReport)
+        Get
+            Return _UserReports
+        End Get
+        Set(value As List(Of AvailableReport))
+            _UserReports = value
+        End Set
+    End Property
+
+    Public Property CustomersDB As CustomersDataContext
+        Get
+            Return _CustomersDB
+        End Get
+        Set(value As CustomersDataContext)
+            _CustomersDB = value
+        End Set
+    End Property
+
+    Public Property Customers As Table(Of Customer)
+        Get
+            Return _Customers
+        End Get
+        Set(value As Table(Of Customer))
+            _Customers = value
+        End Set
+    End Property
+
+    Public Property CurrentOrder As Order
+        Get
+            Return _CurrentOrder
+        End Get
+        Set(value As Order)
+            _CurrentOrder = value
+        End Set
+    End Property
+
+    Public Property OrderInfoDB As OrderItemsDataContext
+        Get
+            Return _OrderInfoDB
+        End Get
+        Set(value As OrderItemsDataContext)
+            _OrderInfoDB = value
+        End Set
+    End Property
+
+    'Public Property OrderItems As Table(Of OrderItem)
+    '    Get
+    '        Return _OrderItems
+    '    End Get
+    '    Set(value As Table(Of OrderItem))
+    '        _OrderItems = value
+    '    End Set
+    'End Property
+    'Public Property Orders As Table(Of Order)
+    '    Get
+    '        Return _Orders
+    '    End Get
+    '    Set(value As Table(Of Order))
+    '        _Orders = value
+    '    End Set
+    'End Property
+
+    Public Property OrderStatusDB As OrderStatusDataContext
+        Get
+            Return _OrderStatusDB
+        End Get
+        Set(value As OrderStatusDataContext)
+            _OrderStatusDB = value
+        End Set
+    End Property
+    Public Property InventoryDB As InventoryDataContext
+        Get
+            Return _InventoryDB
+        End Get
+        Set(value As InventoryDataContext)
+            _InventoryDB = value
+        End Set
+    End Property
+
+    'Public Property Inventory As Table(Of Inventory)
+    '    Get
+    '        Return _Inventory
+    '    End Get
+    '    Set(value As Table(Of Inventory))
+    '        _Inventory = value
+    '    End Set
+    'End Property
+    Public Property OrderStatus As Table(Of OrderStatus)
+        Get
+            Return _OrderStatus
+        End Get
+        Set(value As Table(Of OrderStatus))
+            _OrderStatus = value
+        End Set
+    End Property
+
+    Public Property CurrentOrderItem As OrderItemDetails
+        Get
+            Return _CurrentOrderItem
+        End Get
+        Set(value As OrderItemDetails)
+            _CurrentOrderItem = value
+        End Set
+    End Property
+
+    Public Property CurrentCustomer As SeedGeneral.Customer
+        Get
+            Return _CurrentCustomer
+        End Get
+        Set(value As SeedGeneral.Customer)
+            _CurrentCustomer = value
+        End Set
+    End Property
+
+    Public Property CustomerPriceList As String
+        Get
+            Return _CustomerPriceList
+        End Get
+        Set(value As String)
+            _CustomerPriceList = value
+        End Set
+    End Property
+    Public Property ItemID As Integer
+        Get
+            Return _ItemID
+        End Get
+        Set(value As Integer)
+            _ItemID = value
+        End Set
+    End Property
+    Public Property CurrentOrderUnit As OrderUnit
+        Get
+            Return _CurrentOrderUnit
+        End Get
+        Set(value As OrderUnit)
+            _CurrentOrderUnit = value
+        End Set
+    End Property
+End Class
 

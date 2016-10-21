@@ -129,7 +129,7 @@ Partial Class ItemsForm
         Me.ItemsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.ItemsDataGridView.Location = New System.Drawing.Point(3, 44)
         Me.ItemsDataGridView.Name = "ItemsDataGridView"
-        Me.ItemsDataGridView.Size = New System.Drawing.Size(1315, 718)
+        Me.ItemsDataGridView.Size = New System.Drawing.Size(1434, 718)
         Me.ItemsDataGridView.TabIndex = 0
         '
         'OrdersPage
@@ -144,7 +144,7 @@ Partial Class ItemsForm
         Me.OrdersPage.Location = New System.Drawing.Point(0, 0)
         Me.OrdersPage.Name = "OrdersPage"
         Me.OrdersPage.SelectedIndex = 0
-        Me.OrdersPage.Size = New System.Drawing.Size(1387, 823)
+        Me.OrdersPage.Size = New System.Drawing.Size(1489, 823)
         Me.OrdersPage.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight
         Me.OrdersPage.TabIndex = 1
         Me.OrdersPage.TabStop = False
@@ -187,7 +187,7 @@ Partial Class ItemsForm
         Me.OrderTabPage.Location = New System.Drawing.Point(4, 22)
         Me.OrderTabPage.Name = "OrderTabPage"
         Me.OrderTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.OrderTabPage.Size = New System.Drawing.Size(1379, 797)
+        Me.OrderTabPage.Size = New System.Drawing.Size(1481, 797)
         Me.OrderTabPage.TabIndex = 0
         Me.OrderTabPage.Text = "Order"
         Me.OrderTabPage.UseVisualStyleBackColor = True
@@ -245,7 +245,7 @@ Partial Class ItemsForm
         Me.NewBtn.Location = New System.Drawing.Point(786, 87)
         Me.NewBtn.Name = "NewBtn"
         Me.NewBtn.Size = New System.Drawing.Size(172, 23)
-        Me.NewBtn.TabIndex = 9
+        Me.NewBtn.TabIndex = 16
         Me.NewBtn.TabStop = False
         Me.NewBtn.Text = "New Order"
         Me.NewBtn.UseVisualStyleBackColor = True
@@ -262,6 +262,8 @@ Partial Class ItemsForm
         '
         'OrderUnitsCB
         '
+        Me.OrderUnitsCB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.OrderUnitsCB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.OrderUnitsCB.FormattingEnabled = True
         Me.OrderUnitsCB.Location = New System.Drawing.Point(70, 173)
         Me.OrderUnitsCB.Name = "OrderUnitsCB"
@@ -273,7 +275,7 @@ Partial Class ItemsForm
         Me.CopyOrderBtn.Location = New System.Drawing.Point(786, 60)
         Me.CopyOrderBtn.Name = "CopyOrderBtn"
         Me.CopyOrderBtn.Size = New System.Drawing.Size(172, 23)
-        Me.CopyOrderBtn.TabIndex = 25
+        Me.CopyOrderBtn.TabIndex = 15
         Me.CopyOrderBtn.Text = "Copy Order"
         Me.CopyOrderBtn.UseVisualStyleBackColor = True
         '
@@ -282,7 +284,7 @@ Partial Class ItemsForm
         Me.SaveOrderBtn.Location = New System.Drawing.Point(786, 7)
         Me.SaveOrderBtn.Name = "SaveOrderBtn"
         Me.SaveOrderBtn.Size = New System.Drawing.Size(172, 23)
-        Me.SaveOrderBtn.TabIndex = 7
+        Me.SaveOrderBtn.TabIndex = 13
         Me.SaveOrderBtn.Text = "Save Order"
         Me.SaveOrderBtn.UseVisualStyleBackColor = True
         '
@@ -325,6 +327,8 @@ Partial Class ItemsForm
         '
         'PriceListCB
         '
+        Me.PriceListCB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.PriceListCB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.PriceListCB.FormattingEnabled = True
         Me.PriceListCB.Items.AddRange(New Object() {"Distributor", "Retail", "Wholesale"})
         Me.PriceListCB.Location = New System.Drawing.Point(70, 114)
@@ -337,12 +341,14 @@ Partial Class ItemsForm
         Me.Button6.Location = New System.Drawing.Point(786, 34)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(172, 23)
-        Me.Button6.TabIndex = 8
+        Me.Button6.TabIndex = 14
         Me.Button6.Text = "Create Invoice"
         Me.Button6.UseVisualStyleBackColor = True
         '
         'OrderStatusCB
         '
+        Me.OrderStatusCB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.OrderStatusCB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.OrderStatusCB.FormattingEnabled = True
         Me.OrderStatusCB.Location = New System.Drawing.Point(435, 38)
         Me.OrderStatusCB.Name = "OrderStatusCB"
@@ -450,7 +456,7 @@ Partial Class ItemsForm
         Me.OrderItemsGridView.Location = New System.Drawing.Point(12, 200)
         Me.OrderItemsGridView.MultiSelect = False
         Me.OrderItemsGridView.Name = "OrderItemsGridView"
-        Me.OrderItemsGridView.Size = New System.Drawing.Size(1347, 517)
+        Me.OrderItemsGridView.Size = New System.Drawing.Size(1449, 517)
         Me.OrderItemsGridView.TabIndex = 6
         '
         'Label2
@@ -499,7 +505,7 @@ Partial Class ItemsForm
         Me.ItemTabPage.Location = New System.Drawing.Point(4, 22)
         Me.ItemTabPage.Name = "ItemTabPage"
         Me.ItemTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.ItemTabPage.Size = New System.Drawing.Size(1362, 797)
+        Me.ItemTabPage.Size = New System.Drawing.Size(1481, 797)
         Me.ItemTabPage.TabIndex = 1
         Me.ItemTabPage.Text = "Items"
         Me.ItemTabPage.UseVisualStyleBackColor = True
@@ -567,7 +573,7 @@ Partial Class ItemsForm
         Me.CustomerTabPage.Controls.Add(Me.CustomerDataGridView)
         Me.CustomerTabPage.Location = New System.Drawing.Point(4, 22)
         Me.CustomerTabPage.Name = "CustomerTabPage"
-        Me.CustomerTabPage.Size = New System.Drawing.Size(1362, 797)
+        Me.CustomerTabPage.Size = New System.Drawing.Size(1481, 797)
         Me.CustomerTabPage.TabIndex = 2
         Me.CustomerTabPage.Text = "Customers"
         Me.CustomerTabPage.UseVisualStyleBackColor = True
@@ -612,7 +618,7 @@ Partial Class ItemsForm
         Me.CustomerDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.CustomerDataGridView.Location = New System.Drawing.Point(3, 44)
         Me.CustomerDataGridView.Name = "CustomerDataGridView"
-        Me.CustomerDataGridView.Size = New System.Drawing.Size(1315, 750)
+        Me.CustomerDataGridView.Size = New System.Drawing.Size(1434, 750)
         Me.CustomerDataGridView.TabIndex = 0
         '
         'OrdersTabPage
@@ -624,7 +630,7 @@ Partial Class ItemsForm
         Me.OrdersTabPage.Location = New System.Drawing.Point(4, 22)
         Me.OrdersTabPage.Name = "OrdersTabPage"
         Me.OrdersTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.OrdersTabPage.Size = New System.Drawing.Size(1362, 797)
+        Me.OrdersTabPage.Size = New System.Drawing.Size(1498, 797)
         Me.OrdersTabPage.TabIndex = 3
         Me.OrdersTabPage.Text = "Orders"
         Me.OrdersTabPage.UseVisualStyleBackColor = True
@@ -665,7 +671,7 @@ Partial Class ItemsForm
         Me.OrdersGridView.MultiSelect = False
         Me.OrdersGridView.Name = "OrdersGridView"
         Me.OrdersGridView.ReadOnly = True
-        Me.OrdersGridView.Size = New System.Drawing.Size(1315, 718)
+        Me.OrdersGridView.Size = New System.Drawing.Size(1451, 718)
         Me.OrdersGridView.TabIndex = 0
         '
         'ReportsTabPage
@@ -680,7 +686,7 @@ Partial Class ItemsForm
         Me.ReportsTabPage.Location = New System.Drawing.Point(4, 22)
         Me.ReportsTabPage.Name = "ReportsTabPage"
         Me.ReportsTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.ReportsTabPage.Size = New System.Drawing.Size(1379, 797)
+        Me.ReportsTabPage.Size = New System.Drawing.Size(1481, 797)
         Me.ReportsTabPage.TabIndex = 4
         Me.ReportsTabPage.Text = "Reports"
         Me.ReportsTabPage.UseVisualStyleBackColor = True
@@ -716,7 +722,7 @@ Partial Class ItemsForm
         Me.Panel1.Controls.Add(Me.ReportViewer2)
         Me.Panel1.Location = New System.Drawing.Point(0, 137)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1396, 599)
+        Me.Panel1.Size = New System.Drawing.Size(1498, 599)
         Me.Panel1.TabIndex = 0
         '
         'ReportViewer2
@@ -725,7 +731,7 @@ Partial Class ItemsForm
         Me.ReportViewer2.LocalReport.ReportEmbeddedResource = "SeedApp.AllReports.rdlc"
         Me.ReportViewer2.Location = New System.Drawing.Point(0, 0)
         Me.ReportViewer2.Name = "ReportViewer2"
-        Me.ReportViewer2.Size = New System.Drawing.Size(1394, 597)
+        Me.ReportViewer2.Size = New System.Drawing.Size(1496, 597)
         Me.ReportViewer2.TabIndex = 0
         '
         'InventoryTP
@@ -735,7 +741,7 @@ Partial Class ItemsForm
         Me.InventoryTP.Controls.Add(Me.InventoryDGV)
         Me.InventoryTP.Location = New System.Drawing.Point(4, 22)
         Me.InventoryTP.Name = "InventoryTP"
-        Me.InventoryTP.Size = New System.Drawing.Size(1362, 797)
+        Me.InventoryTP.Size = New System.Drawing.Size(1481, 797)
         Me.InventoryTP.TabIndex = 5
         Me.InventoryTP.Text = "Inventory"
         Me.InventoryTP.UseVisualStyleBackColor = True
@@ -767,7 +773,7 @@ Partial Class ItemsForm
         Me.InventoryDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.InventoryDGV.Location = New System.Drawing.Point(12, 60)
         Me.InventoryDGV.Name = "InventoryDGV"
-        Me.InventoryDGV.Size = New System.Drawing.Size(1306, 360)
+        Me.InventoryDGV.Size = New System.Drawing.Size(1425, 360)
         Me.InventoryDGV.TabIndex = 0
         '
         'SeedDataSet
@@ -824,7 +830,7 @@ Partial Class ItemsForm
         Me.AutoScroll = True
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(1404, 719)
+        Me.ClientSize = New System.Drawing.Size(1506, 719)
         Me.Controls.Add(Me.OrdersPage)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MinimumSize = New System.Drawing.Size(1278, 758)

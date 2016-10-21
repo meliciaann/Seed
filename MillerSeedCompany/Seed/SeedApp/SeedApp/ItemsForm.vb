@@ -9,27 +9,10 @@ Imports QBLib.QBLibrary
 Imports SeedGeneral
 Imports System.Text
 
-
 Public Class ItemsForm
-    Public ItemsDB As New SeedGeneral.ItemsEditDataContext
-    Public Items As Table(Of Item) = ItemsDB.GetTable(Of Item)
+    Public d As New GetDataClass
     Public VisibleReportsBindingSource As New BindingSource
-    Public SeedReportsDB As New SeedReportsDataContext
-    Public SeedReports As Table(Of SeedReport) = SeedReportsDB.GetTable(Of SeedReport)
-    Public UserReports As New List(Of AvailableReport)
-    Public CustomersDB As New CustomersDataContext
-    Public OrderInfoDB As New OrderItemsDataContext
-    Public OrderStatusDB As New OrderStatusDataContext
-    Public InventoryDB As New InventoryDataContext
-    Public OrderItems As Table(Of OrderItem) = OrderInfoDB.GetTable(Of OrderItem)
-    Public Customers As Table(Of Customer) = CustomersDB.GetTable(Of Customer)
     Public GridviewMenu As New ContextMenu
-    Public Inventory As Table(Of Inventory) = InventoryDB.GetTable(Of Inventory)
-    Public OrderStatus As Table(Of OrderStatus) = OrderStatusDB.GetTable(Of OrderStatus)
-    Public Orders As Table(Of Order) = OrderInfoDB.GetTable(Of Order)
-    Public CurrentOrder As New Order
-    Public CurrentOrderItem As New OrderItemDetails
-    Public CurrentCustomer As New SeedGeneral.Customer
     Public IsNewOrder As Boolean = False
     Public IsLoading As Boolean
     Public isNewItem As Boolean
@@ -40,35 +23,33 @@ Public Class ItemsForm
     Private SeedOrderDetailSource As New ReportDataSource
     Private SeedReportsSource As New ReportDataSource
     Public QB As New QBLib.QBLibrary
-    Public CustomerPriceList As String
+
     Public ShowOrderItemInventoryItem As New MenuItem
     Public ShowInventoryMenuItem As New MenuItem
     Public AddInventoryMenuItem As New MenuItem
     Public DeleteOrderItem As New MenuItem
     Public DeleteItem As New MenuItem
-    Public ItemID As Integer
-    Public CurrentOrderUnit As OrderUnit
+
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'SeedDataSet.OrderItems' table. You can move, or remove it, as needed.
-        Me.OrderItemsTableAdapter.Fill(Me.SeedDataSet.OrderItems)
-        'TODO: This line of code loads data into the 'SeedDataSet.SeedOrder' table. You can move, or remove it, as needed.
-        Me.SeedOrderTableAdapter.Fill(Me.SeedDataSet.SeedOrder, CurrentOrder.OrderID)
-        'TODO: This line of code loads data into the 'SeedDataSet.SeedOrderDetail' table. You can move, or remove it, as needed.
-        Me.SeedOrderDetailTableAdapter.Fill(Me.SeedDataSet.SeedOrderDetail, CurrentOrder.OrderID)
-        'Me.SeedReportsTableAdapter.Fill(Me.SeedDataSet.SeedReports)
+        ''TODO: This line of code loads data into the 'SeedDataSet.OrderItems' table. You can move, or remove it, as needed.
+        'Me.OrderItemsTableAdapter.Fill(Me.SeedDataSet.OrderItems)
+        ''TODO: This line of code loads data into the 'SeedDataSet.SeedOrder' table. You can move, or remove it, as needed.
+        'Me.SeedOrderTableAdapter.Fill(Me.SeedDataSet.SeedOrder, d.CurrentOrder.OrderID)
+        ''TODO: This line of code loads data into the 'SeedDataSet.SeedOrderDetail' table. You can move, or remove it, as needed.
+        'Me.SeedOrderDetailTableAdapter.Fill(Me.SeedDataSet.SeedOrderDetail, d.CurrentOrder.OrderID)
+        ''Me.SeedReportsTableAdapter.Fill(Me.SeedDataSet.SeedReports)
 
         IsNewOrder = False
         IsLoading = True
-        FillCustomerComboBox()
-        FillUnitTypesComboBox()
-        FillOrderStatusComboBox()
+        RefreshData()
+
+
         CustomerDataGridView.ReadOnly = True
         CustomerDataGridView.AllowUserToAddRows = False
         ItemsDataGridView.ReadOnly = True
         ItemsDataGridView.AllowUserToAddRows = False
         OrderDatePicker.Value = DateTime.Now
-
 
         Me.ReportViewer2.RefreshReport()
 
@@ -94,41 +75,74 @@ Public Class ItemsForm
         CustomerCB.Focus()
         IsLoading = False
     End Sub
+    Private Sub RefreshData()
 
+        d.ItemsDB = New ItemsEditDataContext
+        d.Items = d.ItemsDB.GetTable(Of Item)
+        d.CustomersDB = New CustomersDataContext
+        d.Customers = d.CustomersDB.GetTable(Of Customer)
+        d.OrderInfoDB = New OrderItemsDataContext
+        d.SeedReportsDB = New SeedReportsDataContext
+        d.SeedReports = d.SeedReportsDB.GetTable(Of SeedReport)
+        d.OrderStatusDB = New OrderStatusDataContext
+        d.OrderStatus = d.OrderStatusDB.GetTable(Of OrderStatus)
+        d.InventoryDB = New InventoryDataContext
+
+        OrderStatusCB.DataSource = d.OrderStatus
+        OrderStatusCB.DisplayMember = "OrderStatusName"
+        OrderStatusCB.ValueMember = "OrderStatusID"
+
+        OrderUnitsCB.DataSource = d.OrderInfoDB.OrderUnits
+        OrderUnitsCB.DisplayMember = "UnitTypeName"
+        OrderUnitsCB.ValueMember = "UnitTypeID"
+
+
+
+        Dim DefaultOrderUnits = From OrderUnit In d.OrderInfoDB.OrderUnits Where OrderUnit.IsDefault = True
+        d.CurrentOrderUnit = DefaultOrderUnits.Single
+        OrderUnitsCB.SelectedItem = d.CurrentOrderUnit
+        OrderUnitsCB.SelectedValue = d.CurrentOrderUnit.UnitTypeID
+
+        Dim aCustomers = From Customer In d.Customers Order By Customer.CustomerName
+        Dim aItems = From Item In d.Items Order By Item.Item
+        CustomerDataGridView.AutoGenerateColumns = True
+        CustomerDataGridView.DataSource = aCustomers
+
+        ItemsDataGridView.DataSource = aItems
+        CustomerCB.DataSource = aCustomers
+        CustomerCB.DisplayMember = "CustomerName"
+        CustomerCB.ValueMember = "CustomerID"
+        CustomerCB.SelectedIndex = -1
+
+    End Sub
     Private Sub FillItemsData()
         IsLoading = True
-
-        ItemsDB.Refresh(RefreshMode.OverwriteCurrentValues, Items)
+        'd.ItemsDB.Refresh(RefreshMode.OverwriteCurrentValues, d.Items)
         ItemsDataGridView.AutoGenerateColumns = True
-        ItemsDataGridView.DataSource = Items
+        Dim aItems = From Item In d.Items Order By Item.Item
+        ItemsDataGridView.DataSource = aItems
 
-        Dim TypeFilter = From item In ItemsDB.Items
-                         Select New ItemTypes With {
-                            .ItemType = item.Type}
-                         Distinct
+        If (TypeFilterCB.DataSource Is Nothing) Then
+            Dim TypeFilter = From item In d.Items
+                             Select New ItemTypes With {
+                                .ItemType = item.Type}
+                             Distinct
 
 
-        TypeFilterCB.DataSource = TypeFilter
-        Dim i As Integer = TypeFilter.Count
-        TypeFilterCB.DisplayMember = "ItemType"
-        TypeFilterCB.ValueMember = "ItemType"
-        TypeFilterCB.SelectedIndex = -1
+            TypeFilterCB.DataSource = TypeFilter
+
+            TypeFilterCB.DisplayMember = "ItemType"
+            TypeFilterCB.ValueMember = "ItemType"
+            TypeFilterCB.SelectedIndex = -1
+        End If
 
         IsLoading = False
     End Sub
-    Private Sub FilterItemsData()
 
-    End Sub
-    Private Sub FillCustomerData()
-        IsLoading = True
-        CustomerDataGridView.AutoGenerateColumns = True
-        CustomerDataGridView.DataSource = Customers
-        IsLoading = False
-    End Sub
     Private Sub FillInventoryData(ByVal ItemID As Integer)
 
         InventoryDGV.AutoGenerateColumns = True
-        Dim InventoryHistory = From Inventory In InventoryDB.Inventories Join InventoryItemDetail In InventoryDB.InventoryItemDetails On Inventory.ItemID Equals InventoryItemDetail.ItemID
+        Dim InventoryHistory = From Inventory In d.InventoryDB.Inventories Join InventoryItemDetail In d.InventoryDB.InventoryItemDetails On Inventory.ItemID Equals InventoryItemDetail.ItemID
                                Where Inventory.ItemID = ItemID And Inventory.Quantity IsNot Nothing
                                Select New InventoryDetails With {
                                    .inventorydate = Inventory.InventoryDate,
@@ -151,16 +165,17 @@ Public Class ItemsForm
 
     Private Sub FillReports()
 
-        Dim visibleReports = From vr In SeedReportsDB.SeedReports Where vr.IsVisible = True
+        d.UserReports = New List(Of AvailableReport)
+        Dim visibleReports = From vr In d.SeedReports Where vr.IsVisible = True
 
-        If (UserReports.Count = 0) Then
+        If (d.UserReports.Count = 0) Then
 
             For Each SeedReport In visibleReports
                 Dim a1 As New AvailableReport(SeedReport.ReportFileName, SeedReport.ReportID, SeedReport.FriendlyName, SeedReport.SortOrder, 0, SeedReport.IsVisible)
-                UserReports.Add(a1)
+                d.UserReports.Add(a1)
             Next
         End If
-        VisibleReportsBindingSource.DataSource = UserReports
+        VisibleReportsBindingSource.DataSource = d.UserReports
 
         ReportsDGV.AutoGenerateColumns = True
         ReportsDGV.DataSource = VisibleReportsBindingSource
@@ -169,7 +184,11 @@ Public Class ItemsForm
     Private Sub FillOrdersData()
         IsLoading = True
         OrdersGridView.AutoGenerateColumns = True
-        Dim OrdersQuery = From Orders In OrderInfoDB.Orders Join Customers In OrderInfoDB.OrderCustomerDetails On Orders.CustomerID Equals Customers.CustomerId
+        If (d.OrderInfoDB Is Nothing) Then
+            d.OrderInfoDB = New OrderItemsDataContext
+        End If
+
+        Dim OrdersQuery = From Orders In d.OrderInfoDB.Orders Join Customers In d.OrderInfoDB.OrderCustomerDetails On Orders.CustomerID Equals Customers.CustomerId
                           Select New OrderDetails With {
                                 .OrderID = Orders.OrderID,
                               .InvoiceID = Orders.InvoiceID,
@@ -194,72 +213,48 @@ Public Class ItemsForm
         OrdersGridView.DataSource = OrdersQuery
         IsLoading = False
     End Sub
-    Private Sub FillCustomerComboBox()
-        Dim c = From Customer In CustomersDB.Customers
-                Order By Customer.CustomerName
-        CustomerCB.DataSource = c
-        CustomerCB.DisplayMember = "CustomerName"
-        CustomerCB.ValueMember = "CustomerID"
-        CustomerCB.SelectedIndex = -1
-
-    End Sub
-    Private Sub FillUnitTypesComboBox()
-        OrderUnitsCB.DataSource = OrderInfoDB.OrderUnits
-        OrderUnitsCB.DisplayMember = "UnitTypeName"
-        OrderUnitsCB.ValueMember = "UnitTypeID"
-        Dim DefaultOrderUnits = From OrderUnit In OrderInfoDB.OrderUnits Where OrderUnit.IsDefault = True
-        CurrentOrderUnit = DefaultOrderUnits.Single
-        OrderUnitsCB.SelectedItem = CurrentOrderUnit
-        OrderUnitsCB.SelectedValue = CurrentOrderUnit.UnitTypeID
 
 
-
-    End Sub
-
-    Private Sub FillOrderStatusComboBox()
-        OrderStatusCB.DataSource = OrderStatus
-        OrderStatusCB.DisplayMember = "OrderStatusName"
-        OrderStatusCB.ValueMember = "OrderStatusID"
-    End Sub
     Private Sub FillOrderItems()
         'CreateUpdateOrder()
         'IsFillItems = False
         Dim OrderTotal As Decimal? = 0.00
         Dim OrderPricePerAcre As Decimal? = 0.00
+        If Not (d.CurrentOrder Is Nothing) Then
+            Dim CurrentOrderItems = From orderitems In d.OrderInfoDB.OrderItems Join OrderItemDetails In d.OrderInfoDB.OrderItemDetails On orderitems.ItemID Equals OrderItemDetails.ItemID Where orderitems.OrderID.Equals(d.CurrentOrder.OrderID)
+                                    Select New OrderItemDetails With {
+                                        .Lot = OrderItemDetails.Lot,
+                                        .PLS = orderitems.PLS_Percent,
+                                        .Item = OrderItemDetails.Item,
+                                        .PLSLBSPerAcre = orderitems.PLS_LBS_PerAcre,
+                                        .PricePerPLSLB = orderitems.PricePerPLSLB,
+                                        .PricePerAcre = orderitems.PricePerAcre,
+                                        .TotalPrice = orderitems.PricePerAcre * d.CurrentOrder.Acres,
+                                        .Distributor = OrderItemDetails.Distributor,
+                                        .Wholesale = OrderItemDetails.Wholesale,
+                                        .Retail = OrderItemDetails.Retail,
+                                        .OrderItemID = orderitems.OrderItemID,
+                                        .BulkLbs = orderitems.BulkLbs,
+                                        .PLSLBS = orderitems.PLSLbs,
+                                        .ItemID = orderitems.ItemID,
+                                        .TestDate = OrderItemDetails.Test_Date}
 
-        Dim CurrentOrderItems = From orderitems In OrderInfoDB.OrderItems Join OrderItemDetails In OrderInfoDB.OrderItemDetails On orderitems.ItemID Equals OrderItemDetails.ItemID Where orderitems.OrderID.Equals(CurrentOrder.OrderID)
-                                Select New OrderItemDetails With {
-                                    .Lot = OrderItemDetails.Lot,
-                                    .PLS = orderitems.PLS_Percent,
-                                    .Item = OrderItemDetails.Item,
-                                    .PLSLBSPerAcre = orderitems.PLS_LBS_PerAcre,
-                                    .PricePerPLSLB = orderitems.PricePerPLSLB,
-                                    .PricePerAcre = orderitems.PricePerAcre,
-                                    .TotalPrice = orderitems.PricePerAcre * CurrentOrder.Acres,
-                                    .Distributor = OrderItemDetails.Distributor,
-                                    .Wholesale = OrderItemDetails.Wholesale,
-                                    .Retail = OrderItemDetails.Retail,
-                                    .OrderItemID = orderitems.OrderItemID,
-                                    .BulkLbs = orderitems.BulkLbs,
-                                    .PLSLBS = orderitems.PLSLbs,
-                                    .ItemID = orderitems.ItemID,
-                                    .TestDate = OrderItemDetails.Test_Date}
-        OrderItemsGridView.DataSource = CurrentOrderItems
+            OrderItemsGridView.DataSource = CurrentOrderItems
 
-        For Each OrderItem In CurrentOrderItems
-            OrderPricePerAcre = OrderPricePerAcre + OrderItem.PricePerAcre
+            For Each OrderItem In CurrentOrderItems
+                OrderPricePerAcre = OrderPricePerAcre + OrderItem.PricePerAcre
+            Next
 
-        Next
-        OrderTotal = OrderPricePerAcre * CurrentOrder.Acres
-        If (OrderTotal Is Nothing) Then
-            OrderTotal = 0.00
-            OrderPricePerAcre = 0.00
+            OrderTotal = OrderPricePerAcre * d.CurrentOrder.Acres
+            If (OrderTotal Is Nothing) Then
+                OrderTotal = 0.00
+                OrderPricePerAcre = 0.00
+            End If
+            d.CurrentOrder.OrderTotal = OrderTotal
+            d.CurrentOrder.TotalPricePerAcre = OrderPricePerAcre
         End If
-        CurrentOrder.OrderTotal = OrderTotal
-        CurrentOrder.TotalPricePerAcre = OrderPricePerAcre
-        OrderTotalTB.Text = FormatCurrency(CurrentOrder.OrderTotal, 2, TriState.True, TriState.False, TriState.True)
+        OrderTotalTB.Text = FormatCurrency(OrderTotal, 2, TriState.True, TriState.False, TriState.True)
         TotalPricePerAcreTB.Text = FormatCurrency(OrderPricePerAcre, 2, TriState.True, TriState.False, TriState.True)
-
         IsFillItems = False
     End Sub
 
@@ -267,7 +262,7 @@ Public Class ItemsForm
         Dim SaveItem As MsgBoxResult
         SaveItem = MessageBox.Show("Would you like to save your changes?", "Save Changes?", MessageBoxButtons.YesNo)
         If (SaveItem.Yes) Then
-            ItemsDB.SubmitChanges()
+            d.ItemsDB.SubmitChanges()
         End If
     End Sub
 
@@ -275,7 +270,7 @@ Public Class ItemsForm
         Dim SaveItem As MsgBoxResult
         SaveItem = MessageBox.Show("Would you like to save your changes?", "Save Changes?", MessageBoxButtons.YesNo)
         If (SaveItem.Yes) Then
-            CustomersDB.SubmitChanges()
+            d.CustomersDB.SubmitChanges()
         End If
         If (SaveItem.No) Then
             Exit Sub
@@ -284,6 +279,7 @@ Public Class ItemsForm
     Private Sub TabChanged(ByVal sender As Object, ByVal e As EventArgs) _
         Handles OrdersPage.SelectedIndexChanged
         CreateUpdateOrder()
+
         If (OrdersPage.SelectedTab Is ItemTabPage) Then
             IsLoading = True
             ItemsSearchTB.Text = Nothing
@@ -295,15 +291,13 @@ Public Class ItemsForm
             AddInventoryMenuItem.Visible = True
             ShowOrderItemInventoryItem.Visible = False
             DeleteOrderItem.Visible = False
-
         End If
 
         If (OrdersPage.SelectedTab Is CustomerTabPage) Then
             IsLoading = True
-            FillCustomerData()
+
             IsLoading = False
             CustomerGridViewFormatting()
-
             ShowInventoryMenuItem.Visible = False
             AddInventoryMenuItem.Visible = False
             ShowOrderItemInventoryItem.Visible = False
@@ -343,25 +337,19 @@ Public Class ItemsForm
 
 
     End Sub
-    Private Sub RefreshData()
-        Customers = CustomersDB.Customers
 
-        CustomerDataGridView.DataSource = Customers
-
-        Items = ItemsDB.Items
-        ItemsDataGridView.DataSource = Items
-
-    End Sub
     Private Sub UpdateAcres(sender As Object, e As System.EventArgs) Handles UnitsTB.Leave
-        CurrentOrder.Acres = UnitsTB.Text
+        If Not (d.CurrentOrder Is Nothing) Then
+            d.CurrentOrder.Acres = UnitsTB.Text
+        End If
 
     End Sub
     Private Sub PricePerAcreUpdate(sender As Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles OrderItemsGridView.CellLeave
         If (IsFillItems = False) Then
             Dim SelectedRow As DataGridViewRow = OrderItemsGridView.CurrentRow
             OrderItemsGridView.CommitEdit(DataGridViewDataErrorContexts.Commit)
-            CurrentOrderItem = SelectedRow.DataBoundItem
-            Dim UpdateDOrderItems = From OrderItem In OrderInfoDB.OrderItems Where OrderItem.OrderItemID = CurrentOrderItem.OrderItemID
+            d.CurrentOrderItem = SelectedRow.DataBoundItem
+            Dim UpdateDOrderItems = From OrderItem In d.OrderInfoDB.OrderItems Where OrderItem.OrderItemID = d.CurrentOrderItem.OrderItemID
             Dim s As String = sender.columns(e.ColumnIndex).DataPropertyName
 
             Dim UpdateOrderItems As Boolean = False
@@ -369,22 +357,22 @@ Public Class ItemsForm
                 Select Case s
                     Case "PLSLBSPerAcre"
                         UpdateOrderItems = True
-                        UpdateDOrderItem.PLS_LBS_PerAcre = CurrentOrderItem.PLSLBSPerAcre
+                        UpdateDOrderItem.PLS_LBS_PerAcre = d.CurrentOrderItem.PLSLBSPerAcre
                     Case "PricePerPLSLB"
                         UpdateOrderItems = True
-                        UpdateDOrderItem.PricePerPLSLB = CurrentOrderItem.PricePerPLSLB
+                        UpdateDOrderItem.PricePerPLSLB = d.CurrentOrderItem.PricePerPLSLB
                     Case "PLS"
                         UpdateOrderItems = True
-                        UpdateDOrderItem.PLS_Percent = CurrentOrderItem.PLS
+                        UpdateDOrderItem.PLS_Percent = d.CurrentOrderItem.PLS
                     Case Else
                         UpdateOrderItems = False
                 End Select
-                UpdateDOrderItem.PLS_Percent = CurrentOrderItem.PLS
+                UpdateDOrderItem.PLS_Percent = d.CurrentOrderItem.PLS
                 UpdateOrderItemInformation(UpdateDOrderItem)
-                CurrentOrderItem.PricePerAcre = UpdateDOrderItem.PricePerAcre
-                CurrentOrderItem.TotalPrice = UpdateDOrderItem.TotalPrice
-                CurrentOrderItem.BulkLbs = UpdateDOrderItem.BulkLbs
-                CurrentOrderItem.PLSLBS = UpdateDOrderItem.PLSLbs
+                d.CurrentOrderItem.PricePerAcre = UpdateDOrderItem.PricePerAcre
+                d.CurrentOrderItem.TotalPrice = UpdateDOrderItem.TotalPrice
+                d.CurrentOrderItem.BulkLbs = UpdateDOrderItem.BulkLbs
+                d.CurrentOrderItem.PLSLBS = UpdateDOrderItem.PLSLbs
 
             Next
             OrderItemsGridView.Refresh()
@@ -393,54 +381,12 @@ Public Class ItemsForm
     End Sub
     Public Sub UpdateOrderItemInformation(ByVal MyCurrentOrderItem As OrderItem)
         MyCurrentOrderItem.PricePerAcre = MyCurrentOrderItem.PricePerPLSLB * MyCurrentOrderItem.PLS_LBS_PerAcre
-        MyCurrentOrderItem.TotalPrice = MyCurrentOrderItem.PricePerAcre * CurrentOrder.Acres
-        MyCurrentOrderItem.BulkLbs = (MyCurrentOrderItem.PLS_LBS_PerAcre * CurrentOrder.Acres) / MyCurrentOrderItem.PLS_Percent
-        MyCurrentOrderItem.PLSLbs = MyCurrentOrderItem.PLS_LBS_PerAcre * CurrentOrder.Acres
+        MyCurrentOrderItem.TotalPrice = MyCurrentOrderItem.PricePerAcre * d.CurrentOrder.Acres
+        MyCurrentOrderItem.BulkLbs = (MyCurrentOrderItem.PLS_LBS_PerAcre * d.CurrentOrder.Acres) / MyCurrentOrderItem.PLS_Percent
+        MyCurrentOrderItem.PLSLbs = MyCurrentOrderItem.PLS_LBS_PerAcre * d.CurrentOrder.Acres
 
-        OrderInfoDB.SubmitChanges()
+        d.OrderInfoDB.SubmitChanges()
     End Sub
-
-
-    'Private Sub OrderItemCellClick(sender As Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles OrderItemsGridView.CellContentDoubleClick
-    '    Dim SelectedRow As DataGridViewRow = OrderItemsGridView.CurrentRow
-    '    Dim SelectedCell As DataGridViewCell = OrderItemsGridView.CurrentCell
-    '    CurrentOrderItem = SelectedRow.DataBoundItem
-    '    Dim UpdateDOrderItems = From OrderItem In OrderInfoDB.OrderItems Where OrderItem.OrderItemID = CurrentOrderItem.OrderItemID
-    '    For Each UpdateDOrderItem In UpdateDOrderItems
-    '        Dim s As String = sender.columns(e.ColumnIndex).headercell.value
-    '        Select Case s
-    '            Case "Distributor"
-    '                UpdateDOrderItem.PricePerPLSLB = CurrentOrderItem.Distributor
-    '                UpdateDOrderItem.PricePerAcre = CurrentOrderItem.PricePerPLSLB * CurrentOrderItem.PLSLBSPerAcre
-    '                UpdateDOrderItem.TotalPrice = CurrentOrderItem.PricePerAcre * CurrentOrder.Acres
-    '            Case "Retail"
-    '                UpdateDOrderItem.PricePerPLSLB = CurrentOrderItem.Retail
-    '                UpdateDOrderItem.PricePerAcre = CurrentOrderItem.PricePerPLSLB * CurrentOrderItem.PLSLBSPerAcre
-    '                UpdateDOrderItem.TotalPrice = CurrentOrderItem.PricePerAcre * CurrentOrder.Acres
-    '            Case "Wholesale"
-    '                UpdateDOrderItem.PricePerPLSLB = CurrentOrderItem.Wholesale
-    '                UpdateDOrderItem.PricePerAcre = CurrentOrderItem.PricePerPLSLB * CurrentOrderItem.PLSLBSPerAcre
-    '                UpdateDOrderItem.TotalPrice = CurrentOrderItem.PricePerAcre * CurrentOrder.Acres
-    '            Case "PricePerPLSLB"
-    '                UpdateDOrderItem.PricePerPLSLB = SelectedCell.Value
-    '                UpdateDOrderItem.PricePerAcre = CurrentOrderItem.PricePerPLSLB * CurrentOrderItem.PLSLBSPerAcre
-    '                UpdateDOrderItem.TotalPrice = CurrentOrderItem.PricePerAcre * CurrentOrder.Acres
-    '            Case "Total Price"
-    '                UpdateDOrderItem.PricePerPLSLB = CurrentOrderItem.PricePerPLSLB
-    '                UpdateDOrderItem.PricePerAcre = CurrentOrderItem.PricePerPLSLB * CurrentOrderItem.PLSLBSPerAcre
-    '                UpdateDOrderItem.TotalPrice = CurrentOrderItem.PricePerAcre * CurrentOrder.Acres
-
-    '            Case Else
-
-    '        End Select
-    '    Next
-
-    '    OrderInfoDB.SubmitChanges()
-    '    FillOrderItems()
-
-
-
-    'End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs)
         UpdateCustomers()
@@ -452,77 +398,90 @@ Public Class ItemsForm
     End Sub
 
     Private Sub CreateUpdateOrder()
-        OrderInfoDB.SubmitChanges()
-        CurrentOrder.InvoiceID = InvoiceTB.Text
-        CurrentOrder.CustomerID = CustomerCB.SelectedValue
-        CurrentOrder.UnitTypeID = OrderUnitsCB.SelectedValue
-        CurrentOrder.Acres = UnitsTB.Text
-        CurrentOrder.Project = ProjectTB.Text
-        CurrentOrder.MixName = MixNameTB.Text
-        CurrentOrder.ControlNumber = ControlNbrTB.Text
-        CurrentOrder.PriceList = PriceListCB.Text
-        CurrentOrder.OrderStatusId = OrderStatusCB.SelectedValue
-        CurrentOrder = CurrentOrder
-        CurrentOrder.OrderDate = OrderDatePicker.Value
-        CurrentOrder.IsMix = IsMixCB.Checked
-        If CurrentOrder.OrderID = 0 And IsNewOrder Then
-            OrderInfoDB.Orders.InsertOnSubmit(CurrentOrder)
-        Else
-            Dim CurrentCustomerList = From customer In CustomersDB.Customers Where customer.CustomerId = CurrentOrder.CustomerID
-            If (CurrentCustomerList.Count = 1) Then
+        If (d.CurrentOrder Is Nothing AndAlso IsNewOrder) Then
+            d.CurrentOrder = New Order
+            d.OrderInfoDB.Orders.InsertOnSubmit(d.CurrentOrder)
+        End If
+
+        If Not (d.CurrentOrder Is Nothing) Then
+            ' d.OrderInfoDB.SubmitChanges()
+            d.CurrentOrder.InvoiceID = InvoiceTB.Text
+            d.CurrentOrder.CustomerID = CustomerCB.SelectedValue
+            d.CurrentOrder.UnitTypeID = OrderUnitsCB.SelectedValue
+            d.CurrentOrder.Acres = UnitsTB.Text
+            d.CurrentOrder.Project = ProjectTB.Text
+            d.CurrentOrder.MixName = MixNameTB.Text
+            d.CurrentOrder.ControlNumber = ControlNbrTB.Text
+            d.CurrentOrder.PriceList = PriceListCB.Text
+            d.CurrentOrder.OrderStatusId = OrderStatusCB.SelectedValue
+            d.CurrentOrder.OrderDate = OrderDatePicker.Value
+            d.CurrentOrder.IsMix = IsMixCB.Checked
+
+
+            If d.CustomerPriceList Is Nothing Then
+                Dim CurrentCustomerList = From customer In d.Customers Where customer.CustomerId = d.CurrentOrder.CustomerID
                 For Each Customer In CurrentCustomerList
-                    CurrentCustomer = Customer
-                    If (CustomerPriceList Is Nothing OrElse CustomerPriceList = "") Then
-                        CustomerPriceList = QB.DoPriceListQuery(CurrentCustomer.CustomerName, "NameList")
-                        PriceListCB.Text = CustomerPriceList
+                    d.CurrentCustomer = Customer
+                    If (d.CustomerPriceList Is Nothing OrElse d.CustomerPriceList = "") Then
+                        d.CustomerPriceList = QB.DoPriceListQuery(d.CurrentCustomer.CustomerName, "NameList")
+                        PriceListCB.Text = d.CustomerPriceList
                     End If
                 Next
             End If
+            d.OrderInfoDB.SubmitChanges()
+            OrderIDTB.Text = d.CurrentOrder.OrderID
+            FillOrderItems()
         End If
-        OrderInfoDB.SubmitChanges()
-        OrderIDTB.Text = CurrentOrder.OrderID
-        FillOrderItems()
+
+
     End Sub
     Private Sub ViewCurrentOrder()
-        InvoiceTB.Text = CurrentOrder.InvoiceID
-        CustomerCB.SelectedValue = CurrentOrder.CustomerID
-        UnitsTB.Text = CurrentOrder.Acres
-        ProjectTB.Text = CurrentOrder.Project
-        MixNameTB.Text = CurrentOrder.MixName
-        ControlNbrTB.Text = CurrentOrder.ControlNumber
-        PriceListCB.Text = CurrentOrder.PriceList
-        OrderDatePicker.Value = CurrentOrder.OrderDate.Value
-        If Not (CurrentOrder.IsMix Is Nothing) Then
-            IsMixCB.Checked = CurrentOrder.IsMix.Value
+        If Not (d.CurrentOrder Is Nothing) Then
+            InvoiceTB.Text = d.CurrentOrder.InvoiceID
+            CustomerCB.SelectedValue = d.CurrentOrder.CustomerID
+            UnitsTB.Text = d.CurrentOrder.Acres
+            ProjectTB.Text = d.CurrentOrder.Project
+            MixNameTB.Text = d.CurrentOrder.MixName
+            ControlNbrTB.Text = d.CurrentOrder.ControlNumber
+            PriceListCB.Text = d.CurrentOrder.PriceList
+            OrderIDTB.Text = d.CurrentOrder.OrderID
+            OrderDatePicker.Value = d.CurrentOrder.OrderDate.Value
+            If Not (d.CurrentOrder.IsMix Is Nothing) Then
+                IsMixCB.Checked = d.CurrentOrder.IsMix.Value
+            End If
+
+            TotalPricePerAcreTB.Text = FormatCurrency(d.CurrentOrder.TotalPricePerAcre, 2, TriState.True, TriState.False, TriState.True)
+            OrderTotalTB.Text = FormatCurrency(d.CurrentOrder.OrderTotal, 2, TriState.True, TriState.False, TriState.True)
+            FillOrderItems()
+            ReportViewer2.Reset()
         End If
-
-
-        TotalPricePerAcreTB.Text = FormatCurrency(CurrentOrder.TotalPricePerAcre, 2, TriState.True, TriState.False, TriState.True)
-        OrderTotalTB.Text = FormatCurrency(CurrentOrder.OrderTotal, 2, TriState.True, TriState.False, TriState.True)
-        FillOrderItems()
-        ReportViewer2.Reset()
     End Sub
 
     Private Sub PerformItemsSearch()
-        Dim ItemsQuery = From items In ItemsDB.Items Where items.Item.Contains(ItemsSearchTB.Text) Or items.Lot.Contains(ItemsSearchTB.Text) Or items.BotanicalName.Contains(ItemsSearchTB.Text)
+        'ic.ItemsDB = New ItemsEditDataContext
+        Dim ItemsQuery = From Items In d.Items Where Items.Item.Contains(ItemsSearchTB.Text) Or Items.Lot.Contains(ItemsSearchTB.Text) Or Items.BotanicalName.Contains(ItemsSearchTB.Text)
+                         Order By Items.Item
 
         ItemsDataGridView.DataSource = ItemsQuery
+        TypeFilterCB.SelectedIndex = -1
 
     End Sub
     Private Sub PerformItemsFilter()
-        Dim ItemsQuery = From items In ItemsDB.Items Where items.Type = TypeFilterCB.Text
+        'ic.ItemsDB = New ItemsEditDataContext
 
+        Dim ItemsQuery = From Items In d.Items Where Items.Type = TypeFilterCB.Text
+                         Order By Items.Item
         ItemsDataGridView.DataSource = ItemsQuery
 
     End Sub
 
     Private Sub PerformCustomerSearch()
-        Dim CustomersQuery = From Customers In CustomersDB.Customers Where Customers.CustomerName.Contains(CustomerSearchTB.Text)
+        Dim CustomersQuery = From Customers In d.Customers Where Customers.CustomerName.Contains(CustomerSearchTB.Text)
         CustomerDataGridView.DataSource = CustomersQuery
     End Sub
 
     Private Sub PerformOrdersSearch()
-        Dim OrdersQuery = From Orders In OrderInfoDB.Orders Where Orders.InvoiceID.Contains(OrdersSearchTB.Text) Or Orders.OrderID.ToString().Contains(OrdersSearchTB.Text) Or Orders.Project.ToString().Contains(OrdersSearchTB.Text) Or Orders.MixName.ToString().Contains(OrdersSearchTB.Text) Or Orders.ControlNumber.ToString().Contains(OrdersSearchTB.Text)
+        Dim OrdersQuery = From Orders In d.OrderInfoDB.Orders Where Orders.InvoiceID.Contains(OrdersSearchTB.Text) Or Orders.OrderID.ToString().Contains(OrdersSearchTB.Text) Or Orders.Project.ToString().Contains(OrdersSearchTB.Text) Or Orders.MixName.ToString().Contains(OrdersSearchTB.Text) Or Orders.ControlNumber.ToString().Contains(OrdersSearchTB.Text)
         OrdersGridView.DataSource = OrdersQuery
     End Sub
     Private Sub UserDeletingRow(ByVal sender As Object,
@@ -531,15 +490,18 @@ Public Class ItemsForm
 
         Dim DeletedRow As DataGridViewRow = OrderItemsGridView.CurrentRow
         Dim i As OrderItemDetails = DeletedRow.DataBoundItem
-        Dim i2 = From OrderItem In OrderInfoDB.OrderItems Where OrderItem.OrderItemID = i.OrderItemID
+        Dim i2 = From OrderItem In d.OrderInfoDB.OrderItems Where OrderItem.OrderItemID = i.OrderItemID
         Dim r As Integer = i2.Count
         For Each OrderItem In i2
-            OrderInfoDB.OrderItems.DeleteOnSubmit(OrderItem)
+            d.OrderInfoDB.OrderItems.DeleteOnSubmit(OrderItem)
         Next
 
     End Sub
     Private Sub AddItemsToOrder()
-        IsNewOrder = True
+        If (d.CurrentOrder Is Nothing) Then
+            IsNewOrder = True
+        End If
+
         CreateUpdateOrder()
 
         For Each row As DataGridViewRow In ItemsDataGridView.SelectedRows
@@ -547,11 +509,11 @@ Public Class ItemsForm
             currentItem = row.DataBoundItem
             Dim SelectedItem As New OrderItem
             SelectedItem.ItemID = currentItem.ItemID
-            SelectedItem.OrderID = CurrentOrder.OrderID
+            SelectedItem.OrderID = d.CurrentOrder.OrderID
             SelectedItem.PLS_Percent = currentItem.PLS_
-            OrderInfoDB.OrderItems.InsertOnSubmit(SelectedItem)
-            If (Not CustomerPriceList Is Nothing) Then
-                Select Case CustomerPriceList
+            d.OrderInfoDB.OrderItems.InsertOnSubmit(SelectedItem)
+            If (Not d.CustomerPriceList Is Nothing) Then
+                Select Case d.CustomerPriceList
                     Case "Distributor"
                         SelectedItem.PricePerPLSLB = currentItem.Distributor
                     Case "Retail"
@@ -564,16 +526,13 @@ Public Class ItemsForm
             If dd > 365 Then
                 MsgBox(currentItem.Item + " hasn't been tested in " + dd.ToString() + " days" + vbCrLf + "Last test date: " + currentItem.Test_Date.ToString())
             End If
-
-
-            'OrderInfoDB.SubmitChanges()
         Next
-        OrderInfoDB.SubmitChanges()
+        d.OrderInfoDB.SubmitChanges()
         ItemsDataGridView.ClearSelection()
         'FillOrderItems()
     End Sub
     Private Sub NewOrder()
-        CurrentOrder = New Order
+        d.CurrentOrder = New Order
         InvoiceTB.Text = Nothing
         CustomerCB.SelectedItem = Nothing
         OrderStatusCB.SelectedItem = Nothing
@@ -583,18 +542,21 @@ Public Class ItemsForm
         ProjectTB.Text = Nothing
         ControlNbrTB.Text = Nothing
         MixNameTB.Text = Nothing
-        CreateUpdateOrder()
+        'CreateUpdateOrder()
         OrderItemsGridView.DataSource = Nothing
         OrderDatePicker.Value = DateTime.Now
-        IsNewOrder = False
-        CustomerPriceList = Nothing
+        IsNewOrder = True
+        d.CustomerPriceList = Nothing
         QB = New QBLib.QBLibrary
         ReportViewer2.Reset()
-        UserReports = New List(Of AvailableReport)
+        d.UserReports = New List(Of AvailableReport)
+        d.CurrentOrder = Nothing
+        OrderIDTB.Text = Nothing
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         PerformItemsSearch()
+
     End Sub
     Private Sub SearchEnter(sender As Object, e As System.Windows.Forms.KeyPressEventArgs) Handles ItemsSearchTB.KeyPress
         If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
@@ -623,16 +585,18 @@ Public Class ItemsForm
         IsLoading = True
         AddItemsToOrder()
         FillItemsData()
+        ItemsGridFormatting()
         ItemsSearchTB.Text = Nothing
         ItemsSearchTB.Focus()
         IsLoading = False
+        OrderItemsGridView.ClearSelection()
     End Sub
     Private Sub DoubleClickOrdersGrid(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles OrdersGridView.CellMouseDoubleClick
         For Each row As DataGridViewRow In OrdersGridView.SelectedRows
             Dim SelectedOrder As OrderDetails = row.DataBoundItem
-            Dim i2 = From Orders In OrderInfoDB.Orders Where Orders.OrderID = SelectedOrder.OrderID
+            Dim i2 = From Orders In d.OrderInfoDB.Orders Where Orders.OrderID = SelectedOrder.OrderID
             For Each order In i2
-                CurrentOrder = order
+                d.CurrentOrder = order
             Next
 
         Next
@@ -640,15 +604,18 @@ Public Class ItemsForm
         OrdersPage.SelectedTab = OrderTabPage
     End Sub
     Private Sub DoubleClickCustomersGrid(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles CustomerDataGridView.CellMouseDoubleClick
-
-        If (CurrentOrder.OrderID > 0) Then
-            NewOrder()
+        If Not (d.CurrentOrder Is Nothing) Then
+            Exit Sub
         End If
+
         For Each row As DataGridViewRow In CustomerDataGridView.SelectedRows
-            CurrentCustomer = row.DataBoundItem
+            d.CurrentCustomer = row.DataBoundItem
         Next
-        CustomerCB.SelectedItem = CurrentCustomer
+        'CustomerCB.SelectedItem = d.CurrentCustomer
+        CustomerCB.SelectedValue = d.CurrentCustomer.CustomerId
+
         OrdersPage.SelectedTab = OrderTabPage
+
     End Sub
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles EditItemsCB.CheckedChanged
         AllowItemEdits()
@@ -671,9 +638,9 @@ Public Class ItemsForm
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         For Each row As DataGridViewRow In OrdersGridView.SelectedRows
             Dim SelectedOrder As OrderDetails = row.DataBoundItem
-            Dim i2 = From Orders In OrderInfoDB.Orders Where Orders.OrderID = SelectedOrder.OrderID
+            Dim i2 = From Orders In d.OrderInfoDB.Orders Where Orders.OrderID = SelectedOrder.OrderID
             For Each order In i2
-                CurrentOrder = order
+                d.CurrentOrder = order
             Next
 
         Next
@@ -719,9 +686,9 @@ Public Class ItemsForm
         'TODO: This line of code loads data into the 'SeedDataSet.OrderItems' table. You can move, or remove it, as needed.
         Me.OrderItemsTableAdapter.Fill(Me.SeedDataSet.OrderItems)
         'TODO: This line of code loads data into the 'SeedDataSet.SeedOrder' table. You can move, or remove it, as needed.
-        Me.SeedOrderTableAdapter.Fill(Me.SeedDataSet.SeedOrder, CurrentOrder.OrderID)
+        Me.SeedOrderTableAdapter.Fill(Me.SeedDataSet.SeedOrder, d.CurrentOrder.OrderID)
         'TODO: This line of code loads data into the 'SeedDataSet.SeedOrderDetail' table. You can move, or remove it, as needed.
-        Me.SeedOrderDetailTableAdapter.Fill(Me.SeedDataSet.SeedOrderDetail, CurrentOrder.OrderID)
+        Me.SeedOrderDetailTableAdapter.Fill(Me.SeedDataSet.SeedOrderDetail, d.CurrentOrder.OrderID)
 
         Me.SeedReportsTableAdapter.Fill(Me.SeedDataSet.SeedReports)
 
@@ -731,15 +698,14 @@ Public Class ItemsForm
         RefreshDataSources()
         Dim ReportFileName As String
         Dim HasSubReports As Boolean
-        Dim sr = From ar In UserReports Where ar.UserChecked = True
 
-        If (sr.Count > 0) Then
+        If (d.UserReports.Count > 0) Then
 
-            If (sr.Count = 1) Then
-                ReportFileName = sr.Single.ReportFileName
-                HasSubReports = sr.Single.HasSubReports
+            If (d.UserReports.Count = 1) Then
+                ReportFileName = d.UserReports.Single.ReportFileName
+                HasSubReports = d.UserReports.Single.HasSubReports
             Else
-                Dim i3 = From SeedReports In SeedReportsDB.SeedReports Where SeedReports.HasSubReports = True
+                Dim i3 = From SeedReports In d.SeedReports Where SeedReports.HasSubReports = True
                 ReportFileName = i3.Single.ReportFileName
                 HasSubReports = i3.Single.HasSubReports
             End If
@@ -766,27 +732,12 @@ Public Class ItemsForm
         Me.ReportViewer2.LocalReport.DataSources.Add(SeedOrderDetailSource)
         Me.ReportViewer2.LocalReport.DataSources.Add(SeedReportsSource)
         Me.ReportViewer2.LocalReport.ReportEmbeddedResource = My.Application.Info.AssemblyName + "." + ReportFileName
+        Me.ReportViewer2.LocalReport.DisplayName = d.CurrentCustomer.CustomerName + "_" + d.CurrentOrder.Project
+        Me.ReportViewer2.PrinterSettings.PrintFileName = d.CurrentCustomer.CustomerName + "_" + d.CurrentOrder.Project
         Me.ReportViewer2.Name = "ReportViewer2"
         If (HasSubReports) Then
             Me.ReportViewer2.ProcessingMode = ProcessingMode.Local
             AddHandler Me.ReportViewer2.LocalReport.SubreportProcessing, AddressOf AllReportsSubreportProcessingEventHandler
-            'Me.Controls.Add(ReportViewer2)
-
-            'Dim paramList As New List(Of ReportParameter)
-            'Dim param As New ReportParameter
-            'For Each itemChecked As SeedReport In ReportsCheckListBox.CheckedItems
-            '    param.Values.Add(itemChecked.ReportID)
-            '    'Dim ReportsChecked = From SeedReport In SeedReportsDB.SeedReports Where SeedReport.ReportID = itemChecked.ReportID Take (1)
-            '    '                temChecked.UserChecked = True
-            '    'For Each SeedReport In ReportsChecked
-            '    '    i.UserChecked = True
-            '    '    SeedReportsDB.SubmitChanges()
-            '    'Next
-            '    ''    SeedReportsDB.SubmitChanges()
-            'Next
-            'SeedReportsDB.SubmitChanges()
-            'param.Name = "SubReportsVisible"
-            'ReportViewer2.LocalReport.SetParameters(param)
             Me.ReportViewer2.RefreshReport()
         End If
     End Sub
@@ -798,13 +749,15 @@ Public Class ItemsForm
         e.DataSources.Add(SeedOrderDetailSource)
     End Sub
     Private Sub OrderStatusCB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles OrderStatusCB.SelectedIndexChanged
-        If Not (OrderStatusCB.SelectedItem Is Nothing OrElse OrderStatusCB.SelectedItem.OrderStatusID = 0) Then
-            CurrentOrder.OrderStatusId = OrderStatusCB.SelectedValue
-            OrderInfoDB.SubmitChanges()
+        If Not d.CurrentOrder Is Nothing Then
+            If Not (OrderStatusCB.SelectedItem Is Nothing OrElse OrderStatusCB.SelectedItem.OrderStatusID = 0) Then
+                d.CurrentOrder.OrderStatusId = OrderStatusCB.SelectedValue
+                d.OrderInfoDB.SubmitChanges()
+            End If
         End If
     End Sub
     Public Sub CreateInvoice()
-        Dim OrdersQuery = From Orders In OrderInfoDB.Orders Join Customers In OrderInfoDB.OrderCustomerDetails On Orders.CustomerID Equals Customers.CustomerId Where Orders.OrderID = CurrentOrder.OrderID
+        Dim OrdersQuery = From Orders In d.OrderInfoDB.Orders Join Customers In d.OrderInfoDB.OrderCustomerDetails On Orders.CustomerID Equals Customers.CustomerId Where Orders.OrderID = d.CurrentOrder.OrderID
                           Select New OrderDetails With {
                                 .OrderID = Orders.OrderID,
                               .InvoiceID = Orders.InvoiceID,
@@ -821,7 +774,7 @@ Public Class ItemsForm
                               .IsMix = Orders.IsMix
                               }
 
-        Dim OrdersItemsQuery = From OrderItem In OrderInfoDB.OrderItems Join OrderItemDetails In OrderInfoDB.OrderItemDetails On OrderItem.ItemID Equals OrderItemDetails.ItemID Where OrderItem.OrderID = CurrentOrder.OrderID
+        Dim OrdersItemsQuery = From OrderItem In d.OrderInfoDB.OrderItems Join OrderItemDetails In d.OrderInfoDB.OrderItemDetails On OrderItem.ItemID Equals OrderItemDetails.ItemID Where OrderItem.OrderID = d.CurrentOrder.OrderID
                                Select New OrderItemDetails With {
                                 .PricePerAcre = OrderItem.PricePerAcre,
                                    .TotalPrice = OrderItem.TotalPrice,
@@ -832,13 +785,13 @@ Public Class ItemsForm
         Dim Order = OrdersQuery.ToArray()
 
 
-        CurrentOrder.InvoiceID = QB.QBCreateInvoice(Order, OrderItems)
-        OrderInfoDB.SubmitChanges()
-        InvoiceTB.Text = CurrentOrder.InvoiceID
+        d.CurrentOrder.InvoiceID = QB.QBCreateInvoice(Order, OrderItems)
+        d.OrderInfoDB.SubmitChanges()
+        InvoiceTB.Text = d.CurrentOrder.InvoiceID
     End Sub
     Public Sub UpdateInventory()
 
-        Dim CurrentOrderItems = From orderitems In OrderInfoDB.OrderItems Join OrderItemDetails In OrderInfoDB.OrderItemDetails On orderitems.ItemID Equals OrderItemDetails.ItemID Where orderitems.OrderID.Equals(CurrentOrder.OrderID)
+        Dim CurrentOrderItems = From orderitems In d.OrderInfoDB.OrderItems Join OrderItemDetails In d.OrderInfoDB.OrderItemDetails On orderitems.ItemID Equals OrderItemDetails.ItemID Where orderitems.OrderID.Equals(d.CurrentOrder.OrderID)
                                 Select New OrderItemDetails With {
                                     .Lot = OrderItemDetails.Lot,
                                     .PLS = OrderItemDetails.PLS_,
@@ -846,7 +799,7 @@ Public Class ItemsForm
                                     .PLSLBSPerAcre = orderitems.PLS_LBS_PerAcre,
                                     .PricePerPLSLB = orderitems.PricePerPLSLB,
                                     .PricePerAcre = orderitems.PricePerAcre,
-                                    .TotalPrice = orderitems.PricePerAcre * CurrentOrder.Acres,
+                                    .TotalPrice = orderitems.PricePerAcre * d.CurrentOrder.Acres,
                                     .Distributor = OrderItemDetails.Distributor,
                                     .Wholesale = OrderItemDetails.Wholesale,
                                     .Retail = OrderItemDetails.Retail,
@@ -856,25 +809,25 @@ Public Class ItemsForm
                                     .ItemID = orderitems.ItemID}
         OrderItemsGridView.DataSource = CurrentOrderItems
 
-        Dim InventoryItems = From inventories In InventoryDB.Inventories Where inventories.InvoiceID = CurrentOrder.InvoiceID
+        Dim InventoryItems = From inventories In d.InventoryDB.Inventories Where inventories.InvoiceID = d.CurrentOrder.InvoiceID
 
         If InventoryItems.Count = 0 Then
             For Each orderitem In CurrentOrderItems
                 Dim tmpInventory As New Inventory
-                tmpInventory.InventoryDate = CurrentOrder.OrderDate
+                tmpInventory.InventoryDate = d.CurrentOrder.OrderDate
                 tmpInventory.Quantity = orderitem.BulkLbs * -1.0
-                tmpInventory.InvoiceID = CurrentOrder.InvoiceID
-                tmpInventory.Memo = "Order " + CurrentOrder.OrderID.ToString
+                tmpInventory.InvoiceID = d.CurrentOrder.InvoiceID
+                tmpInventory.Memo = "Order " + d.CurrentOrder.OrderID.ToString
                 tmpInventory.ItemID = orderitem.ItemID
-                InventoryDB.Inventories.InsertOnSubmit(tmpInventory)
+                d.InventoryDB.Inventories.InsertOnSubmit(tmpInventory)
             Next
-            InventoryDB.SubmitChanges()
+            d.InventoryDB.SubmitChanges()
         End If
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
         CreateUpdateOrder()
 
-        If CurrentOrder.InvoiceID Is Nothing OrElse CurrentOrder.InvoiceID = "" Then
+        If d.CurrentOrder.InvoiceID Is Nothing OrElse d.CurrentOrder.InvoiceID = "" Then
             CreateInvoice()
 
         End If
@@ -883,8 +836,8 @@ Public Class ItemsForm
 
     Private Sub CustomerCB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CustomerCB.SelectedIndexChanged
         PriceListCB.Text = Nothing
-        CustomerPriceList = Nothing
-        CurrentCustomer = CustomerCB.SelectedItem
+        d.CustomerPriceList = Nothing
+        d.CurrentCustomer = CustomerCB.SelectedItem
     End Sub
 
     'Private Sub RightClickItemsGridview(sender As Object, e As MouseEventArgs) Handles ItemsDataGridView.MouseClick
@@ -915,22 +868,22 @@ Public Class ItemsForm
     End Sub
     Private Sub Menu_Click_DeleteItem(ByVal sender As Object, ByVal e As System.EventArgs)
         Dim DeletedRow As DataGridViewRow = ItemsDataGridView.CurrentRow
-
         Dim i As Item = DeletedRow.DataBoundItem
-        Dim i2 = From Items In ItemsDB.Items Where Items.ItemID = i.ItemID
-        ItemsDB.SubmitChanges()
+        Dim i2 = From Items In d.Items Where Items.ItemID = i.ItemID
+        d.ItemsDB.SubmitChanges()
         FillItemsData()
+        ItemsGridFormatting()
     End Sub
     Private Sub Menu_Click_DeleteOrderItem(ByVal sender As Object, ByVal e As System.EventArgs)
         Dim DeletedRow As DataGridViewRow = OrderItemsGridView.CurrentRow
 
         Dim i As OrderItemDetails = DeletedRow.DataBoundItem
-        Dim i2 = From OrderItem In OrderInfoDB.OrderItems Where OrderItem.OrderItemID = i.OrderItemID
+        Dim i2 = From OrderItem In d.OrderInfoDB.OrderItems Where OrderItem.OrderItemID = i.OrderItemID
         Dim r As Integer = i2.Count
         For Each OrderItem In i2
-            OrderInfoDB.OrderItems.DeleteOnSubmit(OrderItem)
+            d.OrderInfoDB.OrderItems.DeleteOnSubmit(OrderItem)
         Next
-        OrderInfoDB.SubmitChanges()
+        d.OrderInfoDB.SubmitChanges()
         FillOrderItems()
     End Sub
     'Private Sub RightClickOrderItemsGridview(sender As Object, e As MouseEventArgs) Handles OrderItemsGridView.MouseClick
@@ -944,8 +897,8 @@ Public Class ItemsForm
         IsLoading = True
         Dim SelectedRow As DataGridViewRow = OrderItemsGridView.CurrentRow
         Dim Item As OrderItemDetails = SelectedRow.DataBoundItem
-        ItemID = Item.ItemID
-        FillInventoryData(Item.ItemID)
+        d.ItemID = Item.ItemID
+        FillInventoryData(d.ItemID)
         OrdersPage.SelectedTab = InventoryTP
         InventoryGridViewFormatting()
         IsLoading = False
@@ -976,7 +929,7 @@ Public Class ItemsForm
             Select Case column.HeaderCell.OwningColumn.DataPropertyName
                 Case "Item"
                     column.HeaderText = "Common Name"
-                    ItemsDataGridView.Sort(column, System.ComponentModel.ListSortDirection.Ascending)
+                'ItemsDataGridView.Sort(column, System.ComponentModel.ListSortDirection.Ascending)
                 Case "PLS_", "Purity", "Crop", "Inert", "Weeds", "Germ", "Dormant", "Total"
                     column.DefaultCellStyle.Format = "p2"
                     If (column.HeaderCell.OwningColumn.DataPropertyName = "PLS_") Then
@@ -1069,13 +1022,13 @@ Public Class ItemsForm
                     column.HeaderText = "PLS %"
                     column.DefaultCellStyle.Format = "p2"
                 Case "PLSLBSPerAcre"
-                    column.HeaderText = "PLS LBS Per " + CurrentOrderUnit.UnitTypeName
+                    column.HeaderText = "PLS LBS Per " + d.CurrentOrderUnit.UnitTypeName
                     column.DefaultCellStyle.Format = "0.00"
                 Case "PricePerPLSLB"
                     column.HeaderText = "Price Per PLS LBS"
                     column.DefaultCellStyle.Format = "c2"
                 Case "PricePerAcre"
-                    column.HeaderText = "Price Per " + CurrentOrderUnit.UnitTypeName
+                    column.HeaderText = "Price Per " + d.CurrentOrderUnit.UnitTypeName
                     column.DefaultCellStyle.Format = "c2"
                 Case "TotalPrice"
                     column.HeaderText = "Total Price"
@@ -1105,6 +1058,7 @@ Public Class ItemsForm
                     column.Visible = False
                 Case "CustomerName"
                     column.HeaderText = "Customer Name"
+                    CustomerDataGridView.Sort(column, System.ComponentModel.ListSortDirection.Ascending)
                 Case "CustomerAddressLine1"
                     column.HeaderText = "Address Line 1"
                 Case "CustomerAddressLine2"
@@ -1126,7 +1080,7 @@ Public Class ItemsForm
         Next
     End Sub
     Public Sub CopyOrder()
-        Dim CurrentOrderItems = From orderitems In OrderInfoDB.OrderItems Where orderitems.OrderID = CurrentOrder.OrderID
+        Dim CurrentOrderItems = From orderitems In d.OrderInfoDB.OrderItems Where orderitems.OrderID = d.CurrentOrder.OrderID
         Dim CopyOrder As New Order
         CopyOrder.Acres = 0.00
         CopyOrder.OrderDate = Now()
@@ -1134,9 +1088,9 @@ Public Class ItemsForm
         CopyOrder.InvoiceID = Nothing
         CopyOrder.CustomerID = Nothing
         CopyOrder.Project = Nothing
-        OrderInfoDB.Orders.InsertOnSubmit(CopyOrder)
+        d.OrderInfoDB.Orders.InsertOnSubmit(CopyOrder)
 
-        OrderInfoDB.SubmitChanges()
+        d.OrderInfoDB.SubmitChanges()
 
         For Each OrderItem In CurrentOrderItems
             Dim CopyOrderItem As New OrderItem
@@ -1147,18 +1101,20 @@ Public Class ItemsForm
             CopyOrderItem.BulkLbs = Nothing
             CopyOrderItem.ItemID = OrderItem.ItemID
             CopyOrderItem.PLS_Percent = OrderItem.PLS_Percent
-            OrderInfoDB.OrderItems.InsertOnSubmit(CopyOrderItem)
+            d.OrderInfoDB.OrderItems.InsertOnSubmit(CopyOrderItem)
         Next
-        OrderInfoDB.SubmitChanges()
-        CurrentOrder = CopyOrder
+        d.OrderInfoDB.SubmitChanges()
+        d.CurrentOrder = CopyOrder
         ViewCurrentOrder()
         ReportViewer2.Reset()
-        UserReports = New List(Of AvailableReport)
+        d.UserReports = New List(Of AvailableReport)
     End Sub
 
     Private Sub PriceListCB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles PriceListCB.SelectedIndexChanged
-        CustomerPriceList = PriceListCB.Text
-        CurrentOrder.PriceList = PriceListCB.Text
+        d.CustomerPriceList = PriceListCB.Text
+        If Not (d.CurrentOrder Is Nothing) Then
+            d.CurrentOrder.PriceList = PriceListCB.Text
+        End If
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -1174,7 +1130,7 @@ Public Class ItemsForm
         CreateUpdateOrder()
         For Each row As DataGridViewRow In OrderItemsGridView.Rows
             Dim MyOrderItemDetail As OrderItemDetails = row.DataBoundItem
-            Dim MyOrderItems = From orderItems In OrderInfoDB.OrderItems Where orderItems.OrderItemID = MyOrderItemDetail.OrderItemID
+            Dim MyOrderItems = From orderItems In d.OrderInfoDB.OrderItems Where orderItems.OrderItemID = MyOrderItemDetail.OrderItemID
             UpdateOrderItemInformation(MyOrderItems.Single)
         Next
     End Sub
@@ -1191,23 +1147,15 @@ Public Class ItemsForm
         If Not (IsLoading) Then
             PerformItemsFilter()
         End If
-
+        ItemsSearchTB.Text = Nothing
     End Sub
 
     Private Sub OrderUnitsCB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles OrderUnitsCB.SelectedIndexChanged
         If Not IsLoading Then
-            CurrentOrderUnit = OrderUnitsCB.SelectedItem
+            d.CurrentOrderUnit = OrderUnitsCB.SelectedItem
             OrderItemsGridFormatting()
         End If
 
     End Sub
 
-    Private Sub FillVisibleReportsToolStripButton1_Click(sender As Object, e As EventArgs)
-        Try
-            Me.SeedReportsTableAdapter.FillVisibleReports(Me.SeedDataSet.SeedReports)
-        Catch ex As System.Exception
-            System.Windows.Forms.MessageBox.Show(ex.Message)
-        End Try
-
-    End Sub
 End Class

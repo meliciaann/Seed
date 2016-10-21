@@ -307,13 +307,14 @@ Public Class QBLibrary
             connectionOpen = False
 
             If (responseMsgSet Is Nothing) Then
-
+                Return TempCustomerRet
                 Exit Function
             End If
 
             Dim responseList As IResponseList
             responseList = responseMsgSet.ResponseList
             If (responseList Is Nothing) Then
+                Return TempCustomerRet
                 Exit Function
             End If
 
@@ -347,6 +348,7 @@ Public Class QBLibrary
             End If
             Return TempCustomerRet
         End Try
+
     End Function
     Public Function DoItemQuery(ByVal QueryValue As String, ByVal QueryType As String) As IORItemRet
         Dim sessionBegun As Boolean
@@ -571,12 +573,14 @@ Public Class QBLibrary
             connectionOpen = False
 
             If (responseMsgSet Is Nothing) Then
+                Return RefNumber
                 Exit Function
             End If
 
             Dim responseList As IResponseList
             responseList = responseMsgSet.ResponseList
             If (responseList Is Nothing) Then
+                Return RefNumber
                 Exit Function
             End If
 
@@ -611,6 +615,7 @@ Public Class QBLibrary
             If (connectionOpen) Then
                 sessionManager.CloseConnection()
             End If
+            Return RefNumber
         End Try
 
     End Function
