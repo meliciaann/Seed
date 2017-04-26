@@ -54,3 +54,9 @@ C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedApp\obj\Debug\SeedApp.exe.mani
 C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedApp\obj\Debug\SeedApp.application
 C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedApp\bin\Debug\Microsoft.ReportViewer.Common.dll
 C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedApp\bin\Debug\Submittal.rdlc
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedApp\bin\Debug\BagTagSingle.rdlc
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedApp\bin\Debug\BagTagMix.rdlc
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedApp\bin\Debug\BagTagMix Full.rdlc
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedApp\bin\Debug\System.Data.Linq.dll
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedApp\bin\Debug\Items.rdlc
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedApp\obj\Debug\SeedApp.CustomersForm.resources

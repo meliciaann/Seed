@@ -49,12 +49,14 @@ Partial Public Class InventoryDataContext
     End Sub
   Partial Private Sub DeleteInventoryItemDetail(instance As InventoryItemDetail)
     End Sub
-#End Region
-    Public Sub New()
-        MyBase.New(Global.SeedGeneral.My.MySettings.Default.SeedConnectionString, mappingSource)
-        OnCreated()
-    End Sub
-    Public Sub New(ByVal connection As String)
+  #End Region
+	
+	Public Sub New()
+		MyBase.New(Global.SeedGeneral.My.MySettings.Default.SeedConnectionString1, mappingSource)
+		OnCreated
+	End Sub
+	
+	Public Sub New(ByVal connection As String)
 		MyBase.New(connection, mappingSource)
 		OnCreated
 	End Sub
@@ -190,6 +192,9 @@ Partial Public Class InventoryOrderDetail
 		Set
 			If ((Me._OrderID = value)  _
 						= false) Then
+				If Me._Inventory.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
 				Me.OnOrderIDChanging(value)
 				Me.SendPropertyChanging
 				Me._OrderID = value
@@ -206,9 +211,6 @@ Partial Public Class InventoryOrderDetail
 		End Get
 		Set
 			If (String.Equals(Me._InvoiceID, value) = false) Then
-				If Me._Inventory.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
 				Me.OnInvoiceIDChanging(value)
 				Me.SendPropertyChanging
 				Me._InvoiceID = value
@@ -347,7 +349,7 @@ Partial Public Class InventoryOrderDetail
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Inventory_InventoryOrderDetail", Storage:="_Inventory", ThisKey:="InvoiceID", OtherKey:="InvoiceID", IsForeignKey:=true)>  _
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Inventory_InventoryOrderDetail", Storage:="_Inventory", ThisKey:="OrderID", OtherKey:="OrderId", IsForeignKey:=true)>  _
 	Public Property Inventory() As Inventory
 		Get
 			Return Me._Inventory.Entity
@@ -366,9 +368,9 @@ Partial Public Class InventoryOrderDetail
 				If ((value Is Nothing)  _
 							= false) Then
 					value.InventoryOrderDetails.Add(Me)
-					Me._InvoiceID = value.InvoiceID
+					Me._OrderID = value.OrderId
 				Else
-					Me._InvoiceID = CType(Nothing, String)
+					Me._OrderID = CType(Nothing, Integer)
 				End If
 				Me.SendPropertyChanged("Inventory")
 			End If
@@ -412,9 +414,13 @@ Partial Public Class Inventory
 	
 	Private _InventoryDate As System.Nullable(Of Date)
 	
-	Private _InventoryOrderDetails As EntitySet(Of InventoryOrderDetail)
+	Private _OrderId As Integer
+	
+	Private _ItemGroupID As Integer
 	
 	Private _InventoryItemDetails As EntitySet(Of InventoryItemDetail)
+	
+	Private _InventoryOrderDetails As EntitySet(Of InventoryOrderDetail)
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -447,12 +453,20 @@ Partial Public Class Inventory
     End Sub
     Partial Private Sub OnInventoryDateChanged()
     End Sub
+    Partial Private Sub OnOrderIdChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnOrderIdChanged()
+    End Sub
+    Partial Private Sub OnItemGroupIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnItemGroupIDChanged()
+    End Sub
     #End Region
 	
 	Public Sub New()
 		MyBase.New
-		Me._InventoryOrderDetails = New EntitySet(Of InventoryOrderDetail)(AddressOf Me.attach_InventoryOrderDetails, AddressOf Me.detach_InventoryOrderDetails)
 		Me._InventoryItemDetails = New EntitySet(Of InventoryItemDetail)(AddressOf Me.attach_InventoryItemDetails, AddressOf Me.detach_InventoryItemDetails)
+		Me._InventoryOrderDetails = New EntitySet(Of InventoryOrderDetail)(AddressOf Me.attach_InventoryOrderDetails, AddressOf Me.detach_InventoryOrderDetails)
 		OnCreated
 	End Sub
 	
@@ -554,23 +568,57 @@ Partial Public Class Inventory
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Inventory_InventoryOrderDetail", Storage:="_InventoryOrderDetails", ThisKey:="InvoiceID", OtherKey:="InvoiceID")>  _
-	Public Property InventoryOrderDetails() As EntitySet(Of InventoryOrderDetail)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OrderId", DbType:="Int NOT NULL")>  _
+	Public Property OrderId() As Integer
 		Get
-			Return Me._InventoryOrderDetails
+			Return Me._OrderId
 		End Get
 		Set
-			Me._InventoryOrderDetails.Assign(value)
+			If ((Me._OrderId = value)  _
+						= false) Then
+				Me.OnOrderIdChanging(value)
+				Me.SendPropertyChanging
+				Me._OrderId = value
+				Me.SendPropertyChanged("OrderId")
+				Me.OnOrderIdChanged
+			End If
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Inventory_Item", Storage:="_InventoryItemDetails", ThisKey:="ItemID", OtherKey:="ItemID")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ItemGroupID", DbType:="Int NOT NULL")>  _
+	Public Property ItemGroupID() As Integer
+		Get
+			Return Me._ItemGroupID
+		End Get
+		Set
+			If ((Me._ItemGroupID = value)  _
+						= false) Then
+				Me.OnItemGroupIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ItemGroupID = value
+				Me.SendPropertyChanged("ItemGroupID")
+				Me.OnItemGroupIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Inventory_InventoryItemDetail", Storage:="_InventoryItemDetails", ThisKey:="ItemGroupID", OtherKey:="ItemGroupID")>  _
 	Public Property InventoryItemDetails() As EntitySet(Of InventoryItemDetail)
 		Get
 			Return Me._InventoryItemDetails
 		End Get
 		Set
 			Me._InventoryItemDetails.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Inventory_InventoryOrderDetail", Storage:="_InventoryOrderDetails", ThisKey:="OrderId", OtherKey:="OrderID")>  _
+	Public Property InventoryOrderDetails() As EntitySet(Of InventoryOrderDetail)
+		Get
+			Return Me._InventoryOrderDetails
+		End Get
+		Set
+			Me._InventoryOrderDetails.Assign(value)
 		End Set
 	End Property
 	
@@ -592,22 +640,22 @@ Partial Public Class Inventory
 		End If
 	End Sub
 	
-	Private Sub attach_InventoryOrderDetails(ByVal entity As InventoryOrderDetail)
-		Me.SendPropertyChanging
-		entity.Inventory = Me
-	End Sub
-	
-	Private Sub detach_InventoryOrderDetails(ByVal entity As InventoryOrderDetail)
-		Me.SendPropertyChanging
-		entity.Inventory = Nothing
-	End Sub
-	
 	Private Sub attach_InventoryItemDetails(ByVal entity As InventoryItemDetail)
 		Me.SendPropertyChanging
 		entity.Inventory = Me
 	End Sub
 	
 	Private Sub detach_InventoryItemDetails(ByVal entity As InventoryItemDetail)
+		Me.SendPropertyChanging
+		entity.Inventory = Nothing
+	End Sub
+	
+	Private Sub attach_InventoryOrderDetails(ByVal entity As InventoryOrderDetail)
+		Me.SendPropertyChanging
+		entity.Inventory = Me
+	End Sub
+	
+	Private Sub detach_InventoryOrderDetails(ByVal entity As InventoryOrderDetail)
 		Me.SendPropertyChanging
 		entity.Inventory = Nothing
 	End Sub
@@ -665,7 +713,13 @@ Partial Public Class InventoryItemDetail
 	
 	Private _BotanicalName As String
 	
-	Private _IsDeleted As System.Nullable(Of Boolean)
+	Private _NoxiousWeeds As String
+	
+	Private _QBListID As String
+	
+	Private _AvailableInventory As System.Nullable(Of Decimal)
+	
+	Private _ItemGroupID As Integer
 	
 	Private _Inventory As EntityRef(Of Inventory)
 	
@@ -768,9 +822,21 @@ Partial Public Class InventoryItemDetail
     End Sub
     Partial Private Sub OnBotanicalNameChanged()
     End Sub
-    Partial Private Sub OnIsDeletedChanging(value As System.Nullable(Of Boolean))
+    Partial Private Sub OnNoxiousWeedsChanging(value As String)
     End Sub
-    Partial Private Sub OnIsDeletedChanged()
+    Partial Private Sub OnNoxiousWeedsChanged()
+    End Sub
+    Partial Private Sub OnQBListIDChanging(value As String)
+    End Sub
+    Partial Private Sub OnQBListIDChanged()
+    End Sub
+    Partial Private Sub OnAvailableInventoryChanging(value As System.Nullable(Of Decimal))
+    End Sub
+    Partial Private Sub OnAvailableInventoryChanged()
+    End Sub
+    Partial Private Sub OnItemGroupIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnItemGroupIDChanged()
     End Sub
     #End Region
 	
@@ -812,7 +878,7 @@ Partial Public Class InventoryItemDetail
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[PLS%]", Storage:="_PLS_", DbType:="Decimal(20,10)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="[PLS%]", Storage:="_PLS_", DbType:="Decimal(12,4)")>  _
 	Public Property PLS_() As System.Nullable(Of Decimal)
 		Get
 			Return Me._PLS_
@@ -844,7 +910,7 @@ Partial Public Class InventoryItemDetail
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Purity", DbType:="Decimal(20,10)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Purity", DbType:="Decimal(12,4)")>  _
 	Public Property Purity() As System.Nullable(Of Decimal)
 		Get
 			Return Me._Purity
@@ -860,7 +926,7 @@ Partial Public Class InventoryItemDetail
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Crop", DbType:="Decimal(20,10)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Crop", DbType:="Decimal(12,4)")>  _
 	Public Property Crop() As System.Nullable(Of Decimal)
 		Get
 			Return Me._Crop
@@ -892,7 +958,7 @@ Partial Public Class InventoryItemDetail
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Weeds", DbType:="Decimal(20,10)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Weeds", DbType:="Decimal(12,4)")>  _
 	Public Property Weeds() As System.Nullable(Of Decimal)
 		Get
 			Return Me._Weeds
@@ -908,7 +974,7 @@ Partial Public Class InventoryItemDetail
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Germ", DbType:="Decimal(20,10)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Germ", DbType:="Decimal(12,4)")>  _
 	Public Property Germ() As System.Nullable(Of Decimal)
 		Get
 			Return Me._Germ
@@ -924,7 +990,7 @@ Partial Public Class InventoryItemDetail
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Dormant", DbType:="Decimal(20,10)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Dormant", DbType:="Decimal(12,4)")>  _
 	Public Property Dormant() As System.Nullable(Of Decimal)
 		Get
 			Return Me._Dormant
@@ -940,7 +1006,7 @@ Partial Public Class InventoryItemDetail
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Total", DbType:="Decimal(20,10)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Total", DbType:="Decimal(12,4)")>  _
 	Public Property Total() As System.Nullable(Of Decimal)
 		Get
 			Return Me._Total
@@ -1108,9 +1174,6 @@ Partial Public Class InventoryItemDetail
 		Set
 			If ((Me._ItemID = value)  _
 						= false) Then
-				If Me._Inventory.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
 				Me.OnItemIDChanging(value)
 				Me.SendPropertyChanging
 				Me._ItemID = value
@@ -1152,23 +1215,75 @@ Partial Public Class InventoryItemDetail
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsDeleted", DbType:="Bit")>  _
-	Public Property IsDeleted() As System.Nullable(Of Boolean)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NoxiousWeeds", DbType:="NVarChar(100)")>  _
+	Public Property NoxiousWeeds() As String
 		Get
-			Return Me._IsDeleted
+			Return Me._NoxiousWeeds
 		End Get
 		Set
-			If (Me._IsDeleted.Equals(value) = false) Then
-				Me.OnIsDeletedChanging(value)
+			If (String.Equals(Me._NoxiousWeeds, value) = false) Then
+				Me.OnNoxiousWeedsChanging(value)
 				Me.SendPropertyChanging
-				Me._IsDeleted = value
-				Me.SendPropertyChanged("IsDeleted")
-				Me.OnIsDeletedChanged
+				Me._NoxiousWeeds = value
+				Me.SendPropertyChanged("NoxiousWeeds")
+				Me.OnNoxiousWeedsChanged
 			End If
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Inventory_Item", Storage:="_Inventory", ThisKey:="ItemID", OtherKey:="ItemID", IsForeignKey:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_QBListID", DbType:="NVarChar(100)")>  _
+	Public Property QBListID() As String
+		Get
+			Return Me._QBListID
+		End Get
+		Set
+			If (String.Equals(Me._QBListID, value) = false) Then
+				Me.OnQBListIDChanging(value)
+				Me.SendPropertyChanging
+				Me._QBListID = value
+				Me.SendPropertyChanged("QBListID")
+				Me.OnQBListIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AvailableInventory", AutoSync:=AutoSync.Always, DbType:="Decimal(12,6)", IsDbGenerated:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	Public Property AvailableInventory() As System.Nullable(Of Decimal)
+		Get
+			Return Me._AvailableInventory
+		End Get
+		Set
+			If (Me._AvailableInventory.Equals(value) = false) Then
+				Me.OnAvailableInventoryChanging(value)
+				Me.SendPropertyChanging
+				Me._AvailableInventory = value
+				Me.SendPropertyChanged("AvailableInventory")
+				Me.OnAvailableInventoryChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ItemGroupID", DbType:="Int NOT NULL")>  _
+	Public Property ItemGroupID() As Integer
+		Get
+			Return Me._ItemGroupID
+		End Get
+		Set
+			If ((Me._ItemGroupID = value)  _
+						= false) Then
+				If Me._Inventory.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnItemGroupIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ItemGroupID = value
+				Me.SendPropertyChanged("ItemGroupID")
+				Me.OnItemGroupIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Inventory_InventoryItemDetail", Storage:="_Inventory", ThisKey:="ItemGroupID", OtherKey:="ItemGroupID", IsForeignKey:=true)>  _
 	Public Property Inventory() As Inventory
 		Get
 			Return Me._Inventory.Entity
@@ -1187,9 +1302,9 @@ Partial Public Class InventoryItemDetail
 				If ((value Is Nothing)  _
 							= false) Then
 					value.InventoryItemDetails.Add(Me)
-					Me._ItemID = value.ItemID
+					Me._ItemGroupID = value.ItemGroupID
 				Else
-					Me._ItemID = CType(Nothing, Integer)
+					Me._ItemGroupID = CType(Nothing, Integer)
 				End If
 				Me.SendPropertyChanged("Inventory")
 			End If

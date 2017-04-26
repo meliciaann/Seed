@@ -17,7 +17,7 @@ Namespace My
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
-    Partial Friend NotInheritable Class MySettings
+    Partial Public NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
         
         Private Shared defaultInstance As MySettings = CType(Global.System.Configuration.ApplicationSettingsBase.Synchronized(New MySettings()),MySettings)
@@ -56,8 +56,18 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\MILLERSEEDFD-PC\Ark\Invoice Worksheets\")>  _
+        Public ReadOnly Property DefaultReportDirectory() As String
+            Get
+                Return CType(Me("DefaultReportDirectory"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=.\sqlexpress;Initial Catalog=Seed;Integrated Security=True")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=MILLERSEEDFD-PC\SQLEXPRESS;Initial Catalog=Seed;Persist Security Info"& _ 
+            "=True;User ID=sa;Password=Seed1600")>  _
         Public ReadOnly Property SeedConnectionString() As String
             Get
                 Return CType(Me("SeedConnectionString"),String)

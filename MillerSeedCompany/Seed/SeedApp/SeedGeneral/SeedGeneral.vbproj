@@ -44,9 +44,12 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -76,23 +79,39 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Inventory.dbml</DependentUpon>
     </Compile>
-    <Compile Include="ItemsEdit.designer.vb">
-      <DependentUpon>ItemsEdit.dbml</DependentUpon>
-      <DesignTime>True</DesignTime>
+    <Compile Include="InvoiceLineItems.designer.vb">
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InvoiceLineItems.dbml</DependentUpon>
     </Compile>
-    <Compile Include="ItemsEdit.vb">
+    <Compile Include="InvoiceLineItems.vb">
+      <DependentUpon>InvoiceLineItems.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="ItemsEdit.designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>ItemsEdit.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="NetWeight.designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NetWeight.dbml</DependentUpon>
     </Compile>
     <Compile Include="OrderInfo.designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OrderInfo.dbml</DependentUpon>
     </Compile>
+    <Compile Include="OrderInfo.vb">
+      <DependentUpon>OrderInfo.dbml</DependentUpon>
+    </Compile>
     <Compile Include="OrderStatus.designer.vb">
       <DependentUpon>OrderStatus.dbml</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="OrderStatus.vb">
+      <DependentUpon>OrderStatus.dbml</DependentUpon>
     </Compile>
     <Compile Include="SeedGeneral.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -117,17 +136,30 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ItemsEdit.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ItemsEdit.designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="NetWeight.dbml.layout">
+      <DependentUpon>NetWeight.dbml</DependentUpon>
+    </None>
+    <None Include="InvoiceLineItems.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>InvoiceLineItems.designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="NetWeight.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>NetWeight.designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="SeedReports.dbml.layout">
       <DependentUpon>SeedReports.dbml</DependentUpon>
     </None>
     <None Include="Inventory.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Inventory.designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ItemsEdit.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>ItemsEdit.designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="OrderInfo.dbml.layout">
@@ -143,6 +175,9 @@
     </None>
     <None Include="Inventory.dbml.layout">
       <DependentUpon>Inventory.dbml</DependentUpon>
+    </None>
+    <None Include="InvoiceLineItems.dbml.layout">
+      <DependentUpon>InvoiceLineItems.dbml</DependentUpon>
     </None>
     <None Include="ItemsEdit.dbml.layout">
       <DependentUpon>ItemsEdit.dbml</DependentUpon>

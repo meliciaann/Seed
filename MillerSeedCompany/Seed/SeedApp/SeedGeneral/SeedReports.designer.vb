@@ -37,57 +37,65 @@ Partial Public Class SeedReportsDataContext
     End Sub
   Partial Private Sub DeleteSeedReport(instance As SeedReport)
     End Sub
-#End Region
-    Public Sub New()
-        MyBase.New(Global.SeedGeneral.My.MySettings.Default.SeedConnectionString, mappingSource)
-        OnCreated()
-    End Sub
-    Public Sub New(ByVal connection As String)
-        MyBase.New(connection, mappingSource)
-        OnCreated()
-    End Sub
-
-    Public Sub New(ByVal connection As System.Data.IDbConnection)
-        MyBase.New(connection, mappingSource)
-        OnCreated()
-    End Sub
-
-    Public Sub New(ByVal connection As String, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
-        MyBase.New(connection, mappingSource)
-        OnCreated()
-    End Sub
-
-    Public Sub New(ByVal connection As System.Data.IDbConnection, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
-        MyBase.New(connection, mappingSource)
-        OnCreated()
-    End Sub
-
-    Public ReadOnly Property SeedReports() As System.Data.Linq.Table(Of SeedReport)
-        Get
-            Return Me.GetTable(Of SeedReport)
-        End Get
-    End Property
+  #End Region
+	
+	Public Sub New()
+		MyBase.New(Global.SeedGeneral.My.MySettings.Default.SeedConnectionString1, mappingSource)
+		OnCreated
+	End Sub
+	
+	Public Sub New(ByVal connection As String)
+		MyBase.New(connection, mappingSource)
+		OnCreated
+	End Sub
+	
+	Public Sub New(ByVal connection As System.Data.IDbConnection)
+		MyBase.New(connection, mappingSource)
+		OnCreated
+	End Sub
+	
+	Public Sub New(ByVal connection As String, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
+		MyBase.New(connection, mappingSource)
+		OnCreated
+	End Sub
+	
+	Public Sub New(ByVal connection As System.Data.IDbConnection, ByVal mappingSource As System.Data.Linq.Mapping.MappingSource)
+		MyBase.New(connection, mappingSource)
+		OnCreated
+	End Sub
+	
+	Public ReadOnly Property SeedReports() As System.Data.Linq.Table(Of SeedReport)
+		Get
+			Return Me.GetTable(Of SeedReport)
+		End Get
+	End Property
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.SeedReports")>
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.SeedReports")>  _
 Partial Public Class SeedReport
-    Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-
-    Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-
-    Private _ReportFileName As String
-
-    Private _FriendlyName As String
-
-    Private _ReportID As Long
-
-    Private _HasSubReports As System.Nullable(Of Boolean)
-
-    Private _IsVisible As System.Nullable(Of Boolean)
-
-    Private _SortOrder As System.Nullable(Of Integer)
-
-#Region "Extensibility Method Definitions"
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ReportFileName As String
+	
+	Private _FriendlyName As String
+	
+	Private _ReportID As Long
+	
+	Private _HasSubReports As System.Nullable(Of Boolean)
+	
+	Private _IsVisible As System.Nullable(Of Boolean)
+	
+	Private _SortOrder As System.Nullable(Of Integer)
+	
+	Private _IsLandscape As System.Nullable(Of Boolean)
+	
+	Private _AllowMultiple As System.Nullable(Of Boolean)
+	
+	Private _NeedsOrder As System.Nullable(Of Boolean)
+	
+    #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
     Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
@@ -118,113 +126,173 @@ Partial Public Class SeedReport
     End Sub
     Partial Private Sub OnSortOrderChanged()
     End Sub
-#End Region
-
-    Public Sub New()
-        MyBase.New
-        OnCreated()
+    Partial Private Sub OnIsLandscapeChanging(value As System.Nullable(Of Boolean))
     End Sub
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportFileName", DbType:="NVarChar(100)")>
-    Public Property ReportFileName() As String
-        Get
-            Return Me._ReportFileName
-        End Get
-        Set
-            If (String.Equals(Me._ReportFileName, Value) = False) Then
-                Me.OnReportFileNameChanging(Value)
-                Me.SendPropertyChanging()
-                Me._ReportFileName = Value
-                Me.SendPropertyChanged("ReportFileName")
-                Me.OnReportFileNameChanged()
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FriendlyName", DbType:="NVarChar(100)")>
-    Public Property FriendlyName() As String
-        Get
-            Return Me._FriendlyName
-        End Get
-        Set
-            If (String.Equals(Me._FriendlyName, Value) = False) Then
-                Me.OnFriendlyNameChanging(Value)
-                Me.SendPropertyChanging()
-                Me._FriendlyName = Value
-                Me.SendPropertyChanged("FriendlyName")
-                Me.OnFriendlyNameChanged()
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportID", DbType:="BigInt NOT NULL", IsPrimaryKey:=True)>
-    Public Property ReportID() As Long
-        Get
-            Return Me._ReportID
-        End Get
-        Set
-            If ((Me._ReportID = Value) _
-                        = False) Then
-                Me.OnReportIDChanging(Value)
-                Me.SendPropertyChanging()
-                Me._ReportID = Value
-                Me.SendPropertyChanged("ReportID")
-                Me.OnReportIDChanged()
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_HasSubReports", DbType:="Bit")>
-    Public Property HasSubReports() As System.Nullable(Of Boolean)
-        Get
-            Return Me._HasSubReports
-        End Get
-        Set
-            If (Me._HasSubReports.Equals(Value) = False) Then
-                Me.OnHasSubReportsChanging(Value)
-                Me.SendPropertyChanging()
-                Me._HasSubReports = Value
-                Me.SendPropertyChanged("HasSubReports")
-                Me.OnHasSubReportsChanged()
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsVisible", DbType:="Bit")>
-    Public Property IsVisible() As System.Nullable(Of Boolean)
-        Get
-            Return Me._IsVisible
-        End Get
-        Set
-            If (Me._IsVisible.Equals(Value) = False) Then
-                Me.OnIsVisibleChanging(Value)
-                Me.SendPropertyChanging()
-                Me._IsVisible = Value
-                Me.SendPropertyChanged("IsVisible")
-                Me.OnIsVisibleChanged()
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SortOrder", DbType:="Int")>
-    Public Property SortOrder() As System.Nullable(Of Integer)
-        Get
-            Return Me._SortOrder
-        End Get
-        Set
-            If (Me._SortOrder.Equals(Value) = False) Then
-                Me.OnSortOrderChanging(Value)
-                Me.SendPropertyChanging()
-                Me._SortOrder = Value
-                Me.SendPropertyChanged("SortOrder")
-                Me.OnSortOrderChanged()
-            End If
-        End Set
-    End Property
-
-    Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-
-    Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+    Partial Private Sub OnIsLandscapeChanged()
+    End Sub
+    Partial Private Sub OnAllowMultipleChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub OnAllowMultipleChanged()
+    End Sub
+    Partial Private Sub OnNeedsOrderChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub OnNeedsOrderChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportFileName", DbType:="NVarChar(100)")>  _
+	Public Property ReportFileName() As String
+		Get
+			Return Me._ReportFileName
+		End Get
+		Set
+			If (String.Equals(Me._ReportFileName, value) = false) Then
+				Me.OnReportFileNameChanging(value)
+				Me.SendPropertyChanging
+				Me._ReportFileName = value
+				Me.SendPropertyChanged("ReportFileName")
+				Me.OnReportFileNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FriendlyName", DbType:="NVarChar(100)")>  _
+	Public Property FriendlyName() As String
+		Get
+			Return Me._FriendlyName
+		End Get
+		Set
+			If (String.Equals(Me._FriendlyName, value) = false) Then
+				Me.OnFriendlyNameChanging(value)
+				Me.SendPropertyChanging
+				Me._FriendlyName = value
+				Me.SendPropertyChanged("FriendlyName")
+				Me.OnFriendlyNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ReportID", DbType:="BigInt NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ReportID() As Long
+		Get
+			Return Me._ReportID
+		End Get
+		Set
+			If ((Me._ReportID = value)  _
+						= false) Then
+				Me.OnReportIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ReportID = value
+				Me.SendPropertyChanged("ReportID")
+				Me.OnReportIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_HasSubReports", DbType:="Bit")>  _
+	Public Property HasSubReports() As System.Nullable(Of Boolean)
+		Get
+			Return Me._HasSubReports
+		End Get
+		Set
+			If (Me._HasSubReports.Equals(value) = false) Then
+				Me.OnHasSubReportsChanging(value)
+				Me.SendPropertyChanging
+				Me._HasSubReports = value
+				Me.SendPropertyChanged("HasSubReports")
+				Me.OnHasSubReportsChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsVisible", DbType:="Bit")>  _
+	Public Property IsVisible() As System.Nullable(Of Boolean)
+		Get
+			Return Me._IsVisible
+		End Get
+		Set
+			If (Me._IsVisible.Equals(value) = false) Then
+				Me.OnIsVisibleChanging(value)
+				Me.SendPropertyChanging
+				Me._IsVisible = value
+				Me.SendPropertyChanged("IsVisible")
+				Me.OnIsVisibleChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SortOrder", DbType:="Int")>  _
+	Public Property SortOrder() As System.Nullable(Of Integer)
+		Get
+			Return Me._SortOrder
+		End Get
+		Set
+			If (Me._SortOrder.Equals(value) = false) Then
+				Me.OnSortOrderChanging(value)
+				Me.SendPropertyChanging
+				Me._SortOrder = value
+				Me.SendPropertyChanged("SortOrder")
+				Me.OnSortOrderChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsLandscape", DbType:="Bit")>  _
+	Public Property IsLandscape() As System.Nullable(Of Boolean)
+		Get
+			Return Me._IsLandscape
+		End Get
+		Set
+			If (Me._IsLandscape.Equals(value) = false) Then
+				Me.OnIsLandscapeChanging(value)
+				Me.SendPropertyChanging
+				Me._IsLandscape = value
+				Me.SendPropertyChanged("IsLandscape")
+				Me.OnIsLandscapeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AllowMultiple", DbType:="Bit")>  _
+	Public Property AllowMultiple() As System.Nullable(Of Boolean)
+		Get
+			Return Me._AllowMultiple
+		End Get
+		Set
+			If (Me._AllowMultiple.Equals(value) = false) Then
+				Me.OnAllowMultipleChanging(value)
+				Me.SendPropertyChanging
+				Me._AllowMultiple = value
+				Me.SendPropertyChanged("AllowMultiple")
+				Me.OnAllowMultipleChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NeedsOrder", DbType:="Bit")>  _
+	Public Property NeedsOrder() As System.Nullable(Of Boolean)
+		Get
+			Return Me._NeedsOrder
+		End Get
+		Set
+			If (Me._NeedsOrder.Equals(value) = false) Then
+				Me.OnNeedsOrderChanging(value)
+				Me.SendPropertyChanging
+				Me._NeedsOrder = value
+				Me.SendPropertyChanged("NeedsOrder")
+				Me.OnNeedsOrderChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
 	
 	Protected Overridable Sub SendPropertyChanging()
 		If ((Me.PropertyChangingEvent Is Nothing)  _

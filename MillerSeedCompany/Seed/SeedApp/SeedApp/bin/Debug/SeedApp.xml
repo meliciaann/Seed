@@ -27,22 +27,77 @@ SeedApp
 Represents a strongly typed in-memory cache of data.
 </summary>
 </member>
-<member name="T:SeedApp.SeedDataSet.OrdersDataTable">
+<member name="T:SeedApp.SeedDataSet.BagTagMixCountDataTable">
 <summary>
 Represents the strongly named DataTable class.
 </summary>
 </member>
-<member name="T:SeedApp.SeedDataSet.OrderItemsDataTable">
+<member name="T:SeedApp.SeedDataSet.BagTagMixLabelCountDataTable">
 <summary>
 Represents the strongly named DataTable class.
 </summary>
 </member>
-<member name="T:SeedApp.SeedDataSet.CustomersDataTable">
+<member name="T:SeedApp.SeedDataSet.BagTagSingleCountDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.InvoiceLineItemDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.NetWeightDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.OrderStatusDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.OrderUnitsDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.AvailableInventoryDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.OrderItemDetailsDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.GetItemInfoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.GetMixItemInfoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.GetMixItemOrderInfoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.InventoryHistoryByItemDataTable">
 <summary>
 Represents the strongly named DataTable class.
 </summary>
 </member>
 <member name="T:SeedApp.SeedDataSet.SeedOrderDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.SeedOrderDetailDataTable">
 <summary>
 Represents the strongly named DataTable class.
 </summary>
@@ -57,7 +112,17 @@ Represents the strongly named DataTable class.
 Represents the strongly named DataTable class.
 </summary>
 </member>
-<member name="T:SeedApp.SeedDataSet.SeedOrderDetailDataTable">
+<member name="T:SeedApp.SeedDataSet.ItemsSpreadsheetDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.CustomersDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.InventoryDataTable">
 <summary>
 Represents the strongly named DataTable class.
 </summary>
@@ -67,22 +132,92 @@ Represents the strongly named DataTable class.
 Represents the strongly named DataTable class.
 </summary>
 </member>
-<member name="T:SeedApp.SeedDataSet.OrdersRow">
+<member name="T:SeedApp.SeedDataSet.OrderItemsDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.BagOrderItemsDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.OrdersDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.BagTagMixCountRow">
 <summary>
 Represents strongly named DataRow class.
 </summary>
 </member>
-<member name="T:SeedApp.SeedDataSet.OrderItemsRow">
+<member name="T:SeedApp.SeedDataSet.BagTagMixLabelCountRow">
 <summary>
 Represents strongly named DataRow class.
 </summary>
 </member>
-<member name="T:SeedApp.SeedDataSet.CustomersRow">
+<member name="T:SeedApp.SeedDataSet.BagTagSingleCountRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.InvoiceLineItemRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.NetWeightRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.OrderStatusRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.OrderUnitsRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.AvailableInventoryRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.OrderItemDetailsRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.GetItemInfoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.GetMixItemInfoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.GetMixItemOrderInfoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.InventoryHistoryByItemRow">
 <summary>
 Represents strongly named DataRow class.
 </summary>
 </member>
 <member name="T:SeedApp.SeedDataSet.SeedOrderRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.SeedOrderDetailRow">
 <summary>
 Represents strongly named DataRow class.
 </summary>
@@ -97,7 +232,17 @@ Represents strongly named DataRow class.
 Represents strongly named DataRow class.
 </summary>
 </member>
-<member name="T:SeedApp.SeedDataSet.SeedOrderDetailRow">
+<member name="T:SeedApp.SeedDataSet.ItemsSpreadsheetRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.CustomersRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.InventoryRow">
 <summary>
 Represents strongly named DataRow class.
 </summary>
@@ -107,22 +252,92 @@ Represents strongly named DataRow class.
 Represents strongly named DataRow class.
 </summary>
 </member>
-<member name="T:SeedApp.SeedDataSet.OrdersRowChangeEvent">
+<member name="T:SeedApp.SeedDataSet.OrderItemsRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.BagOrderItemsRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.OrdersRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.BagTagMixCountRowChangeEvent">
 <summary>
 Row event argument class
 </summary>
 </member>
-<member name="T:SeedApp.SeedDataSet.OrderItemsRowChangeEvent">
+<member name="T:SeedApp.SeedDataSet.BagTagMixLabelCountRowChangeEvent">
 <summary>
 Row event argument class
 </summary>
 </member>
-<member name="T:SeedApp.SeedDataSet.CustomersRowChangeEvent">
+<member name="T:SeedApp.SeedDataSet.BagTagSingleCountRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.InvoiceLineItemRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.NetWeightRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.OrderStatusRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.OrderUnitsRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.AvailableInventoryRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.OrderItemDetailsRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.GetItemInfoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.GetMixItemInfoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.GetMixItemOrderInfoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.InventoryHistoryByItemRowChangeEvent">
 <summary>
 Row event argument class
 </summary>
 </member>
 <member name="T:SeedApp.SeedDataSet.SeedOrderRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.SeedOrderDetailRowChangeEvent">
 <summary>
 Row event argument class
 </summary>
@@ -137,7 +352,17 @@ Row event argument class
 Row event argument class
 </summary>
 </member>
-<member name="T:SeedApp.SeedDataSet.SeedOrderDetailRowChangeEvent">
+<member name="T:SeedApp.SeedDataSet.ItemsSpreadsheetRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.CustomersRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.InventoryRowChangeEvent">
 <summary>
 Row event argument class
 </summary>
@@ -147,22 +372,92 @@ Row event argument class
 Row event argument class
 </summary>
 </member>
-<member name="T:SeedApp.SeedDataSetTableAdapters.OrdersTableAdapter">
+<member name="T:SeedApp.SeedDataSet.OrderItemsRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.BagOrderItemsRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSet.OrdersRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSetTableAdapters.BagTagMixCountTableAdapter">
 <summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
 </member>
-<member name="T:SeedApp.SeedDataSetTableAdapters.OrderItemsTableAdapter">
+<member name="T:SeedApp.SeedDataSetTableAdapters.BagTagMixLabelCountTableAdapter">
 <summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
 </member>
-<member name="T:SeedApp.SeedDataSetTableAdapters.CustomersTableAdapter">
+<member name="T:SeedApp.SeedDataSetTableAdapters.BagTagSingleCountTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSetTableAdapters.InvoiceLineItemTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSetTableAdapters.NetWeightTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSetTableAdapters.OrderStatusTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSetTableAdapters.OrderUnitsTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSetTableAdapters.AvailableInventoryTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSetTableAdapters.OrderItemDetailsTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSetTableAdapters.GetItemInfoTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSetTableAdapters.GetMixItemInfoTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSetTableAdapters.GetMixItemOrderInfoTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSetTableAdapters.InventoryHistoryByItemTableAdapter">
 <summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
 </member>
 <member name="T:SeedApp.SeedDataSetTableAdapters.SeedOrderTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSetTableAdapters.SeedOrderDetailTableAdapter">
 <summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
@@ -177,12 +472,42 @@ Represents the connection and commands used to retrieve and save data.
 Represents the connection and commands used to retrieve and save data.
 </summary>
 </member>
-<member name="T:SeedApp.SeedDataSetTableAdapters.SeedOrderDetailTableAdapter">
+<member name="T:SeedApp.SeedDataSetTableAdapters.ItemsSpreadsheetTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSetTableAdapters.CustomersTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSetTableAdapters.InventoryTableAdapter">
 <summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
 </member>
 <member name="T:SeedApp.SeedDataSetTableAdapters.ItemsTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSetTableAdapters.OrderItemsTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSetTableAdapters.BagOrderItemsTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSetTableAdapters.OrdersTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SeedApp.SeedDataSetTableAdapters.QueriesTableAdapter">
 <summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
@@ -223,6 +548,71 @@ Update Order Option
 </summary>
 </member>
 <member name="T:SeedApp.SeedDataSetTableAdapters.TableAdapterManager.SelfReferenceComparer">
+<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member>
+<member name="T:SeedApp.SeedItems">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:SeedApp.SeedItems.GetItemInfoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedItems.GetItemInfoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SeedApp.SeedItems.GetItemInfoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SeedApp.ItemTableAdapters.GetItemInfoTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SeedApp.ItemTableAdapters.TableAdapterManager">
+<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+<member name="M:SeedApp.ItemTableAdapters.TableAdapterManager.UpdateUpdatedRows(SeedApp.SeedItems,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Update rows in top-down order.
+</summary>
+</member>
+<member name="M:SeedApp.ItemTableAdapters.TableAdapterManager.UpdateInsertedRows(SeedApp.SeedItems,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Insert rows in top-down order.
+</summary>
+</member>
+<member name="M:SeedApp.ItemTableAdapters.TableAdapterManager.UpdateDeletedRows(SeedApp.SeedItems,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Delete rows in bottom-up order.
+</summary>
+</member>
+<member name="M:SeedApp.ItemTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member>
+<member name="M:SeedApp.ItemTableAdapters.TableAdapterManager.UpdateAll(SeedApp.SeedItems)">
+<summary>
+Update all changes to the dataset.
+</summary>
+</member>
+<member name="T:SeedApp.ItemTableAdapters.TableAdapterManager.UpdateOrderOption">
+<summary>
+Update Order Option
+</summary>
+</member>
+<member name="T:SeedApp.ItemTableAdapters.TableAdapterManager.SelfReferenceComparer">
 <summary>
 Used to sort self-referenced table's rows
 </summary>

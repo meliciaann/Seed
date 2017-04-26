@@ -24,43 +24,44 @@ Public Class MultiCustomersForm
     End Sub
 
     Public Sub PopulateCustomerList(ByVal CustomerRetList As ICustomerRetList)
+
         Dim QBCustomerList = New List(Of QBCustomers)
-        For i = 0 To CustomerRetList.Count - 1
-            Dim Cust As New QBCustomers
-            Dim customerRet As ICustomerRet = CustomerRetList.GetAt(i)
-            If (customerRet IsNot Nothing) Then
-                If (customerRet.CompanyName IsNot Nothing) Then
-                    Cust.CustomerName = customerRet.CompanyName.GetValue()
+            For i = 0 To CustomerRetList.Count - 1
+                Dim Cust As New QBCustomers
+                Dim customerRet As ICustomerRet = CustomerRetList.GetAt(i)
+                If (customerRet IsNot Nothing) Then
+                    If (customerRet.CompanyName IsNot Nothing) Then
+                        Cust.CustomerName = customerRet.CompanyName.GetValue()
+                    End If
+                    If (customerRet.BillAddress IsNot Nothing) Then
+                        If (customerRet.BillAddress.Addr1 IsNot Nothing) Then
+                            Cust.CustomerAddress1 = customerRet.BillAddress.Addr1.GetValue()
+                        End If
+                        If (customerRet.BillAddress.Addr2 IsNot Nothing) Then
+                            Cust.CustomerAddress2 = customerRet.BillAddress.Addr2.GetValue()
+                        End If
+                        If (customerRet.BillAddress.City IsNot Nothing) Then
+                            Cust.CustomerCity = customerRet.BillAddress.City.GetValue()
+                        End If
+                        If (customerRet.BillAddress.State IsNot Nothing) Then
+                            Cust.CustomerState = customerRet.BillAddress.State.GetValue()
+                        End If
+                        If (customerRet.BillAddress.PostalCode IsNot Nothing) Then
+                            Cust.CustomerZip = customerRet.BillAddress.PostalCode.GetValue()
+                        End If
+
+                    End If
+                    If (customerRet.ListID IsNot Nothing) Then
+                        Cust.QBListID = customerRet.ListID.GetValue()
+                    End If
+
+                    QBCustomerList.Add(Cust)
                 End If
-                If (customerRet.BillAddress IsNot Nothing) Then
-                    If (customerRet.BillAddress.Addr1 IsNot Nothing) Then
-                        Cust.CustomerAddress1 = customerRet.BillAddress.Addr1.GetValue()
-                    End If
-                    If (customerRet.BillAddress.Addr2 IsNot Nothing) Then
-                        Cust.CustomerAddress2 = customerRet.BillAddress.Addr2.GetValue()
-                    End If
-                    If (customerRet.BillAddress.City IsNot Nothing) Then
-                        Cust.CustomerCity = customerRet.BillAddress.City.GetValue()
-                    End If
-                    If (customerRet.BillAddress.State IsNot Nothing) Then
-                        Cust.CustomerState = customerRet.BillAddress.State.GetValue()
-                    End If
-                    If (customerRet.BillAddress.PostalCode IsNot Nothing) Then
-                        Cust.CustomerZip = customerRet.BillAddress.PostalCode.GetValue()
-                    End If
 
-                End If
-                If (customerRet.ListID IsNot Nothing) Then
-                    Cust.QBListID = customerRet.ListID.GetValue()
-                End If
+            Next
 
-                QBCustomerList.Add(Cust)
-            End If
-
-        Next
-
-        CustomerListGV.DataSource = QBCustomerList
-        CustomerListGVLabelHeaders()
+            CustomerListGV.DataSource = QBCustomerList
+            CustomerListGVLabelHeaders()
 
     End Sub
     Public Sub CustomerListGVLabelHeaders()
@@ -91,7 +92,7 @@ Public Class MultiCustomersForm
         Dim selectedRow As DataGridViewRow = CustomerListGV.CurrentRow
         Dim selectedCust As QBCustomers = selectedRow.DataBoundItem
         Dim qb1 As New QBLib.QBLibrary
-        MyCustomerRet = qb1.DoCustomerQuery(selectedCust.mQBListID, "ListIDList")
+        MyCustomerRet = qb1.DoCustomerQuery(selectedCust.mQBListID, "ListIDList", False)
         Me.Close()
 
     End Sub

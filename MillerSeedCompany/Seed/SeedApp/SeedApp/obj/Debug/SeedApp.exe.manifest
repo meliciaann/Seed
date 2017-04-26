@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="SeedApp.exe" version="1.0.1.12" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="SeedApp.exe" version="1.0.1.76" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="Miller-Seed-Logo-1.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
@@ -43,21 +43,6 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Microsoft.ReportViewer.DataVisualization" version="12.0.0.0" publicKeyToken="89845DCD8080CC91" language="neutral" processorArchitecture="msil" />
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Microsoft.ReportViewer.ProcessingObjectModel" version="12.0.0.0" publicKeyToken="89845DCD8080CC91" language="neutral" processorArchitecture="msil" />
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Microsoft.SqlServer.Types" version="12.0.0.0" publicKeyToken="89845DCD8080CC91" language="neutral" processorArchitecture="msil" />
-    </dependentAssembly>
-  </dependency>
-  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.ReportViewer.Common.dll" size="8741568">
       <assemblyIdentity name="Microsoft.ReportViewer.Common" version="12.0.0.0" publicKeyToken="89845DCD8080CC91" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -66,6 +51,30 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>4/bZjfJ9GHc2ajdKgtvfpSlAUpchdiSxMJpXM51X1N0=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.ReportViewer.DataVisualization.dll" size="5416128">
+      <assemblyIdentity name="Microsoft.ReportViewer.DataVisualization" version="12.0.0.0" publicKeyToken="89845DCD8080CC91" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>6eobgv17x2bHIxgfHNAdm6fcl1TTTDpeTLEmAdBZsfw=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.ReportViewer.ProcessingObjectModel.dll" size="115904">
+      <assemblyIdentity name="Microsoft.ReportViewer.ProcessingObjectModel" version="12.0.0.0" publicKeyToken="89845DCD8080CC91" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>LpolCbXnnGiux4/oTflcUrotVjWbHiSSBHm9FDQQ4qU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -82,57 +91,105 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="QBLib.dll" size="54272">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.SqlServer.Types.dll" size="392896">
+      <assemblyIdentity name="Microsoft.SqlServer.Types" version="12.0.0.0" publicKeyToken="89845DCD8080CC91" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>g0uPPSp1+4yyv5ZCerojXZO6R0+rDi1fljO+PXSESY4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="QBLib.dll" size="68096">
       <assemblyIdentity name="QBLib" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>P7ZJAwiFDdNvWmgjZm1DGo8DIhzubntYqQUmhddZBJA=</dsig:DigestValue>
+        <dsig:DigestValue>ZbkEGZufHkQRyP1GuExV5yO4UmLyYm7FbB/vRBRXt3c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SeedApp.exe" size="1442816">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SeedApp.exe" size="1950720">
       <assemblyIdentity name="SeedApp" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>FRqNTKsuWwDqTszP7G/P5iTbtvlVXnx3RmtutFM1qF4=</dsig:DigestValue>
+        <dsig:DigestValue>vxQHGpxttQMFO26jiF3VR2WGbGL/CRctAFy+2hB8Chk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SeedGeneral.dll" size="66560">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SeedGeneral.dll" size="97280">
       <assemblyIdentity name="SeedGeneral" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1QTNcNeoksn2/dYJJIq/qW+0qWdxmZD+ztS64UVe/+g=</dsig:DigestValue>
+        <dsig:DigestValue>agAnrNCPR13hS2zoZI8xrUzGr/0ZNUuvG2qqwe/z9BI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="AllReports.rdlc" size="13302">
+  <file name="AllReports.rdlc" size="15806">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>eWEbNH/XDw3xps9tpQXDy6IDPjqlOj0c/zo9xcVfBjs=</dsig:DigestValue>
+      <dsig:DigestValue>h1YyJdMCEcevzCMe8XlDcmicymp1w/V27yrF6VDh6Mc=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Bag.rdlc" size="180196">
+  <file name="Bag.rdlc" size="284942">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>cfG3B0e7JEbwxqx+7QiEY89E20kF1kJarfcYkEc/EYI=</dsig:DigestValue>
+      <dsig:DigestValue>izU14v1QyWRmnxkp+5/TpIU48q6mxIiYx3VUrDZZekA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="BagTagMix Full.rdlc" size="74086">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Yy/OjttQAY22YRI10qROYE/d9EBqs8YsPg/CYTEtaW4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="BagTagMix.rdlc" size="51872">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>0tfzRd4tCYiJJOrqAx/KQ3ZMDYR+FpwTWEDEckvvtiM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="BagTagSingle.rdlc" size="101721">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>hLZrRkVjskalGJiBzf+WtWQQoOtx5T19lJp6WtO2flY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Items.rdlc" size="108657">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>TIUp3XNSQgg/CWMqVKA9yLlCDQk5KCFiMbp5QTo+Zdk=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Miller-Seed-Logo-1.ico" size="370070">
@@ -144,58 +201,58 @@
       <dsig:DigestValue>aV+N3zcpuhQGZNxG8LjZIRgGFkb5E3jHRFRAMUHs25E=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="MixWorksheet.rdlc" size="85075">
+  <file name="MixWorksheet.rdlc" size="179621">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>ZXpM5ZD8Bo7lHBZEph7JXOqWBjsqxts0YfJ1xrcGOns=</dsig:DigestValue>
+      <dsig:DigestValue>HOBQXxcNGbk32F7Be64DYtp3p9RpjDIE40rdtJeVYgQ=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="SeedApp.exe.config" size="474">
+  <file name="SeedApp.exe.config" size="1237">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>tgeVK7d7WzLZn80tPgWVDSqosSKnhvwn9af2lv/8PNg=</dsig:DigestValue>
+      <dsig:DigestValue>2FPPOufKbBuItA+bHzOgWVqOzQlkpqs/OAAipiVPzWk=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Submittal.rdlc" size="86996">
+  <file name="Submittal.rdlc" size="172532">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>qz7q7jzFXH0mpVXdtP8mFXXozyH4SP6Mvcs3//+70UM=</dsig:DigestValue>
+      <dsig:DigestValue>Lu0z1bTyk9Vw4f+soS8ePiVt/1NsorYN0OhxxvbGjhg=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Tags.rdlc" size="139883">
+  <file name="Tags.rdlc" size="253274">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>+2olE9pT8O5jgbsQXyi3lwQwAh8MPM1EPRh+206zVEY=</dsig:DigestValue>
+      <dsig:DigestValue>C6HcjHmCY/eV/QzxLSW7K1XPzo5VFFcCUvUwWMQnp5M=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="USDeptAg.rdlc" size="141032">
+  <file name="USDeptAg.rdlc" size="140259">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>wwFvNEEN09ivUa9LInj/A9ogmU9uLtGqC5DdguVhJS4=</dsig:DigestValue>
+      <dsig:DigestValue>//gT5asv8NOqymNVyBcFqmNoyWrQaorYqp6bvlnyT0I=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="WarehouseMixWorksheet.rdlc" size="59848">
+  <file name="WarehouseMixWorksheet.rdlc" size="64634">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>WZQXwSIVWESMuR6YKqHG/xFATITBKVZYmFF7FH72Zcw=</dsig:DigestValue>
+      <dsig:DigestValue>Ob7wkOBOLbU+CY5HUsh/N5l2jcn9HzY9onZTeYG9DjQ=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

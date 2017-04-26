@@ -8,3 +8,5 @@ C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\bin\Debug\SeedGeneral.
 C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\obj\Debug\SeedGeneral.dll
 C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\obj\Debug\SeedGeneral.pdb
 C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\obj\Debug\SeedGeneral.vbprojResolveAssemblyReference.cache
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\bin\Debug\Microsoft.ReportViewer.WebForms.dll
+C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedGeneral\bin\Debug\Microsoft.ReportViewer.WinForms.dll

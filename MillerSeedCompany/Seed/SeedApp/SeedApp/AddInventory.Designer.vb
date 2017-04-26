@@ -37,6 +37,8 @@ Partial Class AddInventory
         Me.LotTB = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.CurrentAvailableTB = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.InventoryOrderIdTB = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'InventoryQtyTB
@@ -75,7 +77,7 @@ Partial Class AddInventory
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(52, 152)
+        Me.Label2.Location = New System.Drawing.Point(52, 179)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(36, 13)
         Me.Label2.TabIndex = 5
@@ -83,14 +85,14 @@ Partial Class AddInventory
         '
         'MemoTB
         '
-        Me.MemoTB.Location = New System.Drawing.Point(104, 152)
+        Me.MemoTB.Location = New System.Drawing.Point(104, 179)
         Me.MemoTB.Name = "MemoTB"
         Me.MemoTB.Size = New System.Drawing.Size(403, 20)
         Me.MemoTB.TabIndex = 3
         '
         'InventoryAddBtn
         '
-        Me.InventoryAddBtn.Location = New System.Drawing.Point(141, 185)
+        Me.InventoryAddBtn.Location = New System.Drawing.Point(141, 212)
         Me.InventoryAddBtn.Name = "InventoryAddBtn"
         Me.InventoryAddBtn.Size = New System.Drawing.Size(54, 23)
         Me.InventoryAddBtn.TabIndex = 5
@@ -99,7 +101,7 @@ Partial Class AddInventory
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(201, 185)
+        Me.Button1.Location = New System.Drawing.Point(201, 212)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(54, 23)
         Me.Button1.TabIndex = 6
@@ -160,11 +162,30 @@ Partial Class AddInventory
         Me.CurrentAvailableTB.TabIndex = 12
         Me.CurrentAvailableTB.TabStop = False
         '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(52, 152)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(47, 13)
+        Me.Label5.TabIndex = 14
+        Me.Label5.Text = "Order ID"
+        '
+        'InventoryOrderIdTB
+        '
+        Me.InventoryOrderIdTB.Location = New System.Drawing.Point(104, 152)
+        Me.InventoryOrderIdTB.Name = "InventoryOrderIdTB"
+        Me.InventoryOrderIdTB.Size = New System.Drawing.Size(100, 20)
+        Me.InventoryOrderIdTB.TabIndex = 15
+        Me.InventoryOrderIdTB.Text = "0"
+        '
         'AddInventory
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(565, 242)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.InventoryOrderIdTB)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.CurrentAvailableTB)
         Me.Controls.Add(Me.LotLbl)
@@ -204,4 +225,6 @@ Partial Class AddInventory
     Friend WithEvents LotTB As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents CurrentAvailableTB As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents InventoryOrderIdTB As TextBox
 End Class

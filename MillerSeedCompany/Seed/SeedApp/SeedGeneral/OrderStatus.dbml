@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Seed" Class="OrderStatusDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=Seed;Integrated Security=True" SettingsObjectName="SeedGeneral.My.MySettings" SettingsPropertyName="SeedConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.OrderStatus" Member="OrderStatus">
     <Type Name="OrderStatus">
       <Column Name="OrderStatusID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />

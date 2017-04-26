@@ -24,7 +24,9 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>13</ApplicationRevision>
+    <WebPage>publish.htm</WebPage>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>76</ApplicationRevision>
     <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -88,7 +90,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.Linq">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Services" />
@@ -119,12 +123,31 @@
     <Compile Include="AddInventory.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ItemsForm.vb">
+    <Compile Include="CustomersForm.Designer.vb">
+      <DependentUpon>CustomersForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CustomersForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ItemsForm.Designer.vb">
       <DependentUpon>ItemsForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ItemsForm.vb">
       <SubType>Form</SubType>
+      <CustomToolNamespace>ItemsForm</CustomToolNamespace>
+    </Compile>
+    <Compile Include="SeedDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SeedDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SeedDataSet.vb">
+      <DependentUpon>SeedDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SeedItems.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SeedItems.xsd</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -141,14 +164,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="SeedDataSet.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SeedDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="SeedDataSet.vb">
-      <DependentUpon>SeedDataSet.xsd</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Miller-Seed-Logo-1.ico" />
@@ -161,6 +176,25 @@
     <Content Include="Submittal.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="BagTagSingle.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BagTagMix.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BagTagMix Full.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Items.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="CustomersForm.resx">
+      <DependentUpon>CustomersForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemsForm.resx">
+      <DependentUpon>ItemsForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="test.rdlc" />
     <Content Include="USDeptAg.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -174,9 +208,6 @@
     <Content Include="Bag.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="ItemsForm.resx">
-      <DependentUpon>ItemsForm.vb</DependentUpon>
-    </EmbeddedResource>
     <Content Include="MixWorksheet.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -186,19 +217,30 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="packages.config" />
-    <None Include="SeedApp_TemporaryKey.pfx" />
     <None Include="SeedDataSet.xsc">
       <DependentUpon>SeedDataSet.xsd</DependentUpon>
     </None>
     <None Include="SeedDataSet.xsd">
+      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>SeedDataSet.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
     </None>
     <None Include="SeedDataSet.xss">
       <DependentUpon>SeedDataSet.xsd</DependentUpon>
     </None>
+    <None Include="SeedItems.xsc">
+      <DependentUpon>SeedItems.xsd</DependentUpon>
+    </None>
+    <None Include="SeedItems.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SeedItems.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="SeedItems.xss">
+      <DependentUpon>SeedItems.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="SeedApp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="My Project\Application.myapp">
@@ -206,7 +248,7 @@
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
     <None Include="My Project\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
@@ -236,6 +278,38 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="Microsoft.ReportViewer.DataVisualization">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.ReportViewer.ProcessingObjectModel">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.SqlServer.Types">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

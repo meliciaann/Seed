@@ -57,7 +57,8 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=.\sqlexpress;Initial Catalog=Seed;Integrated Security=True")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=MILLERSEEDFD-PC\SQLEXPRESS;Initial Catalog=Seed;Persist Security Info"& _ 
+            "=True;User ID=sa;Password=Seed1600")>  _
         Public ReadOnly Property SeedConnectionString() As String
             Get
                 Return CType(Me("SeedConnectionString"),String)

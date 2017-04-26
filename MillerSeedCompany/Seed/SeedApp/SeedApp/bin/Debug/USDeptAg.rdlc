@@ -36,7 +36,7 @@ Natural Resources Conservation Service</Value>
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.36458in</Width>
+              <Width>2.41667in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.19792in</Width>
@@ -171,7 +171,7 @@ Natural Resources Conservation Service</Value>
         <DataSetName>SeedOrder</DataSetName>
         <Top>0.51611in</Top>
         <Height>0.25in</Height>
-        <Width>3.5625in</Width>
+        <Width>3.61459in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -183,40 +183,40 @@ Natural Resources Conservation Service</Value>
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.36458in</Width>
+              <Width>2.08333in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.19792in</Width>
+              <Width>0.33334in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>0.40625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>0.61458in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>0.39583in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>0.42708in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>0.5in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>0.41667in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>0.38542in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>0.35417in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>0.67708in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>0.77083in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -356,7 +356,7 @@ Natural Resources Conservation Service</Value>
                               <Value>*Please refer to mileage restrictions below if non-certified grass seed (variety stated or variety not stated) is provided</Value>
                               <Style>
                                 <FontStyle>Normal</FontStyle>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
                                 <FontWeight>Normal</FontWeight>
                                 <TextDecoration>None</TextDecoration>
                                 <Color>#000000</Color>
@@ -414,7 +414,7 @@ Natural Resources Conservation Service</Value>
                               <Value>Seed dealer please check whether seed lot provided is certified or non-certified</Value>
                               <Style>
                                 <FontStyle>Normal</FontStyle>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
                                 <FontWeight>Normal</FontWeight>
                                 <TextDecoration>None</TextDecoration>
                                 <Color>#000000</Color>
@@ -474,7 +474,7 @@ Natural Resources Conservation Service</Value>
                               <Value>PLS Lbs.
 per acres</Value>
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -528,7 +528,7 @@ per acres</Value>
                             <TextRun>
                               <Value EvaluationMode="Constant">Total Lbs. Needed</Value>
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -584,7 +584,7 @@ per acres</Value>
                             <TextRun>
                               <Value EvaluationMode="Constant">Seed Purchased and planted</Value>
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -643,7 +643,7 @@ per acres</Value>
                               <Value>Seedlot
 No.</Value>
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -698,7 +698,7 @@ No.</Value>
                               <Value EvaluationMode="Constant">Country/state of
 Origin (Required only for Non-Certified Grass Seed)</Value>
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -966,7 +966,9 @@ type grass/form seed desired</Value>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox71</rd:DefaultName>
@@ -1017,7 +1019,9 @@ type grass/form seed desired</Value>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox72</rd:DefaultName>
@@ -1068,7 +1072,9 @@ type grass/form seed desired</Value>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox73</rd:DefaultName>
@@ -1119,7 +1125,9 @@ type grass/form seed desired</Value>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox74</rd:DefaultName>
@@ -1171,7 +1179,9 @@ Lbs</Value>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox75</rd:DefaultName>
@@ -1223,7 +1233,9 @@ Lbs</Value>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox76</rd:DefaultName>
@@ -1377,7 +1389,7 @@ Lbs</Value>
                             <TextRun>
                               <Value>=Fields!Item.Value</Value>
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1428,7 +1440,7 @@ Lbs</Value>
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1479,7 +1491,7 @@ Lbs</Value>
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1530,7 +1542,8 @@ Lbs</Value>
                             <TextRun>
                               <Value>=Fields!PLSPerAcre.Value</Value>
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
+                                <Format>0.00;(0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1542,26 +1555,6 @@ Lbs</Value>
                         <Border>
                           <Style>Solid</Style>
                         </Border>
-                        <TopBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1581,7 +1574,8 @@ Lbs</Value>
                             <TextRun>
                               <Value>=Fields!BULK_LBS.Value</Value>
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
+                                <Format>0.000</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1632,7 +1626,8 @@ Lbs</Value>
                             <TextRun>
                               <Value>=Fields!PLS_LBS.Value</Value>
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
+                                <Format>0.000</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1683,7 +1678,8 @@ Lbs</Value>
                             <TextRun>
                               <Value>=Fields!Purity.Value</Value>
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
+                                <Format>0.000</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1734,7 +1730,8 @@ Lbs</Value>
                             <TextRun>
                               <Value>=Fields!Germ.Value</Value>
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
+                                <Format>0.000</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1785,7 +1782,8 @@ Lbs</Value>
                             <TextRun>
                               <Value>=Fields!BULK_LBS.Value</Value>
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
+                                <Format>0.000</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1836,7 +1834,8 @@ Lbs</Value>
                             <TextRun>
                               <Value>=Fields!PLS_LBS.Value</Value>
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
+                                <Format>0.000</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1887,7 +1886,7 @@ Lbs</Value>
                             <TextRun>
                               <Value>=Fields!lot.Value</Value>
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1938,7 +1937,7 @@ Lbs</Value>
                             <TextRun>
                               <Value>=Fields!Orgin.Value</Value>
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2624,6 +2623,11 @@ Lbs</Value>
                 </TablixMember>
                 <TablixMember>
                   <Group Name="Details1" />
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!ItemOrder.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
                 </TablixMember>
                 <TablixMember>
                   <KeepWithGroup>Before</KeepWithGroup>
@@ -2635,7 +2639,7 @@ Lbs</Value>
         <DataSetName>SeedOrderDetail</DataSetName>
         <Top>0.75569in</Top>
         <Height>1.57292in</Height>
-        <Width>13.5625in</Width>
+        <Width>7.36458in</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -2647,12 +2651,12 @@ Lbs</Value>
     <Height>2.32861in</Height>
     <Style />
   </Body>
-  <Width>13.5625in</Width>
+  <Width>7.36458in</Width>
   <Page>
-    <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
-    <TopMargin>1in</TopMargin>
-    <BottomMargin>1in</BottomMargin>
+    <LeftMargin>0.5in</LeftMargin>
+    <RightMargin>0.5in</RightMargin>
+    <TopMargin>0.75in</TopMargin>
+    <BottomMargin>0.75in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
@@ -2666,42 +2670,6 @@ Lbs</Value>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="OrderItems">
-      <Query>
-        <DataSourceName>SeedDataSet</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="OrderItemID">
-          <DataField>OrderItemID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="ItemID">
-          <DataField>ItemID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="OrderID">
-          <DataField>OrderID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="PricePerAcre">
-          <DataField>PricePerAcre</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="TotalPrice">
-          <DataField>TotalPrice</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>SeedDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\GitHub\Seed\MillerSeedCompany\Seed\SeedApp\SeedApp\SeedDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>OrderItems</rd:TableName>
-        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
-        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>OrderItemsTableAdapter</rd:TableAdapterName>
-      </rd:DataSetInfo>
-    </DataSet>
     <DataSet Name="SeedOrder">
       <Query>
         <DataSourceName>SeedDataSet</DataSourceName>
@@ -2856,6 +2824,10 @@ Lbs</Value>
           <DataField>Crop</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="inert">
+          <DataField>inert</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="Weeds">
           <DataField>Weeds</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
@@ -2892,14 +2864,6 @@ Lbs</Value>
           <DataField>Retail</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="Item1">
-          <DataField>Item1</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Item2">
-          <DataField>Item2</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="ScientificName">
           <DataField>ScientificName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -2911,6 +2875,18 @@ Lbs</Value>
         <Field Name="Type">
           <DataField>Type</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="UnitTypeName">
+          <DataField>UnitTypeName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NoxiousWeeds">
+          <DataField>NoxiousWeeds</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ItemOrder">
+          <DataField>ItemOrder</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>

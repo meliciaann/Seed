@@ -37,12 +37,14 @@ Partial Public Class ItemsEditDataContext
     End Sub
   Partial Private Sub DeleteItem(instance As Item)
     End Sub
-#End Region
-    Public Sub New()
-        MyBase.New(Global.SeedGeneral.My.MySettings.Default.SeedConnectionString, mappingSource)
-        OnCreated()
-    End Sub
-    Public Sub New(ByVal connection As String)
+  #End Region
+	
+	Public Sub New()
+		MyBase.New(Global.SeedGeneral.My.MySettings.Default.SeedConnectionString1, mappingSource)
+		OnCreated
+	End Sub
+	
+	Public Sub New(ByVal connection As String)
 		MyBase.New(connection, mappingSource)
 		OnCreated
 	End Sub
@@ -122,6 +124,12 @@ Partial Public Class Item
 	Private _BotanicalName As String
 	
 	Private _NoxiousWeeds As String
+	
+	Private _QBListID As String
+	
+	Private _AvailableInventory As System.Nullable(Of Decimal)
+	
+	Private _ItemGroupID As Integer
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -225,6 +233,18 @@ Partial Public Class Item
     Partial Private Sub OnNoxiousWeedsChanging(value As String)
     End Sub
     Partial Private Sub OnNoxiousWeedsChanged()
+    End Sub
+    Partial Private Sub OnQBListIDChanging(value As String)
+    End Sub
+    Partial Private Sub OnQBListIDChanged()
+    End Sub
+    Partial Private Sub OnAvailableInventoryChanging(value As System.Nullable(Of Decimal))
+    End Sub
+    Partial Private Sub OnAvailableInventoryChanged()
+    End Sub
+    Partial Private Sub OnItemGroupIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnItemGroupIDChanged()
     End Sub
     #End Region
 	
@@ -614,6 +634,55 @@ Partial Public Class Item
 				Me._NoxiousWeeds = value
 				Me.SendPropertyChanged("NoxiousWeeds")
 				Me.OnNoxiousWeedsChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_QBListID", DbType:="NVarChar(100)")>  _
+	Public Property QBListID() As String
+		Get
+			Return Me._QBListID
+		End Get
+		Set
+			If (String.Equals(Me._QBListID, value) = false) Then
+				Me.OnQBListIDChanging(value)
+				Me.SendPropertyChanging
+				Me._QBListID = value
+				Me.SendPropertyChanged("QBListID")
+				Me.OnQBListIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AvailableInventory", AutoSync:=AutoSync.Always, DbType:="Decimal(12,6)", IsDbGenerated:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	Public Property AvailableInventory() As System.Nullable(Of Decimal)
+		Get
+			Return Me._AvailableInventory
+		End Get
+		Set
+			If (Me._AvailableInventory.Equals(value) = false) Then
+				Me.OnAvailableInventoryChanging(value)
+				Me.SendPropertyChanging
+				Me._AvailableInventory = value
+				Me.SendPropertyChanged("AvailableInventory")
+				Me.OnAvailableInventoryChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ItemGroupID", DbType:="Int NOT NULL")>  _
+	Public Property ItemGroupID() As Integer
+		Get
+			Return Me._ItemGroupID
+		End Get
+		Set
+			If ((Me._ItemGroupID = value)  _
+						= false) Then
+				Me.OnItemGroupIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ItemGroupID = value
+				Me.SendPropertyChanged("ItemGroupID")
+				Me.OnItemGroupIDChanged
 			End If
 		End Set
 	End Property
